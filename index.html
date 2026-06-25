@@ -1,0 +1,197 @@
+<div class="diff-card-desc">15 секунд на ответ · Смешанные категории</div>
+    </div>
+    <div class="diff-card hard" onclick="startEmoji('hard')">
+      <div class="diff-card-icon">🔴</div>
+      <div class="diff-card-name">Сложно</div>
+      <div class="diff-card-desc">10 секунд на ответ · Для знатоков</div>
+    </div>
+  </div>
+  <div class="back-link" onclick="showScreen('lobby')">← Назад</div>
+</div>
+<div class="screen" id="emoji-screen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goLobby()">← Назад</button>
+    <div class="game-title" style="color:var(--emoji-accent)">ЭмоДжи</div>
+    <div class="streak-mini">🔥 <span id="emoji-streak">0</span></div>
+  </div>
+  <div class="emoji-content">
+    <div class="category-badge" id="category-badge">🎬 Фильм</div>
+    <div class="emoji-display" id="emoji-display">🤔</div>
+    <div class="timer-zone">
+      <div class="timer-label"><span>Время</span><span id="timer-text">30</span></div>
+      <div class="timer-track"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="attempts-row" id="attempts-row"></div>
+      <span style="font-size:12px;color:var(--muted)">попыток осталось</span>
+    </div>
+    <div class="input-zone">
+      <input class="answer-input" id="answer-input" type="text" placeholder="Введи ответ..." autocomplete="off" autocorrect="off" autocapitalize="off">
+      <button class="submit-btn" id="submit-btn" onclick="submitEmoji()">Ответить</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="number-screen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goLobby()">← Назад</button>
+    <div class="game-title" style="color:var(--number-accent)">ЧислоДня</div>
+    <div class="streak-mini">🔥 <span id="number-streak">0</span></div>
+  </div>
+  <div class="number-content">
+    <div class="number-info">
+      <div class="next-round-badge" id="next-round-text">Следующее через: --:--:--</div>
+      <div class="attempts-left">Попыток: <span id="attempts-left">10</span>/10</div>
+    </div>
+    <div class="hint-card" id="number-hint"><span>💡</span><span id="number-hint-text"></span></div>
+    <div class="guesses-log" id="guesses-log">
+      <div style="text-align:center;color:var(--muted);font-size:14px;padding:20px">Угадай число от 1 до 1000</div>
+    </div>
+    <div class="number-input-zone">
+      <input class="number-input" id="number-input" type="number" min="1" max="1000" placeholder="?">
+      <button class="number-submit" onclick="submitNumber()">→</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="result-screen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goLobby()">← Назад</button>
+    <div class="game-title" id="result-mode-title">Результат</div>
+    <div></div>
+  </div>
+  <div class="result-content">
+    <div class="result-emoji-big" id="result-emoji">🎉</div>
+    <div class="result-title" id="result-title">Правильно!</div>
+    <div class="result-answer" id="result-answer"></div>
+    <button class="share-result-btn" onclick="shareResult()">📤 Поделиться результатом</button>
+    <div class="lb-block">
+      <div class="lb-title-text">🏆 Топ Санкт-Петербурга</div>
+      <div id="leaderboard"></div>
+    </div>
+    <button class="back-lobby-btn" onclick="goLobby()">← В главное меню</button>
+  </div>
+</div>
+const total=timerSeconds;
+  updateTimerUI(timerSeconds,total);
+  timerInterval=setInterval(()=>{
+    timerSeconds--;
+    updateTimerUI(timerSeconds,total);
+    if(timerSeconds<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function updateTimerUI(sec,total){
+  const pct=(sec/total)*100;
+  const fill=document.getElementById('timer-fill');
+  fill.style.width=pct+'%';
+  fill.className='timer-fill'+(pct<30?' warning':'');
+  document.getElementById('timer-text').textContent=sec;
+}
+
+function timeOut(){
+  if(emojiAttempts>0){
+    emojiAttempts--;markAttempt();
+    if(emojiAttempts>0){
+      currentClueIdx=Math.min(currentClueIdx+1,currentPuzzle.clues.length-1);
+      document.getElementById('emoji-display').textContent=currentPuzzle.clues[currentClueIdx];
+      startTimer();
+    } else {
+      lastResult={mode:'emoji',won:false,answer:currentPuzzle.answer,attemptsUsed:3,clue:currentPuzzle.clues[0]};
+      showResultScreen(false);
+    }
+  }
+}
+
+function resetAttemptDots(){
+  const row=document.getElementById('attempts-row');
+  row.innerHTML='';
+  for(let i=0;i<3;i++){const d=document.createElement('div');d.className='attempt-dot';row.appendChild(d);}
+}
+
+function markAttempt(){
+  const dots=document.querySelectorAll('.attempt-dot');
+  const used=3-emojiAttempts;
+  for(let i=0;i<used;i++)if(dots[i])dots[i].classList.add('used');
+}
+
+function submitEmoji(){
+  const input=document.getElementById('answer-input');
+  const val=input.value.trim().toLowerCase();
+  const correct=currentPuzzle.answer.toLowerCase();
+  if(!val)return;
+  if(val===correct||(correct.includes(val)&&val.length>3)){
+    clearInterval(timerInterval);
+    input.classList.add('correct-input');
+    updateStreak();
+    lastResult={mode:'emoji',won:true,answer:currentPuzzle.answer,attemptsUsed:3-emojiAttempts+1,clue:currentPuzzle.clues[0]};
+    setTimeout(()=>showResultScreen(true),600);
+  } else {
+    input.classList.add('wrong-input');
+    setTimeout(()=>{input.classList.remove('wrong-input');input.value='';},500);
+    clearInterval(timerInterval);
+    emojiAttempts--;markAttempt();
+    if(emojiAttempts<=0){
+      lastResult={mode:'emoji',won:false,answer:currentPuzzle.answer,attemptsUsed:3,clue:currentPuzzle.clues[0]};
+      setTimeout(()=>showResultScreen(false),600);
+    } else {
+      currentClueIdx=Math.min(currentClueIdx+1,currentPuzzle.clues.length-1);
+      document.getElementById('emoji-display').textContent=currentPuzzle.clues[currentClueIdx];
+      startTimer();
+    }
+  }
+}
+      document.getElementById('result-title').textContent='Не угадал';
+    document.getElementById('result-answer').innerHTML=isEmoji
+      ?`Правильный ответ: <span>${lastResult.answer}</span>`
+      :`Загаданное число было: <span>${lastResult.answer}</span>`;
+  }
+  const streak=parseInt(localStorage.getItem('streak')||'0');
+  const pts=won?Math.max(10,100-(lastResult.attemptsUsed-1)*10):0;
+  LEADERBOARD_DEMO[3].pts=pts;LEADERBOARD_DEMO[3].streak=streak;
+  const sorted=[...LEADERBOARD_DEMO].sort((a,b)=>b.pts-a.pts);
+  const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];
+  document.getElementById('leaderboard').innerHTML=sorted.map((p,i)=>`
+    <div class="lb-item ${p.me?'me':''}">
+      <div class="lb-pos ${pc[i]||''}">${pe[i]||i+1}</div>
+      <div class="lb-name">${p.name}${p.me?' 👤':''}</div>
+      <div><div class="lb-pts">${p.pts} pts</div><div class="lb-fire">🔥${p.streak}д</div></div>
+    </div>`).join('');
+  showScreen('result-screen');
+}
+
+function shareResult(){
+  if(!lastResult)return;
+  const isEmoji=lastResult.mode==='emoji';
+  const streak=localStorage.getItem('streak')||'0';
+  let text;
+  if(isEmoji){
+    const dots=Array(3).fill(0).map((_,i)=>i<lastResult.attemptsUsed?(lastResult.won&&i===lastResult.attemptsUsed-1?'🟩':'🟥'):'⬜').join('');
+    text=`tresuno 🎭 ЭмоДжи\n${lastResult.clue}\n${dots} ${lastResult.won?'Угадал!':'Не угадал'}\nОтвет: ${lastResult.answer}\n🔥 ${streak} дней\n\nmelnwsc2-cmyk.github.io/tresuno`;
+  } else {
+    const dots=Array(Math.min(lastResult.attemptsUsed,10)).fill('🟦').join('')+(lastResult.won?'':'❌');
+    text=`tresuno 🔢 ЧислоДня\n${dots}\n${lastResult.won?`Нашёл за ${lastResult.attemptsUsed} попыток!`:'Не нашёл 😔'}\n🔥 ${streak} дней\n\nmelnwsc2-cmyk.github.io/tresuno`;
+  }
+  if(navigator.share)navigator.share({text});
+  else navigator.clipboard.writeText(text).then(()=>alert('Скопировано!'));
+}
+
+function updateStreak(){
+  const today=new Date().toDateString();
+  const lastPlay=localStorage.getItem('lastPlay');
+  let streak=parseInt(localStorage.getItem('streak')||'0');
+  const yesterday=new Date(Date.now()-86400000).toDateString();
+  if(lastPlay===yesterday)streak++;
+  else if(lastPlay!==today)streak=1;
+  localStorage.setItem('streak',streak);
+  localStorage.setItem('lastPlay',today);
+  ['lobby-streak','emoji-streak','number-streak'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.textContent=streak;
+  });
+}
+
+document.getElementById('answer-input').addEventListener('keydown',e=>{if(e.key==='Enter')submitEmoji();});
+document.getElementById('number-input').addEventListener('keydown',e=>{if(e.key==='Enter')submitNumber();});
+
+init();
+</script>
+</body>
+</html>
