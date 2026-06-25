@@ -1,197 +1,282 @@
-<div class="diff-card-desc">15 секунд на ответ · Смешанные категории</div>
-    </div>
-    <div class="diff-card hard" onclick="startEmoji('hard')">
-      <div class="diff-card-icon">🔴</div>
-      <div class="diff-card-name">Сложно</div>
-      <div class="diff-card-desc">10 секунд на ответ · Для знатоков</div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tresuno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#0d0d0f;--s:#16161a;--s2:#1e1e24;--b:#2a2a35;--t:#f0f0f5;--m:#6b6b80;--ea:#f5c542;--na:#5b8cff;--fa:#ff5c5c;--ok:#4ecb71}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;min-height:100dvh}
+.sc{display:none;flex-direction:column;min-height:100dvh}.sc.on{display:flex}
+.lh{padding:48px 24px 24px;text-align:center}
+.logo{font-family:'Space Mono',monospace;font-size:40px;font-weight:700;letter-spacing:-2px}
+.lt{color:var(--t)}.lu{color:var(--ea)}
+.ls{font-size:12px;color:var(--m);margin-top:6px;letter-spacing:2px;text-transform:uppercase}
+.sr{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.ch{display:flex;align-items:center;gap:6px;background:var(--s);border:1px solid var(--b);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600}
+.mc{display:flex;flex-direction:column;gap:12px;padding:0 20px 32px;flex:1}
+.card{background:var(--s);border:1.5px solid var(--b);border-radius:20px;padding:24px;cursor:pointer;position:relative;overflow:hidden}
+.card:active{transform:scale(0.98)}
+.ec{border-color:rgba(245,197,66,0.35)}.nc{border-color:rgba(91,140,255,0.35)}
+.ci{font-size:30px;margin-bottom:10px}
+.cn{font-family:'Space Mono',monospace;font-size:19px;font-weight:700;margin-bottom:6px}
+.ec .cn{color:var(--ea)}.nc .cn{color:var(--na)}
+.cd{font-size:13px;color:var(--m);line-height:1.5}
+.cb{display:inline-flex;margin-top:10px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.ec .cb{background:rgba(245,197,66,0.15);color:var(--ea)}.nc .cb{background:rgba(91,140,255,0.15);color:var(--na)}
+.dh{padding:36px 24px 20px;text-align:center}
+.dt{font-family:'Space Mono',monospace;font-size:26px;font-weight:700;color:var(--ea)}
+.ds{font-size:13px;color:var(--m);margin-top:6px}
+.dc{display:flex;flex-direction:column;gap:12px;padding:0 20px 24px;flex:1}
+.dcard{background:var(--s);border:1.5px solid var(--b);border-radius:20px;padding:22px;cursor:pointer}
+.dcard:active{transform:scale(0.98)}
+.dcard.e{border-color:rgba(78,203,113,0.35)}.dcard.m{border-color:rgba(245,197,66,0.35)}.dcard.h{border-color:rgba(255,92,92,0.35)}
+.di{font-size:26px;margin-bottom:8px}
+.dn{font-family:'Space Mono',monospace;font-size:17px;font-weight:700;margin-bottom:4px}
+.dcard.e .dn{color:var(--ok)}.dcard.m .dn{color:var(--ea)}.dcard.h .dn{color:var(--fa)}
+.dd{font-size:13px;color:var(--m)}
+.bl{text-align:center;padding:14px;color:var(--m);font-size:13px;cursor:pointer}
+.gh{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--b);position:sticky;top:0;background:var(--bg);z-index:10}
+.bb{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:8px 12px;color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer}
+.gt{font-family:'Space Mono',monospace;font-size:15px;font-weight:700}
+.sm{font-size:13px;font-weight:600;color:var(--ea)}
+.ec2{flex:1;display:flex;flex-direction:column;padding:20px;gap:16px}
+.cat{display:inline-flex;background:var(--s);border:1px solid var(--b);border-radius:10px;padding:7px 14px;font-size:13px;font-weight:600}
+.ed{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:36px 16px;text-align:center;font-size:44px;line-height:1.5;letter-spacing:4px;min-height:140px;display:flex;align-items:center;justify-content:center}
+.tz{display:flex;flex-direction:column;gap:6px}
+.tl{display:flex;justify-content:space-between;font-size:12px;color:var(--m);font-weight:600}
+.tt{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}
+.tf{height:100%;border-radius:3px;transition:width 1s linear;background:var(--ea)}
+.tf.w{background:var(--fa)}
+.ar{display:flex;gap:8px;align-items:center}
+.ad{width:11px;height:11px;border-radius:50%;background:var(--ea);transition:all 0.3s}
+.ad.u{background:var(--fa);transform:scale(0.8)}
+.iz{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.ai{width:100%;padding:15px 16px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:16px;outline:none;transition:border-color 0.2s}
+.ai:focus{border-color:var(--ea)}.ai.ok{border-color:var(--ok);background:rgba(78,203,113,0.08)}.ai.no{border-color:var(--fa);background:rgba(255,92,92,0.08)}
+.sb{width:100%;padding:15px;background:var(--ea);color:#0d0d0f;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;cursor:pointer}
+.sb:disabled{opacity:0.4;pointer-events:none}
+.nc2{flex:1;display:flex;flex-direction:column;padding:20px;gap:16px}
+.ni{display:flex;justify-content:space-between;align-items:center}
+.nr{font-size:12px;color:var(--m);font-weight:600}
+.al{font-family:'Space Mono',monospace;font-size:13px;color:var(--na);font-weight:700}
+.gl{display:flex;flex-direction:column;gap:7px;max-height:250px;overflow-y:auto}
+.gr{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--s);border:1px solid var(--b);border-radius:11px;animation:si 0.3s ease}
+@keyframes si{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.gn{font-family:'Space Mono',monospace;font-size:17px;font-weight:700}
+.gi{font-size:13px;font-weight:600;padding:4px 11px;border-radius:20px}
+.gi.hi{background:rgba(91,140,255,0.15);color:var(--na)}.gi.lo{background:rgba(255,92,92,0.15);color:var(--fa)}.gi.co{background:rgba(78,203,113,0.15);color:var(--ok)}
+.hc{background:rgba(91,140,255,0.08);border:1px solid rgba(91,140,255,0.2);border-radius:11px;padding:11px 14px;font-size:13px;color:var(--na);display:none;gap:8px;align-items:center}
+.hc.on{display:flex}
+.niz{display:flex;gap:10px;margin-top:auto}
+.ni2{flex:1;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:20px;font-weight:700;outline:none;text-align:center;transition:border-color 0.2s}
+.ni2:focus{border-color:var(--na)}
+.ns{padding:15px 18px;background:var(--na);color:#fff;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:15px;font-weight:700;cursor:pointer}
+.ns:disabled{opacity:0.4;pointer-events:none}
+.rc{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px;gap:20px;text-align:center}
+.re{font-size:60px}
+.rt{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;line-height:1.3}
+.ra{font-size:14px;color:var(--m);line-height:1.6}.ra span{color:var(--t);font-weight:600}
+.shb{width:100%;padding:15px;background:var(--s2);border:1.5px solid var(--ea);border-radius:13px;color:var(--ea);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
+.lb{width:100%;text-align:left}
+.lbt{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:var(--m);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.li{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--s);border:1px solid var(--b);border-radius:11px;margin-bottom:7px}
+.li.me{border-color:var(--ea);background:rgba(245,197,66,0.05)}
+.lp{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;width:22px;text-align:center;color:var(--m)}
+.lp.p1{color:#fbbf24}.lp.p2{color:#94a3b8}.lp.p3{color:#d97706}
+.ln{flex:1;font-size:13px;font-weight:500}
+.lsc{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--ea)}
+.lf{font-size:10px;color:var(--m)}
+.bk{width:100%;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="sc on" id="lo">
+  <div class="lh">
+    <div class="logo"><span class="lt">tres</span><span class="lu">uno</span></div>
+    <div class="ls">две игры · каждый день</div>
+    <div class="sr">
+      <div class="ch">🔥 <span id="ls">0</span> дней подряд</div>
+      <div class="ch">🏙️ Санкт-Петербург</div>
     </div>
   </div>
-  <div class="back-link" onclick="showScreen('lobby')">← Назад</div>
+  <div class="mc">
+    <div class="card ec" onclick="ss('di')">
+      <div class="ci">🎭</div>
+      <div class="cn">ЭмоДжи</div>
+      <div class="cd">Угадай фильм, аниме, игру или песню по эмодзи — пока не кончилось время</div>
+      <div class="cb">📅 1 загадка в день</div>
+    </div>
+    <div class="card nc" onclick="sN()">
+      <div class="ci">🔢</div>
+      <div class="cn">ЧислоДня</div>
+      <div class="cd">Загадано число от 1 до 1000. Угадай за 10 попыток — новое каждые 4 часа</div>
+      <div class="cb">⏱️ 6 раз в сутки</div>
+    </div>
+  </div>
 </div>
-<div class="screen" id="emoji-screen">
-  <div class="game-header">
-    <button class="back-btn" onclick="goLobby()">← Назад</button>
-    <div class="game-title" style="color:var(--emoji-accent)">ЭмоДжи</div>
-    <div class="streak-mini">🔥 <span id="emoji-streak">0</span></div>
+
+<div class="sc" id="di">
+  <div class="dh">
+    <div class="dt">🎭 ЭмоДжи</div>
+    <div class="ds">Выбери уровень сложности</div>
   </div>
-  <div class="emoji-content">
-    <div class="category-badge" id="category-badge">🎬 Фильм</div>
-    <div class="emoji-display" id="emoji-display">🤔</div>
-    <div class="timer-zone">
-      <div class="timer-label"><span>Время</span><span id="timer-text">30</span></div>
-      <div class="timer-track"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+  <div class="dc">
+    <div class="dcard e" onclick="sE('e')">
+      <div class="di">🟢</div>
+      <div class="dn">Легко</div>
+      <div class="dd">30 секунд · Популярные загадки</div>
+    </div>
+    <div class="dcard m" onclick="sE('m')">
+      <div class="di">🟡</div>
+      <div class="dn">Средне</div>
+      <div class="dd">15 секунд · Смешанные категории</div>
+    </div>
+    <div class="dcard h" onclick="sE('h')">
+      <div class="di">🔴</div>
+      <div class="dn">Сложно</div>
+      <div class="dd">10 секунд · Для знатоков</div>
+    </div>
+  </div>
+  <div class="bl" onclick="ss('lo')">← Назад</div>
+</div>
+
+<div class="sc" id="eg">
+  <div class="gh">
+    <button class="bb" onclick="gl()">← Назад</button>
+    <div class="gt" style="color:var(--ea)">ЭмоДжи</div>
+    <div class="sm">🔥 <span id="es">0</span></div>
+  </div>
+  <div class="ec2">
+    <div class="cat" id="cat">🎬 Фильм</div>
+    <div class="ed" id="ed">🤔</div>
+    <div class="tz">
+      <div class="tl"><span>Время</span><span id="tt">30</span></div>
+      <div class="tt"><div class="tf" id="tf" style="width:100%"></div></div>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between">
-      <div class="attempts-row" id="attempts-row"></div>
-      <span style="font-size:12px;color:var(--muted)">попыток осталось</span>
+      <div class="ar" id="ar"></div>
+      <span style="font-size:11px;color:var(--m)">попыток осталось</span>
     </div>
-    <div class="input-zone">
-      <input class="answer-input" id="answer-input" type="text" placeholder="Введи ответ..." autocomplete="off" autocorrect="off" autocapitalize="off">
-      <button class="submit-btn" id="submit-btn" onclick="submitEmoji()">Ответить</button>
-    </div>
-  </div>
-</div>
-<div class="screen" id="number-screen">
-  <div class="game-header">
-    <button class="back-btn" onclick="goLobby()">← Назад</button>
-    <div class="game-title" style="color:var(--number-accent)">ЧислоДня</div>
-    <div class="streak-mini">🔥 <span id="number-streak">0</span></div>
-  </div>
-  <div class="number-content">
-    <div class="number-info">
-      <div class="next-round-badge" id="next-round-text">Следующее через: --:--:--</div>
-      <div class="attempts-left">Попыток: <span id="attempts-left">10</span>/10</div>
-    </div>
-    <div class="hint-card" id="number-hint"><span>💡</span><span id="number-hint-text"></span></div>
-    <div class="guesses-log" id="guesses-log">
-      <div style="text-align:center;color:var(--muted);font-size:14px;padding:20px">Угадай число от 1 до 1000</div>
-    </div>
-    <div class="number-input-zone">
-      <input class="number-input" id="number-input" type="number" min="1" max="1000" placeholder="?">
-      <button class="number-submit" onclick="submitNumber()">→</button>
+    <div class="iz">
+      <input class="ai" id="ai" type="text" placeholder="Введи ответ..." autocomplete="off" autocorrect="off" autocapitalize="off">
+      <button class="sb" id="sb" onclick="se()">Ответить</button>
     </div>
   </div>
 </div>
-<div class="screen" id="result-screen">
-  <div class="game-header">
-    <button class="back-btn" onclick="goLobby()">← Назад</button>
-    <div class="game-title" id="result-mode-title">Результат</div>
+
+<div class="sc" id="ng">
+  <div class="gh">
+    <button class="bb" onclick="gl()">← Назад</button>
+    <div class="gt" style="color:var(--na)">ЧислоДня</div>
+    <div class="sm">🔥 <span id="ns2">0</span></div>
+  </div>
+  <div class="nc2">
+    <div class="ni">
+      <div class="nr" id="nt">Следующее через: --:--:--</div>
+      <div class="al">Попыток: <span id="al">10</span>/10</div>
+    </div>
+    <div class="hc" id="nh"><span>💡</span><span id="nht"></span></div>
+    <div class="gl" id="gl">
+      <div style="text-align:center;color:var(--m);font-size:13px;padding:16px">Угадай число от 1 до 1000</div>
+    </div>
+    <div class="niz">
+      <input class="ni2" id="ni2" type="number" min="1" max="1000" placeholder="?">
+      <button class="ns" onclick="sn()">→</button>
+    </div>
+  </div>
+</div>
+
+<div class="sc" id="rs">
+  <div class="gh">
+    <button class="bb" onclick="gl()">← Назад</button>
+    <div class="gt" id="rmt">Результат</div>
     <div></div>
   </div>
-  <div class="result-content">
-    <div class="result-emoji-big" id="result-emoji">🎉</div>
-    <div class="result-title" id="result-title">Правильно!</div>
-    <div class="result-answer" id="result-answer"></div>
-    <button class="share-result-btn" onclick="shareResult()">📤 Поделиться результатом</button>
-    <div class="lb-block">
-      <div class="lb-title-text">🏆 Топ Санкт-Петербурга</div>
-      <div id="leaderboard"></div>
+  <div class="rc">
+    <div class="re" id="re">🎉</div>
+    <div class="rt" id="rt">Правильно!</div>
+    <div class="ra" id="ra"></div>
+    <button class="shb" onclick="sh()">📤 Поделиться</button>
+    <div class="lb">
+      <div class="lbt">🏆 Топ Санкт-Петербурга</div>
+      <div id="lb"></div>
     </div>
-    <button class="back-lobby-btn" onclick="goLobby()">← В главное меню</button>
+    <button class="bk" onclick="gl()">← В главное меню</button>
   </div>
 </div>
-const total=timerSeconds;
-  updateTimerUI(timerSeconds,total);
-  timerInterval=setInterval(()=>{
-    timerSeconds--;
-    updateTimerUI(timerSeconds,total);
-    if(timerSeconds<=0){clearInterval(timerInterval);timeOut();}
-  },1000);
+
+<script>
+const P=[
+  {c:"🎬 Фильм",q:["🦁👑🌅🐘🎵","🐾👑🌍🎶😢","🦁🔴⭕🌿🏆"],a:"Король Лев"},
+  {c:"🎬 Фильм",q:["🕷️🏙️🦸‍♂️❤️🎓","🕸️🏢💥🦹🔬","🕷️🌆👦💪🎭"],a:"Человек-паук"},
+  {c:"🎬 Фильм",q:["🧙‍♂️💍🌋⚔️🧝","🗡️🌿🏔️👁️🔥","💍🗺️🧙🐉🏰"],a:"Властелин колец"},
+  {c:"🎬 Фильм",q:["🚢❄️💔🌊🎻","⚓💑🌊🆘🧊","🛳️💔🌊🎬🏆"],a:"Титаник"},
+  {c:"🎬 Фильм",q:["🚀⭐🌌⚔️🤖","🌟👨‍🚀🔫🏆🌠","⚡🌌👾🗡️🪐"],a:"Звёздные войны"},
+  {c:"🎬 Фильм",q:["🦈🌊😱🏖️💀","🌊🦷🎣😨🏊","🦈💦🏄😱⚓"],a:"Челюсти"},
+  {c:"🎌 Аниме",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Наруто"},
+  {c:"🎌 Аниме",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Атака титанов"},
+  {c:"🎌 Аниме",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"Ван Пис"},
+  {c:"🎌 Аниме",q:["🔮💥🦸🏫⚡","💪🎓🦸‍♂️🌟🏆","🦸‍♂️🏅💫🎯🌈"],a:"Моя геройская академия"},
+  {c:"🎌 Аниме",q:["⚔️🌸💧🔥🌊","🗡️😭👿🌙🔥","🦋⚔️🌺💔🏯"],a:"Клинок рассекающий демонов"},
+  {c:"🎮 Игра",q:["🍄👸🏰🌟⭐","🔴🎮👨‍🔧🌍🏆","🍄🏁🎪🌈🚩"],a:"Марио"},
+  {c:"🎮 Игра",q:["🟦🟨🟥⬇️🧩","📦🔄🎮🇷🇺🏆","⬜🔵🔴🟩⬇️"],a:"Тетрис"},
+  {c:"🎮 Игра",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Майнкрафт"},
+  {c:"🎮 Игра",q:["🔫🏝️⭕🪂💊","🏆🎯🌴💣🏃","🪂🗺️🔫🏅🌊"],a:"PUBG"},
+  {c:"🎮 Игра",q:["⚔️🛡️🐉🏹🌲","🗡️🏰🧙‍♂️🌿🔮","🐉🏆⚔️🌍🎯"],a:"Ведьмак"},
+  {c:"🎵 Исполнитель",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"Queen"},
+  {c:"👤 Актёр",q:["🦇🃏🎭😂🔥","🎪🃏💜🏆😈","🎭😂🃏🌆🏅"],a:"Хоакин Феникс"},
+  {c:"👤 Актёр",q:["💪🤖🇺🇸🏋️🌴","🦾⚡🏆💥🎬","🤖💪🔫🌟🏛️"],a:"Арнольд Шварценеггер"},
+  {c:"🎌 Аниме",q:["🏫⚡🌙🌊🎭","👩‍🎓🔮💫🌸🏆","✨🌙💪🎀🌟"],a:"Сейлор Мун"}
+];
+
+const NH=[
+  n=>n%2===0?"Число чётное":"Число нечётное",
+  n=>n%5===0?"Делится на 5":"Не делится на 5",
+  n=>n>500?"Больше 500":"500 или меньше",
+  n=>`Последняя цифра: ${n%10}`
+];
+
+const LD=[
+  {n:"Алексей К.",p:450,s:12},
+  {n:"Мария Т.",p:380,s:7},
+  {n:"Dmitry_spb",p:310,s:21},
+  {n:"Ты",p:0,s:0,me:true},
+  {n:"Pavel88",p:190,s:3}
+];
+
+let cp=null,ea=3,ci=0,ti=null,ts=30,df='e',lr=null;
+let ns=0,na=0,nd=false;
+
+function init(){
+  const st=+localStorage.getItem('streak')||0;
+  ['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});
+  uNT();setInterval(uNT,1000);
 }
 
-function updateTimerUI(sec,total){
-  const pct=(sec/total)*100;
-  const fill=document.getElementById('timer-fill');
-  fill.style.width=pct+'%';
-  fill.className='timer-fill'+(pct<30?' warning':'');
-  document.getElementById('timer-text').textContent=sec;
-}
-
-function timeOut(){
-  if(emojiAttempts>0){
-    emojiAttempts--;markAttempt();
-    if(emojiAttempts>0){
-      currentClueIdx=Math.min(currentClueIdx+1,currentPuzzle.clues.length-1);
-      document.getElementById('emoji-display').textContent=currentPuzzle.clues[currentClueIdx];
-      startTimer();
-    } else {
-      lastResult={mode:'emoji',won:false,answer:currentPuzzle.answer,attemptsUsed:3,clue:currentPuzzle.clues[0]};
-      showResultScreen(false);
-    }
-  }
-}
-
-function resetAttemptDots(){
-  const row=document.getElementById('attempts-row');
-  row.innerHTML='';
-  for(let i=0;i<3;i++){const d=document.createElement('div');d.className='attempt-dot';row.appendChild(d);}
-}
-
-function markAttempt(){
-  const dots=document.querySelectorAll('.attempt-dot');
-  const used=3-emojiAttempts;
-  for(let i=0;i<used;i++)if(dots[i])dots[i].classList.add('used');
-}
-
-function submitEmoji(){
-  const input=document.getElementById('answer-input');
-  const val=input.value.trim().toLowerCase();
-  const correct=currentPuzzle.answer.toLowerCase();
-  if(!val)return;
-  if(val===correct||(correct.includes(val)&&val.length>3)){
-    clearInterval(timerInterval);
-    input.classList.add('correct-input');
-    updateStreak();
-    lastResult={mode:'emoji',won:true,answer:currentPuzzle.answer,attemptsUsed:3-emojiAttempts+1,clue:currentPuzzle.clues[0]};
-    setTimeout(()=>showResultScreen(true),600);
-  } else {
-    input.classList.add('wrong-input');
-    setTimeout(()=>{input.classList.remove('wrong-input');input.value='';},500);
-    clearInterval(timerInterval);
-    emojiAttempts--;markAttempt();
-    if(emojiAttempts<=0){
-      lastResult={mode:'emoji',won:false,answer:currentPuzzle.answer,attemptsUsed:3,clue:currentPuzzle.clues[0]};
-      setTimeout(()=>showResultScreen(false),600);
-    } else {
-      currentClueIdx=Math.min(currentClueIdx+1,currentPuzzle.clues.length-1);
-      document.getElementById('emoji-display').textContent=currentPuzzle.clues[currentClueIdx];
-      startTimer();
-    }
-  }
-}
-      document.getElementById('result-title').textContent='Не угадал';
-    document.getElementById('result-answer').innerHTML=isEmoji
-      ?`Правильный ответ: <span>${lastResult.answer}</span>`
-      :`Загаданное число было: <span>${lastResult.answer}</span>`;
-  }
-  const streak=parseInt(localStorage.getItem('streak')||'0');
-  const pts=won?Math.max(10,100-(lastResult.attemptsUsed-1)*10):0;
-  LEADERBOARD_DEMO[3].pts=pts;LEADERBOARD_DEMO[3].streak=streak;
-  const sorted=[...LEADERBOARD_DEMO].sort((a,b)=>b.pts-a.pts);
-  const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];
-  document.getElementById('leaderboard').innerHTML=sorted.map((p,i)=>`
-    <div class="lb-item ${p.me?'me':''}">
-      <div class="lb-pos ${pc[i]||''}">${pe[i]||i+1}</div>
-      <div class="lb-name">${p.name}${p.me?' 👤':''}</div>
-      <div><div class="lb-pts">${p.pts} pts</div><div class="lb-fire">🔥${p.streak}д</div></div>
-    </div>`).join('');
-  showScreen('result-screen');
-}
-
-function shareResult(){
-  if(!lastResult)return;
-  const isEmoji=lastResult.mode==='emoji';
-  const streak=localStorage.getItem('streak')||'0';
-  let text;
-  if(isEmoji){
-    const dots=Array(3).fill(0).map((_,i)=>i<lastResult.attemptsUsed?(lastResult.won&&i===lastResult.attemptsUsed-1?'🟩':'🟥'):'⬜').join('');
-    text=`tresuno 🎭 ЭмоДжи\n${lastResult.clue}\n${dots} ${lastResult.won?'Угадал!':'Не угадал'}\nОтвет: ${lastResult.answer}\n🔥 ${streak} дней\n\nmelnwsc2-cmyk.github.io/tresuno`;
-  } else {
-    const dots=Array(Math.min(lastResult.attemptsUsed,10)).fill('🟦').join('')+(lastResult.won?'':'❌');
-    text=`tresuno 🔢 ЧислоДня\n${dots}\n${lastResult.won?`Нашёл за ${lastResult.attemptsUsed} попыток!`:'Не нашёл 😔'}\n🔥 ${streak} дней\n\nmelnwsc2-cmyk.github.io/tresuno`;
-  }
-  if(navigator.share)navigator.share({text});
-  else navigator.clipboard.writeText(text).then(()=>alert('Скопировано!'));
-}
-
-function updateStreak(){
-  const today=new Date().toDateString();
-  const lastPlay=localStorage.getItem('lastPlay');
-  let streak=parseInt(localStorage.getItem('streak')||'0');
-  const yesterday=new Date(Date.now()-86400000).toDateString();
-  if(lastPlay===yesterday)streak++;
-  else if(lastPlay!==today)streak=1;
-  localStorage.setItem('streak',streak);
-  localStorage.setItem('lastPlay',today);
-  ['lobby-streak','emoji-streak','number-streak'].forEach(id=>{
-    const el=document.getElementById(id);if(el)el.textContent=streak;
-  });
-}
-
-document.getElementById('answer-input').addEventListener('keydown',e=>{if(e.key==='Enter')submitEmoji();});
-document.getElementById('number-input').addEventListener('keydown',e=>{if(e.key==='Enter')submitNumber();});
-
+function ss(id){document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
+function gl(){clearInterval(ti);ss('lo');}
+function sE(d){df=d;const i=tdi(P.length);cp=P[i];ea=3;ci=0;document.getElementById('cat').textContent=cp.c;document.getElementById('ed').textContent=cp.q[0];document.getElementById('ai').value='';document.getElementById('ai').className='ai';document.getElementById('sb').disabled=false;rAD();ss('eg');sT();}
+function tdi(m){const d=new Date();return((d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate())%m);}
+function sT(){clearInterval(ti);ts=df==='e'?30:df==='m'?15:10;const tot=ts;uTU(ts,tot);ti=setInterval(()=>{ts--;uTU(ts,tot);if(ts<=0){clearInterval(ti);tO();}},1000);}
+function uTU(s,t){const p=(s/t)*100;const f=document.getElementById('tf');f.style.width=p+'%';f.className='tf'+(p<30?' w':'');document.getElementById('tt').textContent=s;}
+function tO(){if(ea>0){ea--;mA();if(ea>0){ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}else{lr={m:'e',w:false,a:cp.a,n:3,q:cp.q[0]};sR(false);}}}
+function rAD(){const r=document.getElementById('ar');r.innerHTML='';for(let i=0;i<3;i++){const d=document.createElement('div');d.className='ad';r.appendChild(d);}}
+function mA(){const ds=document.querySelectorAll('.ad');const u=3-ea;for(let i=0;i<u;i++)if(ds[i])ds[i].classList.add('u');}
+function se(){const inp=document.getElementById('ai');const v=inp.value.trim().toLowerCase();const co=cp.a.toLowerCase();if(!v)return;if(v===co||(co.includes(v)&&v.length>3)){clearInterval(ti);inp.classList.add('ok');uSt();lr={m:'e',w:true,a:cp.a,n:3-ea+1,q:cp.q[0]};setTimeout(()=>sR(true),600);}else{inp.classList.add('no');setTimeout(()=>{inp.classList.remove('no');inp.value='';},500);clearInterval(ti);ea--;mA();if(ea<=0){lr={m:'e',w:false,a:cp.a,n:3,q:cp.q[0]};setTimeout(()=>sR(false),600);}else{ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}}}
+function sN(){ns=gTN();na=0;nd=false;document.getElementById('gl').innerHTML='<div style="text-align:center;color:var(--m);font-size:13px;padding:16px">Угадай число от 1 до 1000</div>';document.getElementById('ni2').value='';document.getElementById('al').textContent='10';document.getElementById('nh').classList.remove('on');document.querySelector('.ns').disabled=false;ss('ng');}
+function gTN(){const d=new Date();const h=Math.floor(d.getHours()/4);const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate()*100+h;let x=seed;x=((x>>16)^x)*0x45d9f3b;x=((x>>16)^x)*0x45d9f3b;x=(x>>16)^x;return(Math.abs(x)%1000)+1;}
+function uNT(){const d=new Date();const nh=(Math.floor(d.getHours()/4)+1)*4;const nx=new Date(d);nx.setHours(nh,0,0,0);const diff=nx-d;if(diff<0)return;const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);const el=document.getElementById('nt');if(el)el.textContent=`Следующее через: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
+function sn(){const inp=document.getElementById('ni2');const v=parseInt(inp.value);if(!v||v<1||v>1000||nd)return;na++;inp.value='';document.getElementById('al').textContent=10-na;const log=document.getElementById('gl');if(na===1)log.innerHTML='';const row=document.createElement('div');row.className='gr';let ht,hc;if(v===ns){ht='✓ Верно!';hc='co';}else if(v<ns){ht='↑ Больше';hc='hi';}else{ht='↓ Меньше';hc='lo';}row.innerHTML=`<span class="gn">${v}</span><span class="gi ${hc}">${ht}</span>`;log.appendChild(row);log.scrollTop=log.scrollHeight;if(na%3===0&&v!==ns){const hi=Math.floor(na/3)-1;if(hi<NH.length){document.getElementById('nht').textContent=NH[hi](ns);document.getElementById('nh').classList.add('on');}}if(v===ns){nd=true;document.querySelector('.ns').disabled=true;uSt();lr={m:'n',w:true,a:ns,n:na};setTimeout(()=>sR(true),800);}else if(na>=10){nd=true;document.querySelector('.ns').disabled=true;lr={m:'n',w:false,a:ns,n:10};setTimeout(()=>sR(false),800);}}
+function sR(w){const ie=lr.m==='e';const ac=ie?'var(--ea)':'var(--na)';document.getElementById('rmt').textContent=ie?'ЭмоДжи':'ЧислоДня';document.getElementById('rmt').style.color=ac;document.querySelector('.shb').style.borderColor=ac;document.querySelector('.shb').style.color=ac;if(w){document.getElementById('re').textContent=ie?'🎉':'🎯';document.getElementById('rt').textContent=ie?'Угадал!':'Нашёл число!';document.getElementById('ra').innerHTML=ie?`Ответ: <span>${lr.a}</span> · Попыток: <span>${lr.n}</span> из 3`:`Число: <span>${lr.a}</span> · Попыток: <span>${lr.n}</span>`;}else{document.getElementById('re').textContent='😔';document.getElementById('rt').textContent='Не угадал';document.getElementById('ra').innerHTML=ie?`Правильный ответ: <span>${lr.a}</span>`:`Загаданное число: <span>${lr.a}</span>`;}const st=+localStorage.getItem('streak')||0;const pts=w?Math.max(10,100-(lr.n-1)*10):0;LD[3].p=pts;LD[3].s=st;const so=[...LD].sort((a,b)=>b.p-a.p);const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];document.getElementById('lb').innerHTML=so.map((p,i)=>`<div class="li ${p.me?'me':''}"><div class="lp ${pc[i]||''}">${pe[i]||i+1}</div><div class="ln">${p.n}${p.me?' 👤':''}</div><div><div class="lsc">${p.p} pts</div><div class="lf">🔥${p.s}д</div></div></div>`).join('');ss('rs');}
+function sh(){if(!lr)return;const ie=lr.m==='e';const st=localStorage.getItem('streak')||'0';let tx;if(ie){const dots=Array(3).fill(0).map((_,i)=>i<lr.n?(lr.w&&i===lr.n-1?'🟩':'🟥'):'⬜').join('');tx=`tresuno 🎭\n${lr.q}\n${dots} ${lr.w?'Угадал!':'Не угадал'}\nОтвет: ${lr.a}\n🔥${st}д\nmelnwsc2-cmyk.github.io/tresuno`;}else{const dots=Array(Math.min(lr.n,10)).fill('🟦').join('')+(lr.w?'':'❌');tx=`tresuno 🔢\n${dots}\n${lr.w?`Нашёл за ${lr.n} попыток!`:'Не нашёл 😔'}\n🔥${st}д\nmelnwsc2-cmyk.github.io/tresuno`;}if(navigator.share)navigator.share({text:tx});else navigator.clipboard.writeText(tx).then(()=>alert('Скопировано!'));}
+function uSt(){const today=new Date().toDateString();const lp=localStorage.getItem('lastPlay');let st=+localStorage.getItem('streak')||0;const yd=new Date(Date.now()-86400000).toDateString();if(lp===yd)st++;else if(lp!==today)st=1;localStorage.setItem('streak',st);localStorage.setItem('lastPlay',today);['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});}
+document.getElementById('ai').addEventListener('keydown',e=>{if(e.key==='Enter')se();});
+document.getElementById('ni2').addEventListener('keydown',e=>{if(e.key==='Enter')sn();});
 init();
 </script>
 </body>
-</html>
+    </html>
