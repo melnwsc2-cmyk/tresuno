@@ -47,8 +47,7 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
 .ed{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:36px 16px;text-align:center;font-size:44px;line-height:1.5;letter-spacing:4px;min-height:140px;display:flex;align-items:center;justify-content:center}
 .tz{display:flex;flex-direction:column;gap:6px}
 .tl{display:flex;justify-content:space-between;font-size:12px;color:var(--m);font-weight:600}
-.tt{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}
-.tf{height:100%;border-radius:3px;transition:width 1s linear;background:var(--ea)}
+.tt{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}.tf{height:100%;border-radius:3px;transition:width 1s linear;background:var(--ea)}
 .tf.w{background:var(--fa)}
 .ar{display:flex;gap:8px;align-items:center}
 .ad{width:11px;height:11px;border-radius:50%;background:var(--ea);transition:all 0.3s}
@@ -89,7 +88,21 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
 .ln{flex:1;font-size:13px;font-weight:500}
 .lsc{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--ea)}
 .lf{font-size:10px;color:var(--m)}
-.bk{width:100%;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
+  .bk{width:100%;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
+.pr{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px;gap:16px;text-align:center}
+.pr-emoji{font-size:56px}
+.pr-title{font-family:'Space Mono',monospace;font-size:20px;font-weight:700;line-height:1.3}
+.pr-sub{font-size:13px;color:var(--m);line-height:1.6}.pr-sub span{color:var(--t);font-weight:600}
+.pr-dots{display:flex;gap:8px;justify-content:center;margin:4px 0}
+.pr-dot{width:14px;height:14px;border-radius:50%;background:var(--b)}
+.pr-dot.ok{background:var(--ok)}.pr-dot.fa{background:var(--fa)}.pr-dot.pend{background:var(--b);border:1.5px solid var(--m)}
+.xp-badge{background:rgba(245,197,66,0.12);border:1px solid rgba(245,197,66,0.3);border-radius:12px;padding:10px 20px;font-family:'Space Mono',monospace;font-size:15px;font-weight:700;color:var(--ea)}
+.nb{width:100%;padding:15px;background:var(--ea);color:#0d0d0f;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;cursor:pointer;margin-top:auto}
+.eq-progress{display:flex;gap:5px}
+.eq-pip{width:8px;height:8px;border-radius:50%;background:var(--b);border:1.5px solid var(--m);transition:all 0.3s}
+.eq-pip.ok{background:var(--ok);border-color:var(--ok)}
+.eq-pip.fa{background:var(--fa);border-color:var(--fa)}
+.eq-pip.cur{border-color:var(--ea)}
 </style>
 </head>
 <body>
@@ -108,7 +121,7 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
       <div class="ci">🎭</div>
       <div class="cn">ЭмоДжи</div>
       <div class="cd">Угадай фильм, аниме, игру или песню по эмодзи — пока не кончилось время</div>
-      <div class="cb">📅 1 загадка в день</div>
+      <div class="cb">📅 3 загадки в день</div>
     </div>
     <div class="card nc" onclick="sN()">
       <div class="ci">🔢</div>
@@ -128,17 +141,17 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
     <div class="dcard e" onclick="sE('e')">
       <div class="di">🟢</div>
       <div class="dn">Легко</div>
-      <div class="dd">30 секунд · Популярные загадки</div>
+      <div class="dd">30 секунд · 30 опыта за загадку · 90 макс</div>
     </div>
     <div class="dcard m" onclick="sE('m')">
       <div class="di">🟡</div>
       <div class="dn">Средне</div>
-      <div class="dd">15 секунд · Смешанные категории</div>
+      <div class="dd">15 секунд · 60 опыта за загадку · 180 макс</div>
     </div>
     <div class="dcard h" onclick="sE('h')">
       <div class="di">🔴</div>
       <div class="dn">Сложно</div>
-      <div class="dd">10 секунд · Для знатоков</div>
+      <div class="dd">10 секунд · 100 опыта за загадку · 300 макс</div>
     </div>
   </div>
   <div class="bl" onclick="ss('lo')">← Назад</div>
@@ -148,10 +161,16 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
   <div class="gh">
     <button class="bb" onclick="gl()">← Назад</button>
     <div class="gt" style="color:var(--ea)">ЭмоДжи</div>
-    <div class="sm">🔥 <span id="es">0</span></div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="eq-progress" id="eq-progress"></div>
+      <div class="sm">🔥 <span id="es">0</span></div>
+    </div>
   </div>
   <div class="ec2">
-    <div class="cat" id="cat">🎬 Фильм</div>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="cat" id="cat">🎬 Фильм</div>
+      <div style="font-family:'Space Mono',monospace;font-size:12px;color:var(--m);font-weight:700" id="eq-num">1 / 3</div>
+    </div>
     <div class="ed" id="ed">🤔</div>
     <div class="tz">
       <div class="tl"><span>Время</span><span id="tt">30</span></div>
@@ -165,6 +184,22 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
       <input class="ai" id="ai" type="text" placeholder="Введи ответ..." autocomplete="off" autocorrect="off" autocapitalize="off">
       <button class="sb" id="sb" onclick="se()">Ответить</button>
     </div>
+  </div>
+</div>
+
+<div class="sc" id="pr">
+  <div class="gh">
+    <div></div>
+    <div class="gt" style="color:var(--ea)">ЭмоДжи</div>
+    <div></div>
+  </div>
+  <div class="pr">
+    <div class="pr-emoji" id="pr-emoji">🎉</div>
+    <div class="pr-title" id="pr-title">Угадал!</div>
+    <div class="pr-sub" id="pr-sub"></div>
+    <div class="pr-dots" id="pr-dots"></div>
+    <div class="xp-badge" id="pr-xp">+30 опыта</div>
+    <button class="nb" id="pr-btn" onclick="nextPuzzle()">Следующая загадка →</button>
   </div>
 </div>
 
@@ -248,8 +283,11 @@ const LD=[
   {n:"Pavel88",p:190,s:3}
 ];
 
+const XP_PER={e:30,m:60,h:100};
+
 let cp=null,ea=3,ci=0,ti=null,ts=30,df='e',lr=null;
 let ns=0,na=0,nd=false;
+let eqList=[],eqIdx=0,eqResults=[];
 
 function init(){
   const st=+localStorage.getItem('streak')||0;
@@ -259,24 +297,174 @@ function init(){
 
 function ss(id){document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
 function gl(){clearInterval(ti);ss('lo');}
-function sE(d){df=d;const i=tdi(P.length);cp=P[i];ea=3;ci=0;document.getElementById('cat').textContent=cp.c;document.getElementById('ed').textContent=cp.q[0];document.getElementById('ai').value='';document.getElementById('ai').className='ai';document.getElementById('sb').disabled=false;rAD();ss('eg');sT();}
-function tdi(m){const d=new Date();return((d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate())%m);}
+
+function getPuzzleIndices(){
+  const d=new Date();
+  const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate();
+  const indices=[];
+  let s=seed;
+  while(indices.length<3){
+    s=((s>>16)^s)*0x45d9f3b;
+    s=((s>>16)^s)*0x45d9f3b;
+    s=(s>>16)^s;
+    const idx=Math.abs(s)%P.length;
+    if(!indices.includes(idx))indices.push(idx);
+  }
+  return indices;
+}
+
+function sE(d){
+  df=d;
+  eqList=getPuzzleIndices();
+  eqIdx=0;
+  eqResults=[];
+  startPuzzle();
+}
+
+function startPuzzle(){
+  cp=P[eqList[eqIdx]];
+  ea=3;ci=0;
+  document.getElementById('cat').textContent=cp.c;
+  document.getElementById('ed').textContent=cp.q[0];
+  document.getElementById('ai').value='';
+  document.getElementById('ai').className='ai';
+  document.getElementById('sb').disabled=false;
+  document.getElementById('eq-num').textContent=(eqIdx+1)+' / 3';
+  rAD();updateProgress();ss('eg');sT();
+}
+
+function updateProgress(){
+  const el=document.getElementById('eq-progress');
+  el.innerHTML='';
+  for(let i=0;i<3;i++){
+    const d=document.createElement('div');
+    d.className='eq-pip';
+    if(i<eqResults.length) d.classList.add(eqResults[i].win?'ok':'fa');
+    else if(i===eqIdx) d.classList.add('cur');
+    el.appendChild(d);
+  }
+}
+
 function sT(){clearInterval(ti);ts=df==='e'?30:df==='m'?15:10;const tot=ts;uTU(ts,tot);ti=setInterval(()=>{ts--;uTU(ts,tot);if(ts<=0){clearInterval(ti);tO();}},1000);}
 function uTU(s,t){const p=(s/t)*100;const f=document.getElementById('tf');f.style.width=p+'%';f.className='tf'+(p<30?' w':'');document.getElementById('tt').textContent=s;}
-function tO(){if(ea>0){ea--;mA();if(ea>0){ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}else{lr={m:'e',w:false,a:cp.a,n:3,q:cp.q[0]};sR(false);}}}
+
+function tO(){
+  if(ea>0){
+    ea--;mA();
+    if(ea>0){ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}
+    else{clearInterval(ti);finishPuzzle(false);}
+  }
+}
+
 function rAD(){const r=document.getElementById('ar');r.innerHTML='';for(let i=0;i<3;i++){const d=document.createElement('div');d.className='ad';r.appendChild(d);}}
 function mA(){const ds=document.querySelectorAll('.ad');const u=3-ea;for(let i=0;i<u;i++)if(ds[i])ds[i].classList.add('u');}
-function se(){const inp=document.getElementById('ai');const v=inp.value.trim().toLowerCase();const co=cp.a.toLowerCase();if(!v)return;if(v===co||(co.includes(v)&&v.length>3)){clearInterval(ti);inp.classList.add('ok');uSt();lr={m:'e',w:true,a:cp.a,n:3-ea+1,q:cp.q[0]};setTimeout(()=>sR(true),600);}else{inp.classList.add('no');setTimeout(()=>{inp.classList.remove('no');inp.value='';},500);clearInterval(ti);ea--;mA();if(ea<=0){lr={m:'e',w:false,a:cp.a,n:3,q:cp.q[0]};setTimeout(()=>sR(false),600);}else{ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}}}
+
+function se(){
+  const inp=document.getElementById('ai');
+  const v=inp.value.trim().toLowerCase();
+  const co=cp.a.toLowerCase();
+  if(!v)return;
+  if(v===co||(co.includes(v)&&v.length>3)){
+    clearInterval(ti);inp.classList.add('ok');
+    setTimeout(()=>finishPuzzle(true),600);
+  } else {
+    inp.classList.add('no');
+    setTimeout(()=>{inp.classList.remove('no');inp.value='';},500);
+    clearInterval(ti);ea--;mA();
+    if(ea<=0){setTimeout(()=>finishPuzzle(false),600);}
+    else{ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}
+  }
+}
+
+function finishPuzzle(win){
+  eqResults.push({win,answer:cp.a,emoji:cp.q[0]});
+  if(win) uSt();
+  const xp=win?XP_PER[df]:0;
+  const isLast=eqIdx===2;
+  document.getElementById('pr-emoji').textContent=win?'🎉':'😔';
+  document.getElementById('pr-title').textContent=win?'Угадал!':'Не угадал';
+  document.getElementById('pr-sub').innerHTML='Ответ: <span>'+cp.a+'</span>';
+  document.getElementById('pr-xp').textContent=win?'+'+xp+' опыта':'0 опыта';
+  const dots=document.getElementById('pr-dots');
+  dots.innerHTML='';
+  for(let i=0;i<3;i++){
+    const d=document.createElement('div');
+    d.className='pr-dot';
+    if(i<eqResults.length) d.classList.add(eqResults[i].win?'ok':'fa');
+    else d.classList.add('pend');
+    dots.appendChild(d);
+  }
+  const btn=document.getElementById('pr-btn');
+  if(isLast){btn.textContent='Смотреть итоги →';btn.onclick=showFinalResult;}
+  else{btn.textContent='Загадка '+(eqIdx+2)+' из 3 →';btn.onclick=nextPuzzle;}
+  ss('pr');
+}
+
+function nextPuzzle(){eqIdx++;startPuzzle();}
+
+function showFinalResult(){
+  const totalXp=eqResults.reduce((s,r)=>s+(r.win?XP_PER[df]:0),0);
+  const won=eqResults.filter(r=>r.win).length;
+  const maxXp=XP_PER[df]*3;
+  lr={m:'e',results:eqResults,totalXp,won,diff:df};
+  document.getElementById('rmt').textContent='ЭмоДжи';
+  document.getElementById('rmt').style.color='var(--ea)';
+  document.querySelector('.shb').style.borderColor='var(--ea)';
+  document.querySelector('.shb').style.color='var(--ea)';
+  document.getElementById('re').textContent=won===3?'🏆':won>0?'🎉':'😔';
+  document.getElementById('rt').textContent=won===3?'Все угадал!':'Угадал '+won+' из 3';
+  document.getElementById('ra').innerHTML='Опыт: <span>'+totalXp+' / '+maxXp+'</span> · Сложность: <span>'+(df==='e'?'Легко':df==='m'?'Средне':'Сложно')+'</span>';
+  const st=+localStorage.getItem('streak')||0;
+  LD[3].p=totalXp;LD[3].s=st;
+  const so=[...LD].sort((a,b)=>b.p-a.p);
+  const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];
+  document.getElementById('lb').innerHTML=so.map((p,i)=>'<div class="li '+(p.me?'me':'')+'"><div class="lp '+(pc[i]||'')+'">'+(pe[i]||i+1)+'</div><div class="ln">'+p.n+(p.me?' 👤':'')+'</div><div><div class="lsc">'+p.p+' pts</div><div class="lf">🔥'+p.s+'д</div></div></div>').join('');
+  ss('rs');
+}
+
 function sN(){ns=gTN();na=0;nd=false;document.getElementById('gl').innerHTML='<div style="text-align:center;color:var(--m);font-size:13px;padding:16px">Угадай число от 1 до 1000</div>';document.getElementById('ni2').value='';document.getElementById('al').textContent='10';document.getElementById('nh').classList.remove('on');document.querySelector('.ns').disabled=false;ss('ng');}
 function gTN(){const d=new Date();const h=Math.floor(d.getHours()/4);const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate()*100+h;let x=seed;x=((x>>16)^x)*0x45d9f3b;x=((x>>16)^x)*0x45d9f3b;x=(x>>16)^x;return(Math.abs(x)%1000)+1;}
-function uNT(){const d=new Date();const nh=(Math.floor(d.getHours()/4)+1)*4;const nx=new Date(d);nx.setHours(nh,0,0,0);const diff=nx-d;if(diff<0)return;const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);const el=document.getElementById('nt');if(el)el.textContent=`Следующее через: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
-function sn(){const inp=document.getElementById('ni2');const v=parseInt(inp.value);if(!v||v<1||v>1000||nd)return;na++;inp.value='';document.getElementById('al').textContent=10-na;const log=document.getElementById('gl');if(na===1)log.innerHTML='';const row=document.createElement('div');row.className='gr';let ht,hc;if(v===ns){ht='✓ Верно!';hc='co';}else if(v<ns){ht='↑ Больше';hc='hi';}else{ht='↓ Меньше';hc='lo';}row.innerHTML=`<span class="gn">${v}</span><span class="gi ${hc}">${ht}</span>`;log.appendChild(row);log.scrollTop=log.scrollHeight;if(na%3===0&&v!==ns){const hi=Math.floor(na/3)-1;if(hi<NH.length){document.getElementById('nht').textContent=NH[hi](ns);document.getElementById('nh').classList.add('on');}}if(v===ns){nd=true;document.querySelector('.ns').disabled=true;uSt();lr={m:'n',w:true,a:ns,n:na};setTimeout(()=>sR(true),800);}else if(na>=10){nd=true;document.querySelector('.ns').disabled=true;lr={m:'n',w:false,a:ns,n:10};setTimeout(()=>sR(false),800);}}
-function sR(w){const ie=lr.m==='e';const ac=ie?'var(--ea)':'var(--na)';document.getElementById('rmt').textContent=ie?'ЭмоДжи':'ЧислоДня';document.getElementById('rmt').style.color=ac;document.querySelector('.shb').style.borderColor=ac;document.querySelector('.shb').style.color=ac;if(w){document.getElementById('re').textContent=ie?'🎉':'🎯';document.getElementById('rt').textContent=ie?'Угадал!':'Нашёл число!';document.getElementById('ra').innerHTML=ie?`Ответ: <span>${lr.a}</span> · Попыток: <span>${lr.n}</span> из 3`:`Число: <span>${lr.a}</span> · Попыток: <span>${lr.n}</span>`;}else{document.getElementById('re').textContent='😔';document.getElementById('rt').textContent='Не угадал';document.getElementById('ra').innerHTML=ie?`Правильный ответ: <span>${lr.a}</span>`:`Загаданное число: <span>${lr.a}</span>`;}const st=+localStorage.getItem('streak')||0;const pts=w?Math.max(10,100-(lr.n-1)*10):0;LD[3].p=pts;LD[3].s=st;const so=[...LD].sort((a,b)=>b.p-a.p);const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];document.getElementById('lb').innerHTML=so.map((p,i)=>`<div class="li ${p.me?'me':''}"><div class="lp ${pc[i]||''}">${pe[i]||i+1}</div><div class="ln">${p.n}${p.me?' 👤':''}</div><div><div class="lsc">${p.p} pts</div><div class="lf">🔥${p.s}д</div></div></div>`).join('');ss('rs');}
-function sh(){if(!lr)return;const ie=lr.m==='e';const st=localStorage.getItem('streak')||'0';let tx;if(ie){const dots=Array(3).fill(0).map((_,i)=>i<lr.n?(lr.w&&i===lr.n-1?'🟩':'🟥'):'⬜').join('');tx=`tresuno 🎭\n${lr.q}\n${dots} ${lr.w?'Угадал!':'Не угадал'}\nОтвет: ${lr.a}\n🔥${st}д\nmelnwsc2-cmyk.github.io/tresuno`;}else{const dots=Array(Math.min(lr.n,10)).fill('🟦').join('')+(lr.w?'':'❌');tx=`tresuno 🔢\n${dots}\n${lr.w?`Нашёл за ${lr.n} попыток!`:'Не нашёл 😔'}\n🔥${st}д\nmelnwsc2-cmyk.github.io/tresuno`;}if(navigator.share)navigator.share({text:tx});else navigator.clipboard.writeText(tx).then(()=>alert('Скопировано!'));}
+function uNT(){const d=new Date();const nh=(Math.floor(d.getHours()/4)+1)*4;const nx=new Date(d);nx.setHours(nh,0,0,0);const diff=nx-d;if(diff<0)return;const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);const el=document.getElementById('nt');if(el)el.textContent='Следующее через: '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
+
+function sn(){const inp=document.getElementById('ni2');const v=parseInt(inp.value);if(!v||v<1||v>1000||nd)return;na++;inp.value='';document.getElementById('al').textContent=10-na;const log=document.getElementById('gl');if(na===1)log.innerHTML='';const row=document.createElement('div');row.className='gr';let ht,hc;if(v===ns){ht='✓ Верно!';hc='co';}else if(v<ns){ht='↑ Больше';hc='hi';}else{ht='↓ Меньше';hc='lo';}row.innerHTML='<span class="gn">'+v+'</span><span class="gi '+hc+'">'+ht+'</span>';log.appendChild(row);log.scrollTop=log.scrollHeight;if(na%3===0&&v!==ns){const hi=Math.floor(na/3)-1;if(hi<NH.length){document.getElementById('nht').textContent=NH[hi](ns);document.getElementById('nh').classList.add('on');}}if(v===ns){nd=true;document.querySelector('.ns').disabled=true;uSt();lr={m:'n',w:true,a:ns,n:na};setTimeout(()=>sRN(true),800);}else if(na>=10){nd=true;document.querySelector('.ns').disabled=true;lr={m:'n',w:false,a:ns,n:10};setTimeout(()=>sRN(false),800);}}
+
+function sRN(w){
+  document.getElementById('rmt').textContent='ЧислоДня';
+  document.getElementById('rmt').style.color='var(--na)';
+  document.querySelector('.shb').style.borderColor='var(--na)';
+  document.querySelector('.shb').style.color='var(--na)';
+  if(w){document.getElementById('re').textContent='🎯';document.getElementById('rt').textContent='Нашёл число!';document.getElementById('ra').innerHTML='Число: <span>'+lr.a+'</span> · Попыток: <span>'+lr.n+'</span>';}
+  else{document.getElementById('re').textContent='😔';document.getElementById('rt').textContent='Не угадал';document.getElementById('ra').innerHTML='Загаданное число: <span>'+lr.a+'</span>';}
+  const st=+localStorage.getItem('streak')||0;
+  const pts=w?Math.max(10,100-(lr.n-1)*10):0;
+  LD[3].p=pts;LD[3].s=st;
+  const so=[...LD].sort((a,b)=>b.p-a.p);
+  const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];
+  document.getElementById('lb').innerHTML=so.map((p,i)=>'<div class="li '+(p.me?'me':'')+'"><div class="lp '+(pc[i]||'')+'">'+(pe[i]||i+1)+'</div><div class="ln">'+p.n+(p.me?' 👤':'')+'</div><div><div class="lsc">'+p.p+' pts</div><div class="lf">🔥'+p.s+'д</div></div></div>').join('');
+  ss('rs');
+}
+
+function sh(){
+  if(!lr)return;
+  const st=localStorage.getItem('streak')||'0';
+  let tx;
+  if(lr.m==='e'){
+    const dots=lr.results.map(r=>r.win?'🟩':'🟥').join('');
+    const diffLabel=lr.diff==='e'?'🟢':lr.diff==='m'?'🟡':'🔴';
+    tx='tresuno 🎭 '+diffLabel+'\n'+dots+'\nОпыт: '+lr.totalXp+' pts\n🔥'+st+'д\nmelnwsc2-cmyk.github.io/tresuno';
+  } else {
+    const dots=Array(Math.min(lr.n,10)).fill('🟦').join('')+(lr.w?'':'❌');
+    tx='tresuno 🔢\n'+dots+'\n'+(lr.w?'Нашёл за '+lr.n+' попыток!':'Не нашёл 😔')+'\n🔥'+st+'д\nmelnwsc2-cmyk.github.io/tresuno';
+  }
+  if(navigator.share)navigator.share({text:tx});
+  else navigator.clipboard.writeText(tx).then(()=>alert('Скопировано!'));
+}
+
 function uSt(){const today=new Date().toDateString();const lp=localStorage.getItem('lastPlay');let st=+localStorage.getItem('streak')||0;const yd=new Date(Date.now()-86400000).toDateString();if(lp===yd)st++;else if(lp!==today)st=1;localStorage.setItem('streak',st);localStorage.setItem('lastPlay',today);['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});}
+
 document.getElementById('ai').addEventListener('keydown',e=>{if(e.key==='Enter')se();});
 document.getElementById('ni2').addEventListener('keydown',e=>{if(e.key==='Enter')sn();});
 init();
 </script>
 </body>
-    </html>
+</html>
