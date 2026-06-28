@@ -10,13 +10,13 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;min-height:100dvh}
 .sc{display:none;flex-direction:column;min-height:100dvh}.sc.on{display:flex}
-.lh{padding:48px 24px 24px;text-align:center}
+.lh{padding:36px 24px 16px;text-align:center}
 .logo{font-family:'Space Mono',monospace;font-size:40px;font-weight:700;letter-spacing:-2px}
 .lt{color:var(--t)}.lu{color:var(--ea)}
 .ls{font-size:12px;color:var(--m);margin-top:6px;letter-spacing:2px;text-transform:uppercase}
-.sr{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
-.ch{display:flex;align-items:center;gap:6px;background:var(--s);border:1px solid var(--b);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600}
-.mc{display:flex;flex-direction:column;gap:12px;padding:0 20px 32px;flex:1}
+.sr{display:flex;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ch{display:flex;align-items:center;gap:6px;background:var(--s);border:1px solid var(--b);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.mc{display:flex;flex-direction:column;gap:12px;padding:0 20px 24px;flex:1}
 .card{background:var(--s);border:1.5px solid var(--b);border-radius:20px;padding:24px;cursor:pointer;position:relative;overflow:hidden}
 .card:active{transform:scale(0.98)}
 .ec{border-color:rgba(245,197,66,0.35)}.nc{border-color:rgba(91,140,255,0.35)}
@@ -26,6 +26,7 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
 .cd{font-size:13px;color:var(--m);line-height:1.5}
 .cb{display:inline-flex;margin-top:10px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
 .ec .cb{background:rgba(245,197,66,0.15);color:var(--ea)}.nc .cb{background:rgba(91,140,255,0.15);color:var(--na)}
+.sess-badge{display:inline-flex;margin-top:6px;margin-left:6px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(91,140,255,0.15);color:var(--na)}
 .dh{padding:36px 24px 20px;text-align:center}
 .dt{font-family:'Space Mono',monospace;font-size:26px;font-weight:700;color:var(--ea)}
 .ds{font-size:13px;color:var(--m);margin-top:6px}
@@ -33,9 +34,11 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
 .dcard{background:var(--s);border:1.5px solid var(--b);border-radius:20px;padding:22px;cursor:pointer}
 .dcard:active{transform:scale(0.98)}
 .dcard.e{border-color:rgba(78,203,113,0.35)}.dcard.m{border-color:rgba(245,197,66,0.35)}.dcard.h{border-color:rgba(255,92,92,0.35)}
+.dcard.ru{border-color:rgba(91,140,255,0.35)}.dcard.es{border-color:rgba(245,197,66,0.35)}.dcard.us{border-color:rgba(255,92,92,0.35)}
 .di{font-size:26px;margin-bottom:8px}
 .dn{font-family:'Space Mono',monospace;font-size:17px;font-weight:700;margin-bottom:4px}
 .dcard.e .dn{color:var(--ok)}.dcard.m .dn{color:var(--ea)}.dcard.h .dn{color:var(--fa)}
+.dcard.ru .dn{color:var(--na)}.dcard.es .dn{color:var(--ea)}.dcard.us .dn{color:var(--fa)}
 .dd{font-size:13px;color:var(--m)}
 .bl{text-align:center;padding:14px;color:var(--m);font-size:13px;cursor:pointer}
 .gh{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--b);position:sticky;top:0;background:var(--bg);z-index:10}
@@ -44,10 +47,11 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
 .sm{font-size:13px;font-weight:600;color:var(--ea)}
 .ec2{flex:1;display:flex;flex-direction:column;padding:20px;gap:16px}
 .cat{display:inline-flex;background:var(--s);border:1px solid var(--b);border-radius:10px;padding:7px 14px;font-size:13px;font-weight:600}
-.ed{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:36px 16px;text-align:center;font-size:44px;line-height:1.5;letter-spacing:4px;min-height:140px;display:flex;align-items:center;justify-content:center}
+  .ed{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:36px 16px;text-align:center;font-size:44px;line-height:1.5;letter-spacing:4px;min-height:140px;display:flex;align-items:center;justify-content:center}
 .tz{display:flex;flex-direction:column;gap:6px}
 .tl{display:flex;justify-content:space-between;font-size:12px;color:var(--m);font-weight:600}
-.tt{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}.tf{height:100%;border-radius:3px;transition:width 1s linear;background:var(--ea)}
+.tt{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}
+.tf{height:100%;border-radius:3px;transition:width 1s linear;background:var(--ea)}
 .tf.w{background:var(--fa)}
 .ar{display:flex;gap:8px;align-items:center}
 .ad{width:11px;height:11px;border-radius:50%;background:var(--ea);transition:all 0.3s}
@@ -83,12 +87,12 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
 .lbt{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:var(--m);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .li{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--s);border:1px solid var(--b);border-radius:11px;margin-bottom:7px}
 .li.me{border-color:var(--ea);background:rgba(245,197,66,0.05)}
-.lp{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;width:22px;text-align:center;color:var(--m)}
+  .lp{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;width:22px;text-align:center;color:var(--m)}
 .lp.p1{color:#fbbf24}.lp.p2{color:#94a3b8}.lp.p3{color:#d97706}
 .ln{flex:1;font-size:13px;font-weight:500}
 .lsc{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--ea)}
 .lf{font-size:10px;color:var(--m)}
-  .bk{width:100%;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
+.bk{width:100%;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
 .pr{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px;gap:16px;text-align:center}
 .pr-emoji{font-size:56px}
 .pr-title{font-family:'Space Mono',monospace;font-size:20px;font-weight:700;line-height:1.3}
@@ -103,17 +107,27 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
 .eq-pip.ok{background:var(--ok);border-color:var(--ok)}
 .eq-pip.fa{background:var(--fa);border-color:var(--fa)}
 .eq-pip.cur{border-color:var(--ea)}
+/* Settings */
+.set-wrap{flex:1;display:flex;flex-direction:column;padding:20px;gap:16px}
+.set-section{font-family:'Space Mono',monospace;font-size:11px;color:var(--m);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--s);border:1px solid var(--b);border-radius:13px}
+.set-label{font-size:14px;font-weight:600}
+.set-val{font-family:'Space Mono',monospace;font-size:13px;color:var(--ea);font-weight:700}
+.inp-name{width:100%;padding:14px 16px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none}
+.inp-name:focus{border-color:var(--ea)}
+.save-btn{width:100%;padding:14px;background:var(--ea);color:#0d0d0f;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;cursor:pointer}
 </style>
 </head>
 <body>
 
+<!-- Главный экран -->
 <div class="sc on" id="lo">
   <div class="lh">
     <div class="logo"><span class="lt">tres</span><span class="lu">uno</span></div>
-    <div class="ls">две игры · каждый день</div>
+    <div class="ls">три игры · каждый день</div>
     <div class="sr">
       <div class="ch">🔥 <span id="ls">0</span> дней подряд</div>
-      <div class="ch">🏙️ Санкт-Петербург</div>
+      <div class="ch" onclick="ss('st')" style="cursor:pointer">⚙️ <span id="hd-region">🌍</span> <span id="hd-name">Игрок</span></div>
     </div>
   </div>
   <div class="mc">
@@ -121,7 +135,10 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
       <div class="ci">🎭</div>
       <div class="cn">ЭмоДжи</div>
       <div class="cd">Угадай фильм, аниме, игру или песню по эмодзи — пока не кончилось время</div>
-      <div class="cb">📅 3 загадки в день</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+        <div class="cb">📅 3 загадки в день</div>
+        <div class="sess-badge" id="sess-badge">🌅 Утро</div>
+      </div>
     </div>
     <div class="card nc" onclick="sN()">
       <div class="ci">🔢</div>
@@ -132,10 +149,11 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
   </div>
 </div>
 
+<!-- Выбор сложности -->
 <div class="sc" id="di">
   <div class="dh">
     <div class="dt">🎭 ЭмоДжи</div>
-    <div class="ds">Выбери уровень сложности</div>
+    <div class="ds" id="di-sess-label">Утренняя сессия · Выбери сложность</div>
   </div>
   <div class="dc">
     <div class="dcard e" onclick="sE('e')">
@@ -157,6 +175,7 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
   <div class="bl" onclick="ss('lo')">← Назад</div>
 </div>
 
+<!-- Игровой экран ЭмоДжи -->
 <div class="sc" id="eg">
   <div class="gh">
     <button class="bb" onclick="gl()">← Назад</button>
@@ -187,6 +206,7 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
   </div>
 </div>
 
+<!-- Промежуточный экран -->
 <div class="sc" id="pr">
   <div class="gh">
     <div></div>
@@ -203,6 +223,7 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
   </div>
 </div>
 
+<!-- ЧислоДня -->
 <div class="sc" id="ng">
   <div class="gh">
     <button class="bb" onclick="gl()">← Назад</button>
@@ -225,6 +246,7 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
   </div>
 </div>
 
+<!-- Финальный экран результата -->
 <div class="sc" id="rs">
   <div class="gh">
     <button class="bb" onclick="gl()">← Назад</button>
@@ -237,77 +259,286 @@ body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;
     <div class="ra" id="ra"></div>
     <button class="shb" onclick="sh()">📤 Поделиться</button>
     <div class="lb">
-      <div class="lbt">🏆 Топ Санкт-Петербурга</div>
+      <div class="lbt">🏆 Лидерборд (накопительный)</div>
       <div id="lb"></div>
-    </div>
+      </div>
     <button class="bk" onclick="gl()">← В главное меню</button>
   </div>
 </div>
 
+<!-- Настройки -->
+<div class="sc" id="st">
+  <div class="gh">
+    <button class="bb" onclick="ss('lo')">← Назад</button>
+    <div class="gt">Настройки</div>
+    <div></div>
+  </div>
+  <div class="set-wrap">
+    <div class="set-section">Профиль</div>
+    <input class="inp-name" id="inp-name" type="text" placeholder="Твоё имя" maxlength="20">
+    <input class="inp-name" id="inp-email" type="email" placeholder="Email" style="margin-top:8px">
+
+    <div class="set-section" style="margin-top:8px">Регион</div>
+    <div class="dcard ru" onclick="setRegion('ru')" id="rcard-ru">
+      <div class="di">🇷🇺</div>
+      <div class="dn">Россия / СНГ</div>
+      <div class="dd">Россия, Беларусь, Украина, Казахстан</div>
+    </div>
+    <div class="dcard es" onclick="setRegion('es')" id="rcard-es">
+      <div class="di">🇪🇸</div>
+      <div class="dn">Испания / Латам</div>
+      <div class="dd">Испания, Мексика, вся Латинская Америка</div>
+    </div>
+    <div class="dcard us" onclick="setRegion('us')" id="rcard-us">
+      <div class="di">🇺🇸</div>
+      <div class="dn">Америка / Англия</div>
+      <div class="dd">США, Канада, Великобритания</div>
+    </div>
+
+    <button class="save-btn" onclick="saveSettings()">Сохранить</button>
+  </div>
+</div>
+
+<!-- Регистрация (первый запуск) -->
+<div class="sc" id="rg">
+  <div class="dh">
+    <div class="dt">👋 Добро пожаловать</div>
+    <div class="ds">Зарегистрируйся для участия в турнирах</div>
+  </div>
+  <div class="set-wrap" style="padding-top:0">
+    <div class="set-section">Имя</div>
+    <input class="inp-name" id="reg-name" type="text" placeholder="Твоё имя" maxlength="20">
+    <div class="set-section" style="margin-top:8px">Email</div>
+    <input class="inp-name" id="reg-email" type="email" placeholder="example@mail.com">
+    <div class="set-section" style="margin-top:8px">Страна</div>
+    <select class="inp-name" id="reg-country" style="cursor:pointer;background:var(--s);color:var(--t)">
+      <option value="">— Выбери страну —</option>
+      <optgroup label="СНГ"><option value="ru">🇷🇺 Россия</option><option value="by">🇧🇾 Беларусь</option><option value="ua">🇺🇦 Украина</option><option value="kz">🇰🇿 Казахстан</option></optgroup>
+      <optgroup label="Испания / Латам"><option value="es">🇪🇸 Испания</option><option value="mx">🇲🇽 Мексика</option><option value="ar">🇦🇷 Аргентина</option><option value="co">🇨🇴 Колумбия</option><option value="br">🇧🇷 Бразилия</option><option value="cl">🇨🇱 Чили</option></optgroup>
+      <optgroup label="Америка / Англия"><option value="us">🇺🇸 США</option><option value="ca">🇨🇦 Канада</option><option value="gb">🇬🇧 Великобритания</option></optgroup>
+      <optgroup label="Другие"><option value="de">🇩🇪 Германия</option><option value="fr">🇫🇷 Франция</option><option value="tr">🇹🇷 Турция</option><option value="other">🌍 Другая</option></optgroup>
+    </select>
+    <div class="set-section" style="margin-top:8px">Регион загадок</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="dcard ru" onclick="regSelectRegion('ru')" id="rrcard-ru"><div class="di">🇷🇺</div><div class="dn">Россия / СНГ</div><div class="dd">Фильмы, игры, аниме на русском</div></div>
+      <div class="dcard es" onclick="regSelectRegion('es')" id="rrcard-es" style="opacity:0.5"><div class="di">🇪🇸</div><div class="dn">Испания / Латам</div><div class="dd">Испания, Мексика, Латинская Америка</div></div>
+      <div class="dcard us" onclick="regSelectRegion('us')" id="rrcard-us" style="opacity:0.5"><div class="di">🇺🇸</div><div class="dn">Америка / Англия</div><div class="dd">США, Канада, Великобритания</div></div>
+    </div>
+    <div id="reg-err" style="color:var(--fa);font-size:13px;text-align:center;display:none">Заполни все поля</div>
+    <button class="save-btn" onclick="register()">Начать играть →</button>
+    <div style="text-align:center;font-size:12px;color:var(--m);margin-top:-8px">Скоро: вход через Google</div>
+  </div>
+</div>
+
 <script>
-const P=[
-  {c:"🎬 Фильм",q:["🦁👑🌅🐘🎵","🐾👑🌍🎶😢","🦁🔴⭕🌿🏆"],a:"Король Лев"},
-  {c:"🎬 Фильм",q:["🕷️🏙️🦸‍♂️❤️🎓","🕸️🏢💥🦹🔬","🕷️🌆👦💪🎭"],a:"Человек-паук"},
-  {c:"🎬 Фильм",q:["🧙‍♂️💍🌋⚔️🧝","🗡️🌿🏔️👁️🔥","💍🗺️🧙🐉🏰"],a:"Властелин колец"},
-  {c:"🎬 Фильм",q:["🚢❄️💔🌊🎻","⚓💑🌊🆘🧊","🛳️💔🌊🎬🏆"],a:"Титаник"},
-  {c:"🎬 Фильм",q:["🚀⭐🌌⚔️🤖","🌟👨‍🚀🔫🏆🌠","⚡🌌👾🗡️🪐"],a:"Звёздные войны"},
-  {c:"🎬 Фильм",q:["🦈🌊😱🏖️💀","🌊🦷🎣😨🏊","🦈💦🏄😱⚓"],a:"Челюсти"},
-  {c:"🎌 Аниме",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Наруто"},
-  {c:"🎌 Аниме",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Атака титанов"},
-  {c:"🎌 Аниме",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"Ван Пис"},
-  {c:"🎌 Аниме",q:["🔮💥🦸🏫⚡","💪🎓🦸‍♂️🌟🏆","🦸‍♂️🏅💫🎯🌈"],a:"Моя геройская академия"},
-  {c:"🎌 Аниме",q:["⚔️🌸💧🔥🌊","🗡️😭👿🌙🔥","🦋⚔️🌺💔🏯"],a:"Клинок рассекающий демонов"},
-  {c:"🎮 Игра",q:["🍄👸🏰🌟⭐","🔴🎮👨‍🔧🌍🏆","🍄🏁🎪🌈🚩"],a:"Марио"},
-  {c:"🎮 Игра",q:["🟦🟨🟥⬇️🧩","📦🔄🎮🇷🇺🏆","⬜🔵🔴🟩⬇️"],a:"Тетрис"},
-  {c:"🎮 Игра",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Майнкрафт"},
-  {c:"🎮 Игра",q:["🔫🏝️⭕🪂💊","🏆🎯🌴💣🏃","🪂🗺️🔫🏅🌊"],a:"PUBG"},
-  {c:"🎮 Игра",q:["⚔️🛡️🐉🏹🌲","🗡️🏰🧙‍♂️🌿🔮","🐉🏆⚔️🌍🎯"],a:"Ведьмак"},
-  {c:"🎵 Исполнитель",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"Queen"},
-  {c:"👤 Актёр",q:["🦇🃏🎭😂🔥","🎪🃏💜🏆😈","🎭😂🃏🌆🏅"],a:"Хоакин Феникс"},
-  {c:"👤 Актёр",q:["💪🤖🇺🇸🏋️🌴","🦾⚡🏆💥🎬","🤖💪🔫🌟🏛️"],a:"Арнольд Шварценеггер"},
-  {c:"🎌 Аниме",q:["🏫⚡🌙🌊🎭","👩‍🎓🔮💫🌸🏆","✨🌙💪🎀🌟"],a:"Сейлор Мун"}
-];
+// ===================== ДАННЫЕ =====================
+
+// Загадки по регионам. ru — текущий пул + игры. es и us — свои наборы.
+const PUZZLES = {
+  ru: [
+    {c:"🎬 Фильм",q:["🦁👑🌅🐘🎵","🐾👑🌍🎶😢","🦁🔴⭕🌿🏆"],a:"Король Лев"},
+    {c:"🎬 Фильм",q:["🕷️🏙️🦸‍♂️❤️🎓","🕸️🏢💥🦹🔬","🕷️🌆👦💪🎭"],a:"Человек-паук"},
+    {c:"🎬 Фильм",q:["🧙‍♂️💍🌋⚔️🧝","🗡️🌿🏔️👁️🔥","💍🗺️🧙🐉🏰"],a:"Властелин колец"},
+    {c:"🎬 Фильм",q:["🚢❄️💔🌊🎻","⚓💑🌊🆘🧊","🛳️💔🌊🎬🏆"],a:"Титаник"},
+    {c:"🎬 Фильм",q:["🚀⭐🌌⚔️🤖","🌟👨‍🚀🔫🏆🌠","⚡🌌👾🗡️🪐"],a:"Звёздные войны"},
+    {c:"🎬 Фильм",q:["🦈🌊😱🏖️💀","🌊🦷🎣😨🏊","🦈💦🏄😱⚓"],a:"Челюсти"},
+    {c:"🎬 Фильм",q:["🤠🌵💰🔫🌅","🐴💣🌾⚔️🤠","🏜️🚬💵👢🎯"],a:"Брат"},
+    {c:"🎬 Фильм",q:["🚂☃️❄️🎄🎁","🎅🌙✨🛤️🔔","❄️🚃🎶🌟🎠"],a:"Ирония судьбы"},
+    {c:"🎌 Аниме",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Наруто"},
+    {c:"🎌 Аниме",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Атака титанов"},
+    {c:"🎌 Аниме",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"Ван Пис"},
+    {c:"🎌 Аниме",q:["🔮💥🦸🏫⚡","💪🎓🦸‍♂️🌟🏆","🦸‍♂️🏅💫🎯🌈"],a:"Моя геройская академия"},
+    {c:"🎌 Аниме",q:["⚔️🌸💧🔥🌊","🗡️😭👿🌙🔥","🦋⚔️🌺💔🏯"],a:"Клинок рассекающий демонов"},
+    {c:"🎌 Аниме",q:["🏫⚡🌙🌊🎭","👩‍🎓🔮💫🌸🏆","✨🌙💪🎀🌟"],a:"Сейлор Мун"},
+    {c:"🎮 Игра",q:["🍄👸🏰🌟⭐","🔴🎮👨‍🔧🌍🏆","🍄🏁🎪🌈🚩"],a:"Марио"},
+    {c:"🎮 Игра",q:["🟦🟨🟥⬇️🧩","📦🔄🎮🇷🇺🏆","⬜🔵🔴🟩⬇️"],a:"Тетрис"},
+    {c:"🎮 Игра",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Майнкрафт"},
+    {c:"🎮 Игра",q:["🔫🏝️⭕🪂💊","🏆🎯🌴💣🏃","🪂🗺️🔫🏅🌊"],a:"PUBG"},
+    {c:"🎮 Игра",q:["⚔️🛡️🐉🏹🌲","🗡️🏰🧙‍♂️🌿🔮","🐉🏆⚔️🌍🎯"],a:"Ведьмак"},
+    {c:"🎮 Игра",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Бравл Старс"},
+    {c:"🎮 Игра",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Клэш Рояль"},
+    {c:"🎮 Игра",q:["🏘️⚔️👑🌾🛡️","🏗️💰🤺🌍🏆","⚒️🏰🧑‍🌾👷🗡️"],a:"Клэш оф Кланс"},
+    {c:"👤 Актёр",q:["🦇🃏🎭😂🔥","🎪🃏💜🏆😈","🎭😂🃏🌆🏅"],a:"Хоакин Феникс"},
+    {c:"👤 Актёр",q:["💪🤖🇺🇸🏋️🌴","🦾⚡🏆💥🎬","🤖💪🔫🌟🏛️"],a:"Арнольд Шварценеггер"},
+    {c:"🎵 Исполнитель",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"Queen"}
+  ],
+  es: [
+    {c:"🎬 Фильм",q:["🕵️‍♂️💼🔫🇪🇸🌮","🕶️💰🔫🌵🏜️","🤠💣🔥🌅⚔️"],a:"El Mariachi"},
+    {c:"🎬 Фильм",q:["👦🌊🤝🎸🌅","🎵🏝️💛🎶🌴","🎸🤜🤛🌊🎤"],a:"Coco"},
+    {c:"🎬 Фильм",q:["👧🚪🌀🪄🐉","🏰🌸🌿🦋✨","🌙🗝️🔮🌺🕯️"],a:"Лабиринт фавна"},
+    {c:"🎬 Фильм",q:["🐶🧒🏠💊😢","🏠🐕👦🌆🔬","🐾💉👶🏙️😔"],a:"Hachi"},
+    {c:"🎬 Фильм",q:["🤖❤️🌍🤝🌟","🦾💡🌐🤖🏆","🤖🌏💫🔬💚"],a:"No me ames"},
+    {c:"🎌 Аниме",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Наруто"},
+    {c:"🎌 Аниме",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Атака титанов"},
+    {c:"🎌 Аниме",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"Ван Пис"},
+    {c:"🎮 Игра",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Бравл Старс"},
+    {c:"🎮 Игра",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Клэш Рояль"},
+    {c:"🎮 Игра",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Майнкрафт"},
+    {c:"🎵 Исполнитель",q:["🎤💃🌹🇪🇸🔥","🕺🎵🌺💃🎸","🌹🎤🎶💋🎭"],a:"Rosalia"},
+    {c:"🎵 Исполнитель",q:["🎤🎸🌟🇲🇽💃","🌮🎵🏆🎶🌵","🎸🎤🌈🔥🇲🇽"],a:"Maná"},
+    {c:"👤 Актёр",q:["🔫💼🕵️‍♂️🌍🏆","🎬💪⚡🌟🎭","🕶️🔥💣🎯🌐"],a:"Антонио Бандерас"},
+    {c:"👤 Актёр",q:["🐜🕷️⚡🦸🌟","💚🌿🎭🏅💫","🦸‍♀️🔮🌺🎬✨"],a:"Пенелопа Крус"}
+  ],
+  us: [
+    {c:"🎬 Фильм",q:["🦁👑🌅🐘🎵","🐾👑🌍🎶😢","🦁🔴⭕🌿🏆"],a:"The Lion King"},
+    {c:"🎬 Фильм",q:["🕷️🏙️🦸‍♂️❤️🎓","🕸️🏢💥🦹🔬","🕷️🌆👦💪🎭"],a:"Spider-Man"},
+    {c:"🎬 Фильм",q:["🚀⭐🌌⚔️🤖","🌟👨‍🚀🔫🏆🌠","⚡🌌👾🗡️🪐"],a:"Star Wars"},
+    {c:"🎬 Фильм",q:["🦈🌊😱🏖️💀","🌊🦷🎣😨🏊","🦈💦🏄😱⚓"],a:"Jaws"},
+    {c:"🎬 Фильм",q:["🚢❄️💔🌊🎻","⚓💑🌊🆘🧊","🛳️💔🌊🎬🏆"],a:"Titanic"},
+    {c:"🎬 Фильм",q:["🧙‍♂️💍🌋⚔️🧝","🗡️🌿🏔️👁️🔥","💍🗺️🧙🐉🏰"],a:"Lord of the Rings"},
+    {c:"🎬 Фильм",q:["🦇🌃💊🃏😈","🌆🔥🕶️💜🏙️","🦹‍♂️🃏💥🎭🌑"],a:"The Dark Knight"},
+    {c:"🎬 Фильм",q:["🌀🟦🔴💊🤖","🧠💻🌐🔫🕶️","⚫🔵💡🕹️🌍"],a:"The Matrix"},
+    {c:"🎌 Аниме",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌 Аниме",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Attack on Titan"},
+    {c:"🎮 Игра",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮 Игра",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮 Игра",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮 Игра",q:["🔫🏝️⭕🪂💊","🏆🎯🌴💣🏃","🪂🗺️🔫🏅🌊"],a:"PUBG"},
+    {c:"🎵 Исполнитель",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"Queen"},
+    {c:"🎵 Исполнитель",q:["🃏🎤🌟🌃💜","🎸🔮💫🎵🏆","🌙🎤💿🌈🎭"],a:"Prince"},
+    {c:"👤 Актёр",q:["💪🤖🇺🇸🏋️🌴","🦾⚡🏆💥🎬","🤖💪🔫🌟🏛️"],a:"Arnold Schwarzenegger"},
+    {c:"👤 Актёр",q:["🦇🃏🎭😂🔥","🎪🃏💜🏆😈","🎭😂🃏🌆🏅"],a:"Joaquin Phoenix"}
+  ]
+};
 
 const NH=[
   n=>n%2===0?"Число чётное":"Число нечётное",
   n=>n%5===0?"Делится на 5":"Не делится на 5",
   n=>n>500?"Больше 500":"500 или меньше",
-  n=>`Последняя цифра: ${n%10}`
-];
-
-const LD=[
-  {n:"Алексей К.",p:450,s:12},
-  {n:"Мария Т.",p:380,s:7},
-  {n:"Dmitry_spb",p:310,s:21},
-  {n:"Ты",p:0,s:0,me:true},
-  {n:"Pavel88",p:190,s:3}
+  n=>"Последняя цифра: "+n%10
 ];
 
 const XP_PER={e:30,m:60,h:100};
 
+
+
 let cp=null,ea=3,ci=0,ti=null,ts=30,df='e',lr=null;
 let ns=0,na=0,nd=false;
 let eqList=[],eqIdx=0,eqResults=[];
+let curRegion='ru', curSession='am'; // am=утро, pm=вечер
 
-function init(){
-  const st=+localStorage.getItem('streak')||0;
-  ['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});
-  uNT();setInterval(uNT,1000);
+// ===================== INIT =====================
+let regPendingRegion='ru';
+
+function regSelectRegion(r){
+  regPendingRegion=r;
+  ['ru','es','us'].forEach(x=>{
+    const c=document.getElementById('rrcard-'+x);
+    if(c) c.style.opacity=x===r?'1':'0.5';
+  });
 }
 
+function register(){
+  const name=document.getElementById('reg-name').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const country=document.getElementById('reg-country').value;
+  const err=document.getElementById('reg-err');
+  if(!name||!email||!country){err.style.display='block';return;}
+  err.style.display='none';
+  localStorage.setItem('playerName',name);
+  localStorage.setItem('playerEmail',email);
+  localStorage.setItem('playerCountry',country);
+  localStorage.setItem('region',regPendingRegion);
+  init();
+}
+
+function init(){
+  const reg=localStorage.getItem('region');
+  if(!reg){ss('rg');return;}
+  curRegion=reg;
+
+  const nm=localStorage.getItem('playerName')||'Игрок';
+  document.getElementById('hd-name').textContent=nm;
+  document.getElementById('hd-region').textContent=regionEmoji(curRegion);
+
+  const st=+localStorage.getItem('streak')||0;
+  ['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});
+
+  curSession=getSession();
+  updateSessionBadge();
+  uNT();setInterval(uNT,1000);
+  ss('lo');
+}
+
+function getSession(){return new Date().getHours()<21?'am':'pm';}
+function regionEmoji(r){return r==='ru'?'🇷🇺':r==='es'?'🇪🇸':'🇺🇸';}
+
+function updateSessionBadge(){
+  const b=document.getElementById('sess-badge');
+  if(b) b.textContent=curSession==='am'?'🌅 Утро':'🌙 Вечер';
+  const dl=document.getElementById('di-sess-label');
+  if(dl) dl.textContent=(curSession==='am'?'Утренняя сессия':'Вечерняя сессия')+' · Выбери сложность';
+}
+
+
+
+// ===================== SETTINGS =====================
+function ss_settings(){
+  document.getElementById('inp-name').value=localStorage.getItem('playerName')||'';
+  document.getElementById('inp-email').value=localStorage.getItem('playerEmail')||'';
+  highlightRegionCard(curRegion);
+  ss('st');
+}
+
+let pendingRegion=null;
+function setRegion(r){pendingRegion=r;highlightRegionCard(r);}
+function highlightRegionCard(r){
+  ['ru','es','us'].forEach(x=>{
+    const c=document.getElementById('rcard-'+x);
+    if(c) c.style.opacity=x===r?'1':'0.5';
+  });
+}
+
+function saveSettings(){
+  const nm=document.getElementById('inp-name').value.trim()||'Игрок';
+  localStorage.setItem('playerName',nm);
+  const em=document.getElementById('inp-email').value.trim();
+  if(em) localStorage.setItem('playerEmail',em);
+  document.getElementById('hd-name').textContent=nm;
+  if(pendingRegion){
+    localStorage.setItem('region',pendingRegion);
+    curRegion=pendingRegion;
+    document.getElementById('hd-region').textContent=regionEmoji(curRegion);
+    pendingRegion=null;
+  }
+  ss('lo');
+}
+
+// ===================== ЛИДЕРБОРД =====================
+function getMyTotalScore(){return +localStorage.getItem('totalScore')||0;}
+
+function addScore(pts){
+  const cur=getMyTotalScore();
+  localStorage.setItem('totalScore',cur+pts);
+}
+
+function renderLeaderboard(){
+  const myScore=getMyTotalScore();
+  const myName=localStorage.getItem('playerName')||'Игрок';
+  const myCountry=localStorage.getItem('playerCountry')||'';
+  const mySt=+localStorage.getItem('streak')||0;
+  const countryFlag={ru:'🇷🇺',by:'🇧🇾',ua:'🇺🇦',kz:'🇰🇿',es:'🇪🇸',mx:'🇲🇽',ar:'🇦🇷',co:'🇨🇴',br:'🇧🇷',cl:'🇨🇱',us:'🇺🇸',ca:'🇨🇦',gb:'🇬🇧',de:'🇩🇪',fr:'🇫🇷',tr:'🇹🇷'};
+  const flag=countryFlag[myCountry]||'🌍';
+  document.getElementById('lb').innerHTML='<div class="li me"><div class="lp p1">👤</div><div class="ln">'+flag+' '+myName+'</div><div><div class="lsc">'+myScore+' pts</div><div class="lf">🔥'+mySt+'д</div></div></div><div style="text-align:center;color:var(--m);font-size:12px;padding:12px">Лидерборд станет доступен когда зарегистрируется больше игроков</div>';
+}
+
+// ===================== НАВИГАЦИЯ =====================
 function ss(id){document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
 function gl(){clearInterval(ti);ss('lo');}
 
-function getPuzzleIndices(){
+// ===================== ЭМОДЖИ =====================
+function getPuzzleIndices(session){
   const d=new Date();
-  const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate();
+  const sessSeed=session==='am'?0:100000;
+  const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate()+sessSeed;
+  const pool=PUZZLES[curRegion];
   const indices=[];
   let s=seed;
   while(indices.length<3){
     s=((s>>16)^s)*0x45d9f3b;
     s=((s>>16)^s)*0x45d9f3b;
     s=(s>>16)^s;
-    const idx=Math.abs(s)%P.length;
+    const idx=Math.abs(s)%pool.length;
     if(!indices.includes(idx))indices.push(idx);
   }
   return indices;
@@ -315,14 +546,16 @@ function getPuzzleIndices(){
 
 function sE(d){
   df=d;
-  eqList=getPuzzleIndices();
+  curSession=getSession();
+  eqList=getPuzzleIndices(curSession);
   eqIdx=0;
   eqResults=[];
   startPuzzle();
 }
 
 function startPuzzle(){
-  cp=P[eqList[eqIdx]];
+  const pool=PUZZLES[curRegion];
+  cp=pool[eqList[eqIdx]];
   ea=3;ci=0;
   document.getElementById('cat').textContent=cp.c;
   document.getElementById('ed').textContent=cp.q[0];
@@ -349,11 +582,9 @@ function sT(){clearInterval(ti);ts=df==='e'?30:df==='m'?15:10;const tot=ts;uTU(t
 function uTU(s,t){const p=(s/t)*100;const f=document.getElementById('tf');f.style.width=p+'%';f.className='tf'+(p<30?' w':'');document.getElementById('tt').textContent=s;}
 
 function tO(){
-  if(ea>0){
-    ea--;mA();
-    if(ea>0){ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}
-    else{clearInterval(ti);finishPuzzle(false);}
-  }
+  ea--;mA();
+  if(ea>0){ci=Math.min(ci+1,cp.q.length-1);document.getElementById('ed').textContent=cp.q[ci];sT();}
+  else{clearInterval(ti);finishPuzzle(false);}
 }
 
 function rAD(){const r=document.getElementById('ar');r.innerHTML='';for(let i=0;i<3;i++){const d=document.createElement('div');d.className='ad';r.appendChild(d);}}
@@ -378,7 +609,7 @@ function se(){
 
 function finishPuzzle(win){
   eqResults.push({win,answer:cp.a,emoji:cp.q[0]});
-  if(win) uSt();
+  if(win){uSt();const xp=XP_PER[df];addScore(xp);}
   const xp=win?XP_PER[df]:0;
   const isLast=eqIdx===2;
   document.getElementById('pr-emoji').textContent=win?'🎉':'😔';
@@ -413,37 +644,89 @@ function showFinalResult(){
   document.querySelector('.shb').style.color='var(--ea)';
   document.getElementById('re').textContent=won===3?'🏆':won>0?'🎉':'😔';
   document.getElementById('rt').textContent=won===3?'Все угадал!':'Угадал '+won+' из 3';
-  document.getElementById('ra').innerHTML='Опыт: <span>'+totalXp+' / '+maxXp+'</span> · Сложность: <span>'+(df==='e'?'Легко':df==='m'?'Средне':'Сложно')+'</span>';
-  const st=+localStorage.getItem('streak')||0;
-  LD[3].p=totalXp;LD[3].s=st;
-  const so=[...LD].sort((a,b)=>b.p-a.p);
-  const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];
-  document.getElementById('lb').innerHTML=so.map((p,i)=>'<div class="li '+(p.me?'me':'')+'"><div class="lp '+(pc[i]||'')+'">'+(pe[i]||i+1)+'</div><div class="ln">'+p.n+(p.me?' 👤':'')+'</div><div><div class="lsc">'+p.p+' pts</div><div class="lf">🔥'+p.s+'д</div></div></div>').join('');
+  document.getElementById('ra').innerHTML='Опыт: <span>'+totalXp+' / '+maxXp+'</span> · <span>'+(curSession==='am'?'🌅 Утро':'🌙 Вечер')+'</span>';
+  renderLeaderboard();
   ss('rs');
 }
 
-function sN(){ns=gTN();na=0;nd=false;document.getElementById('gl').innerHTML='<div style="text-align:center;color:var(--m);font-size:13px;padding:16px">Угадай число от 1 до 1000</div>';document.getElementById('ni2').value='';document.getElementById('al').textContent='10';document.getElementById('nh').classList.remove('on');document.querySelector('.ns').disabled=false;ss('ng');}
+// ===================== ЧИСЛО =====================
+function sN(){
+  ns=gTN();na=0;nd=false;
+  document.getElementById('gl').innerHTML='<div style="text-align:center;color:var(--m);font-size:13px;padding:16px">Угадай число от 1 до 1000</div>';
+  document.getElementById('ni2').value='';
+  document.getElementById('al').textContent='10';
+  document.getElementById('nh').classList.remove('on');
+  document.querySelector('.ns').disabled=false;
+  ss('ng');
+}
+
 function gTN(){const d=new Date();const h=Math.floor(d.getHours()/4);const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate()*100+h;let x=seed;x=((x>>16)^x)*0x45d9f3b;x=((x>>16)^x)*0x45d9f3b;x=(x>>16)^x;return(Math.abs(x)%1000)+1;}
 function uNT(){const d=new Date();const nh=(Math.floor(d.getHours()/4)+1)*4;const nx=new Date(d);nx.setHours(nh,0,0,0);const diff=nx-d;if(diff<0)return;const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);const el=document.getElementById('nt');if(el)el.textContent='Следующее через: '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
 
-function sn(){const inp=document.getElementById('ni2');const v=parseInt(inp.value);if(!v||v<1||v>1000||nd)return;na++;inp.value='';document.getElementById('al').textContent=10-na;const log=document.getElementById('gl');if(na===1)log.innerHTML='';const row=document.createElement('div');row.className='gr';let ht,hc;if(v===ns){ht='✓ Верно!';hc='co';}else if(v<ns){ht='↑ Больше';hc='hi';}else{ht='↓ Меньше';hc='lo';}row.innerHTML='<span class="gn">'+v+'</span><span class="gi '+hc+'">'+ht+'</span>';log.appendChild(row);log.scrollTop=log.scrollHeight;if(na%3===0&&v!==ns){const hi=Math.floor(na/3)-1;if(hi<NH.length){document.getElementById('nht').textContent=NH[hi](ns);document.getElementById('nh').classList.add('on');}}if(v===ns){nd=true;document.querySelector('.ns').disabled=true;uSt();lr={m:'n',w:true,a:ns,n:na};setTimeout(()=>sRN(true),800);}else if(na>=10){nd=true;document.querySelector('.ns').disabled=true;lr={m:'n',w:false,a:ns,n:10};setTimeout(()=>sRN(false),800);}}
+function numScore(guessed,actual){
+  const diff=Math.abs(guessed-actual);
+  if(diff===0)return 500;
+  if(diff===1)return 400;
+  if(diff===2)return 300;
+  if(diff===3)return 200;
+  if(diff===4)return 100;
+  return 0;
+}
+
+function sn(){
+  const inp=document.getElementById('ni2');
+  const v=parseInt(inp.value);
+  if(!v||v<1||v>1000||nd)return;
+  na++;inp.value='';
+  document.getElementById('al').textContent=10-na;
+  const log=document.getElementById('gl');
+  if(na===1)log.innerHTML='';
+  const row=document.createElement('div');
+  row.className='gr';
+  let ht,hc;
+  if(v===ns){ht='✓ Верно!';hc='co';}
+  else if(v<ns){ht='↑ Больше';hc='hi';}
+  else{ht='↓ Меньше';hc='lo';}
+  row.innerHTML='<span class="gn">'+v+'</span><span class="gi '+hc+'">'+ht+'</span>';
+  log.appendChild(row);log.scrollTop=log.scrollHeight;
+  if(na%3===0&&v!==ns){const hi=Math.floor(na/3)-1;if(hi<NH.length){document.getElementById('nht').textContent=NH[hi](ns);document.getElementById('nh').classList.add('on');}}
+  if(v===ns){
+    nd=true;document.querySelector('.ns').disabled=true;
+    uSt();
+    const pts=numScore(v,ns);
+    addScore(pts);
+    lr={m:'n',w:true,a:ns,n:na,pts};
+    setTimeout(()=>sRN(true),800);
+  } else if(na>=10){
+    nd=true;document.querySelector('.ns').disabled=true;
+    // Проверяем погрешность последней попытки
+    const pts=numScore(v,ns);
+    if(pts>0)addScore(pts);
+    lr={m:'n',w:false,a:ns,n:10,lastGuess:v,pts};
+    setTimeout(()=>sRN(false),800);
+  }
+}
 
 function sRN(w){
   document.getElementById('rmt').textContent='ЧислоДня';
   document.getElementById('rmt').style.color='var(--na)';
   document.querySelector('.shb').style.borderColor='var(--na)';
   document.querySelector('.shb').style.color='var(--na)';
-  if(w){document.getElementById('re').textContent='🎯';document.getElementById('rt').textContent='Нашёл число!';document.getElementById('ra').innerHTML='Число: <span>'+lr.a+'</span> · Попыток: <span>'+lr.n+'</span>';}
-  else{document.getElementById('re').textContent='😔';document.getElementById('rt').textContent='Не угадал';document.getElementById('ra').innerHTML='Загаданное число: <span>'+lr.a+'</span>';}
-  const st=+localStorage.getItem('streak')||0;
-  const pts=w?Math.max(10,100-(lr.n-1)*10):0;
-  LD[3].p=pts;LD[3].s=st;
-  const so=[...LD].sort((a,b)=>b.p-a.p);
-  const pc=['p1','p2','p3'],pe=['🥇','🥈','🥉'];
-  document.getElementById('lb').innerHTML=so.map((p,i)=>'<div class="li '+(p.me?'me':'')+'"><div class="lp '+(pc[i]||'')+'">'+(pe[i]||i+1)+'</div><div class="ln">'+p.n+(p.me?' 👤':'')+'</div><div><div class="lsc">'+p.p+' pts</div><div class="lf">🔥'+p.s+'д</div></div></div>').join('');
+  if(w){
+    document.getElementById('re').textContent='🎯';
+    document.getElementById('rt').textContent='Нашёл число!';
+    document.getElementById('ra').innerHTML='Число: <span>'+lr.a+'</span> · Попыток: <span>'+lr.n+'</span> · +<span>'+lr.pts+'</span> очков';
+  } else {
+    document.getElementById('re').textContent='😔';
+    document.getElementById('rt').textContent='Не угадал';
+    const extra=lr.pts>0?' · +<span>'+lr.pts+'</span> очков (близко!)':'';
+    document.getElementById('ra').innerHTML='Загаданное число: <span>'+lr.a+'</span>'+extra;
+  }
+  renderLeaderboard();
   ss('rs');
 }
 
+// ===================== ПОДЕЛИТЬСЯ =====================
 function sh(){
   if(!lr)return;
   const st=localStorage.getItem('streak')||'0';
@@ -451,19 +734,33 @@ function sh(){
   if(lr.m==='e'){
     const dots=lr.results.map(r=>r.win?'🟩':'🟥').join('');
     const diffLabel=lr.diff==='e'?'🟢':lr.diff==='m'?'🟡':'🔴';
-    tx='tresuno 🎭 '+diffLabel+'\n'+dots+'\nОпыт: '+lr.totalXp+' pts\n🔥'+st+'д\nmelnwsc2-cmyk.github.io/tresuno';
+    const sess=curSession==='am'?'🌅':'🌙';
+    tx='tresuno 🎭 '+diffLabel+' '+sess+'\n'+dots+'\nОпыт: '+lr.totalXp+' pts\n🔥'+st+'д\nmelnwsc2-cmyk.github.io/tresuno';
   } else {
     const dots=Array(Math.min(lr.n,10)).fill('🟦').join('')+(lr.w?'':'❌');
-    tx='tresuno 🔢\n'+dots+'\n'+(lr.w?'Нашёл за '+lr.n+' попыток!':'Не нашёл 😔')+'\n🔥'+st+'д\nmelnwsc2-cmyk.github.io/tresuno';
+    tx='tresuno 🔢\n'+dots+'\n'+(lr.w?'Нашёл за '+lr.n+' попыток! +'+lr.pts+' очков':'Не нашёл 😔')+'\n🔥'+st+'д\nmelnwsc2-cmyk.github.io/tresuno';
   }
   if(navigator.share)navigator.share({text:tx});
   else navigator.clipboard.writeText(tx).then(()=>alert('Скопировано!'));
 }
 
-function uSt(){const today=new Date().toDateString();const lp=localStorage.getItem('lastPlay');let st=+localStorage.getItem('streak')||0;const yd=new Date(Date.now()-86400000).toDateString();if(lp===yd)st++;else if(lp!==today)st=1;localStorage.setItem('streak',st);localStorage.setItem('lastPlay',today);['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});}
+// ===================== СЕРИЯ =====================
+function uSt(){
+  const today=new Date().toDateString();
+  const lp=localStorage.getItem('lastPlay');
+  let st=+localStorage.getItem('streak')||0;
+  const yd=new Date(Date.now()-86400000).toDateString();
+  if(lp===yd)st++;
+  else if(lp!==today)st=1;
+  localStorage.setItem('streak',st);
+  localStorage.setItem('lastPlay',today);
+  ['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});
+}
 
 document.getElementById('ai').addEventListener('keydown',e=>{if(e.key==='Enter')se();});
 document.getElementById('ni2').addEventListener('keydown',e=>{if(e.key==='Enter')sn();});
+// Кнопка настроек в шапке
+document.querySelectorAll('.ch')[1] && document.querySelectorAll('.ch')[1].addEventListener('click',ss_settings);
 init();
 </script>
 </body>
