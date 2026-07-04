@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5c542">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tresuno">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/tresuno/manifest.json">
+<link rel="apple-touch-icon" href="/tresuno/icon-192.png">
+<title>Tresuno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#0d0d0f;--s:#16161a;--s2:#1e1e24;--b:#2a2a35;--t:#f0f0f5;--m:#6b6b80;--ea:#f5c542;--na:#5b8cff;--fa:#ff5c5c;--ok:#4ecb71}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;min-height:100dvh}
+.sc{display:none;flex-direction:column;min-height:100dvh}.sc.on{display:flex}
+.lh{padding:36px 24px 16px;text-align:center}
+.logo{font-family:'Space Mono',monospace;font-size:40px;font-weight:700;letter-spacing:-2px}
+.lt{color:var(--t)}.lu{color:var(--ea)}
+.ls{font-size:12px;color:var(--m);margin-top:6px;letter-spacing:2px;text-transform:uppercase}
+.sr{display:flex;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ch{display:flex;align-items:center;gap:6px;background:var(--s);border:1px solid var(--b);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.mc{display:flex;flex-direction:column;gap:12px;padding:0 20px 24px;flex:1}
+.card{background:var(--s);border:1.5px solid var(--b);border-radius:20px;padding:24px;cursor:pointer}
+.card:active{transform:scale(0.98)}
+.ec{border-color:rgba(245,197,66,0.35)}.nc{border-color:rgba(91,140,255,0.35)}.xc{border-color:rgba(255,92,92,0.35)}
+.ci{font-size:30px;margin-bottom:10px}
+.cn{font-family:'Space Mono',monospace;font-size:19px;font-weight:700;margin-bottom:6px}
+.ec .cn{color:var(--ea)}.nc .cn{color:var(--na)}.xc .cn{color:var(--fa)}
+.cd{font-size:13px;color:var(--m);line-height:1.5}
+.cb{display:inline-flex;margin-top:10px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.ec .cb{background:rgba(245,197,66,0.15);color:var(--ea)}.nc .cb{background:rgba(91,140,255,0.15);color:var(--na)}.xc .cb{background:rgba(255,92,92,0.15);color:var(--fa)}
+.sess-badge{display:inline-flex;margin-top:6px;margin-left:6px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(91,140,255,0.15);color:var(--na)}
+.dh{padding:36px 24px 20px;text-align:center}
+.dt{font-family:'Space Mono',monospace;font-size:26px;font-weight:700;color:var(--ea)}
+.ds{font-size:13px;color:var(--m);margin-top:6px}
+.dc{display:flex;flex-direction:column;gap:10px;padding:0 20px 24px;flex:1;overflow-y:auto}
+.dcard{background:var(--s);border:1.5px solid var(--b);border-radius:20px;padding:18px;cursor:pointer}
+.dcard:active{transform:scale(0.98)}
+.dcard.e{border-color:rgba(78,203,113,0.35)}.dcard.m{border-color:rgba(245,197,66,0.35)}.dcard.h{border-color:rgba(255,92,92,0.35)}
+.di{font-size:22px;margin-bottom:6px}
+.dn{font-family:'Space Mono',monospace;font-size:16px;font-weight:700;margin-bottom:3px}
+.dcard.e .dn{color:var(--ok)}.dcard.m .dn{color:var(--ea)}.dcard.h .dn{color:var(--fa)}
+.dd{font-size:12px;color:var(--m)}
+.bl{text-align:center;padding:14px;color:var(--m);font-size:13px;cursor:pointer}
+.gh{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--b);position:sticky;top:0;background:var(--bg);z-index:10}
+.bb{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:8px 12px;color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer}
+.gt{font-family:'Space Mono',monospace;font-size:15px;font-weight:700}
+.sm{font-size:13px;font-weight:600;color:var(--ea)}
+.ec2{flex:1;display:flex;flex-direction:column;padding:20px;gap:16px}
+.cat{display:inline-flex;background:var(--s);border:1px solid var(--b);border-radius:10px;padding:7px 14px;font-size:13px;font-weight:600}
+.ed{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:36px 16px;text-align:center;font-size:44px;line-height:1.5;letter-spacing:4px;min-height:140px;display:flex;align-items:center;justify-content:center}
+.tz{display:flex;flex-direction:column;gap:6px}
+.tl{display:flex;justify-content:space-between;font-size:12px;color:var(--m);font-weight:600}
+.tt{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}
+.tf{height:100%;border-radius:3px;transition:width 1s linear;background:var(--ea)}
+.tf.w{background:var(--fa)}
+.ar{display:flex;gap:8px;align-items:center}
+.ad{width:11px;height:11px;border-radius:50%;background:var(--ea);transition:all 0.3s}
+.ad.u{background:var(--fa);transform:scale(0.8)}
+.iz{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.ai{width:100%;padding:15px 16px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:16px;outline:none;transition:border-color 0.2s}
+.ai:focus{border-color:var(--ea)}.ai.ok{border-color:var(--ok);background:rgba(78,203,113,0.08)}.ai.no{border-color:var(--fa);background:rgba(255,92,92,0.08)}
+.sb{width:100%;padding:15px;background:var(--ea);color:#0d0d0f;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;cursor:pointer}
+.sb:disabled{opacity:0.4;pointer-events:none}
+.nc2{flex:1;display:flex;flex-direction:column;padding:20px;gap:16px}
+.ni{display:flex;justify-content:space-between;align-items:center}
+.nr{font-size:12px;color:var(--m);font-weight:600}
+.al{font-family:'Space Mono',monospace;font-size:13px;color:var(--na);font-weight:700}
+.gl{display:flex;flex-direction:column;gap:7px;max-height:240px;overflow-y:auto}
+.gr{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--s);border:1px solid var(--b);border-radius:11px;animation:si 0.3s ease}
+@keyframes si{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.gn{font-family:'Space Mono',monospace;font-size:17px;font-weight:700}
+.gi{font-size:13px;font-weight:600;padding:4px 11px;border-radius:20px}
+.gi.hi{background:rgba(91,140,255,0.15);color:var(--na)}.gi.lo{background:rgba(255,92,92,0.15);color:var(--fa)}.gi.co{background:rgba(78,203,113,0.15);color:var(--ok)}
+.hc{background:rgba(91,140,255,0.08);border:1px solid rgba(91,140,255,0.2);border-radius:11px;padding:11px 14px;font-size:13px;color:var(--na);display:none;gap:8px;align-items:center}
+.hc.on{display:flex}
+.niz{display:flex;gap:10px;margin-top:auto}
+.ni2{flex:1;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:20px;font-weight:700;outline:none;text-align:center;transition:border-color 0.2s}
+.ni2:focus{border-color:var(--na)}
+.ns{padding:15px 18px;background:var(--na);color:#fff;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:15px;font-weight:700;cursor:pointer}
+.ns:disabled{opacity:0.4;pointer-events:none}
+.rc{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px;gap:20px;text-align:center}
+.re{font-size:60px}
+.rt{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;line-height:1.3}
+.ra{font-size:14px;color:var(--m);line-height:1.6}.ra span{color:var(--t);font-weight:600}
+.shb{width:100%;padding:15px;background:var(--s2);border:1.5px solid var(--ea);border-radius:13px;color:var(--ea);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
+.lb{width:100%;text-align:left}
+.lbt{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:var(--m);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.li{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--s);border:1px solid var(--b);border-radius:11px;margin-bottom:7px}
+.li.me{border-color:var(--ea);background:rgba(245,197,66,0.05)}
+.lp{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;width:22px;text-align:center;color:var(--m)}
+.lp.p1{color:#fbbf24}.lp.p2{color:#94a3b8}.lp.p3{color:#d97706}
+.ln{flex:1;font-size:13px;font-weight:500}
+.lsc{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--ea)}
+.lf{font-size:10px;color:var(--m)}
+.bk{width:100%;padding:15px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer}
+.pr{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px;gap:16px;text-align:center}
+.pr-emoji{font-size:56px}
+.pr-title{font-family:'Space Mono',monospace;font-size:20px;font-weight:700}
+.pr-sub{font-size:13px;color:var(--m)}.pr-sub span{color:var(--t);font-weight:600}
+.pr-dots{display:flex;gap:8px;justify-content:center;margin:4px 0}
+.pr-dot{width:14px;height:14px;border-radius:50%;background:var(--b)}
+.pr-dot.ok{background:var(--ok)}.pr-dot.fa{background:var(--fa)}.pr-dot.pend{border:1.5px solid var(--m)}
+.xp-badge{background:rgba(245,197,66,0.12);border:1px solid rgba(245,197,66,0.3);border-radius:12px;padding:10px 20px;font-family:'Space Mono',monospace;font-size:15px;font-weight:700;color:var(--ea)}
+.nb{width:100%;padding:15px;background:var(--ea);color:#0d0d0f;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;cursor:pointer;margin-top:auto}
+.eq-progress{display:flex;gap:5px}
+.eq-pip{width:8px;height:8px;border-radius:50%;background:var(--b);border:1.5px solid var(--m);transition:all 0.3s}
+.eq-pip.ok{background:var(--ok);border-color:var(--ok)}.eq-pip.fa{background:var(--fa);border-color:var(--fa)}.eq-pip.cur{border-color:var(--ea)}
+.set-wrap{flex:1;display:flex;flex-direction:column;padding:20px;gap:12px;overflow-y:auto}
+.set-section{font-family:'Space Mono',monospace;font-size:11px;color:var(--m);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.inp-name{width:100%;padding:14px 16px;background:var(--s);border:1.5px solid var(--b);border-radius:13px;color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none}
+.inp-name:focus{border-color:var(--ea)}
+.save-btn{width:100%;padding:14px;background:var(--ea);color:#0d0d0f;border:none;border-radius:13px;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;cursor:pointer}
+/* sound toggle */
+.sound-row{display:flex;align-items:center;justify-content:space-between;background:var(--s);border:1px solid var(--b);border-radius:13px;padding:14px 16px}
+.toggle{width:44px;height:24px;background:var(--b);border-radius:12px;position:relative;cursor:pointer;transition:background 0.3s}
+.toggle.on{background:var(--ok)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform 0.3s}
+.toggle.on::after{transform:translateX(20px)}
+/* number difficulty select */
+.nd-wrap{display:flex;gap:8px;margin-bottom:4px}
+.nd-btn{flex:1;padding:10px 6px;background:var(--s);border:1.5px solid var(--b);border-radius:11px;color:var(--m);font-family:'Space Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;text-align:center}
+.nd-btn.sel{border-color:var(--na);color:var(--na);background:rgba(91,140,255,0.08)}
+/* lang select */
+.lang-row{display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:8px 14px;background:var(--s);border:1.5px solid var(--b);border-radius:20px;color:var(--m);font-size:13px;font-weight:600;cursor:pointer}
+.lang-btn.sel{border-color:var(--ea);color:var(--ea)}
+/* number mode selector on home */
+.nm-tabs{display:flex;gap:8px;padding:0 20px;margin-bottom:-4px}
+.nm-tab{padding:8px 14px;background:var(--s);border:1.5px solid var(--b);border-radius:10px;color:var(--m);font-size:12px;font-weight:700;cursor:pointer;font-family:'Space Mono',monospace}
+.nm-tab.sel{border-color:var(--na);color:var(--na)}
+</style>
+</head>
+<body>
+
+<!-- Главный экран -->
+<div class="sc on" id="lo">
+  <div id="install-btn" onclick="installApp()" style="display:none;align-items:center;justify-content:center;gap:8px;background:rgba(245,197,66,0.12);border:1px solid rgba(245,197,66,0.3);border-radius:0 0 16px 16px;padding:10px 20px;font-size:13px;font-weight:600;color:var(--ea);cursor:pointer">
+    📲 Установить приложение
+  </div>
+  <div class="lh">
+    <div class="logo"><span class="lt">tres</span><span class="lu">uno</span></div>
+    <div class="ls" id="txt-subtitle">три игры · каждый день</div>
+    <div class="sr">
+      <div class="ch">🔥 <span id="ls">0</span> <span id="txt-streak">дней подряд</span></div>
+      <div class="ch" onclick="openSettings()">⚙️ <span id="hd-region">🌍</span> <span id="hd-name">Player</span></div>
+    </div>
+  </div>
+  <div class="mc">
+    <div class="card ec" onclick="ss('di')">
+      <div class="ci">🎭</div>
+      <div class="cn" id="txt-emoji-title">ЭмоДжи</div>
+      <div class="cd" id="txt-emoji-desc">Угадай фильм, аниме, игру или песню по эмодзи</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+        <div class="cb" id="txt-emoji-badge">📅 3 загадки в день</div>
+        <div class="sess-badge" id="sess-badge">🌅 Утро</div>
+      </div>
+    </div>
+    <div class="card nc" onclick="openNumberMode()">
+      <div class="ci">🔢</div>
+      <div class="cn" id="txt-num-title">ЧислоДня</div>
+      <div class="cd" id="txt-num-desc">Угадай число — новое каждые 4 часа</div>
+      <div class="cb" id="txt-num-badge">⏱️ 6 раз в сутки</div>
+    </div>
+    <div class="card" style="border-color:rgba(78,203,113,0.35)" onclick="openPriceGame()">
+      <div class="ci">🏷️</div>
+      <div class="cn" id="txt-price-title" style="color:var(--ok)">УгадайЦену</div>
+      <div class="cd" id="txt-price-desc">Угадай цену товара из магазина — чем ближе, тем больше очков</div>
+      <div class="cb" style="background:rgba(78,203,113,0.15);color:var(--ok)">📅 1 товар в день</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Выбор сложности ЭмоДжи -->
+<div class="sc" id="di">
+  <div class="dh">
+    <div class="dt">🎭 <span id="txt-emoji-title2">ЭмоДжи</span></div>
+    <div class="ds" id="di-sess-label">Утренняя сессия</div>
+  </div>
+  <div class="dc">
+    <div class="dcard e" onclick="sE('e')">
+      <div class="di">🟢</div>
+      <div class="dn" id="txt-easy">Легко</div>
+      <div class="dd" id="txt-easy-d">30 сек · 30 опыта за загадку</div>
+    </div>
+    <div class="dcard m" onclick="sE('m')">
+      <div class="di">🟡</div>
+      <div class="dn" id="txt-med">Средне</div>
+      <div class="dd" id="txt-med-d">15 сек · 60 опыта за загадку</div>
+    </div>
+    <div class="dcard h" onclick="sE('h')">
+      <div class="di">🔴</div>
+      <div class="dn" id="txt-hard">Сложно</div>
+      <div class="dd" id="txt-hard-d">10 сек · 100 опыта за загадку</div>
+    </div>
+  </div>
+  <div class="bl" onclick="ss('lo')">← <span id="txt-back">Назад</span></div>
+</div>
+
+<!-- Выбор режима числа (1-1000) -->
+<div class="sc" id="nd">
+  <div class="dh">
+    <div class="dt">🔢 <span id="txt-num-title2">ЧислоДня</span></div>
+    <div class="ds" id="txt-num-pick">Выбери сложность</div>
+  </div>
+  <div class="dc">
+    <div class="dcard e" onclick="sN('e')">
+      <div class="di">🟢</div>
+      <div class="dn" id="txt-easy2">Легко</div>
+      <div class="dd" id="txt-nd-easy">10 попыток · 1–1000</div>
+    </div>
+    <div class="dcard m" onclick="sN('m')">
+      <div class="di">🟡</div>
+      <div class="dn" id="txt-med2">Средне</div>
+      <div class="dd" id="txt-nd-med">9 попыток · 1–1000</div>
+    </div>
+    <div class="dcard h" onclick="sN('h')">
+      <div class="di">🔴</div>
+      <div class="dn" id="txt-hard2">Сложно</div>
+      <div class="dd" id="txt-nd-hard">8 попыток · 1–1000</div>
+    </div>
+  </div>
+  <div class="bl" onclick="ss('lo')">← <span id="txt-back2">Назад</span></div>
+</div>
+
+<!-- Игровой экран ЭмоДжи -->
+<div class="sc" id="eg">
+  <div class="gh">
+    <button class="bb" onclick="gl()">←</button>
+    <div class="gt" style="color:var(--ea)">ЭмоДжи</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="eq-progress" id="eq-progress"></div>
+      <div class="sm">🔥 <span id="es">0</span></div>
+    </div>
+  </div>
+  <div class="ec2">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="cat" id="cat">🎬</div>
+      <div style="font-family:'Space Mono',monospace;font-size:12px;color:var(--m);font-weight:700" id="eq-num">1 / 3</div>
+    </div>
+    <div class="ed" id="ed">🤔</div>
+    <div class="tz">
+      <div class="tl"><span id="txt-time">Время</span><span id="tt">30</span></div>
+      <div class="tt"><div class="tf" id="tf" style="width:100%"></div></div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="ar" id="ar"></div>
+      <span style="font-size:11px;color:var(--m)" id="txt-attempts">попыток осталось</span>
+    </div>
+    <div class="iz">
+      <input class="ai" id="ai" type="text" placeholder="..." autocomplete="off" autocorrect="off" autocapitalize="off">
+      <button class="sb" id="sb" onclick="se()" id="txt-answer-btn">Ответить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Промежуточный экран -->
+<div class="sc" id="pr">
+  <div class="gh"><div></div><div class="gt" style="color:var(--ea)">ЭмоДжи</div><div></div></div>
+  <div class="pr">
+    <div class="pr-emoji" id="pr-emoji">🎉</div>
+    <div class="pr-title" id="pr-title">Угадал!</div>
+    <div class="pr-sub" id="pr-sub"></div>
+    <div class="pr-dots" id="pr-dots"></div>
+    <div class="xp-badge" id="pr-xp">+30</div>
+    <button class="nb" id="pr-btn" onclick="nextPuzzle()">→</button>
+  </div>
+</div>
+
+<!-- ЧислоДня / МегаЧисло (общий экран) -->
+<div class="sc" id="ng">
+  <div class="gh">
+    <button class="bb" onclick="gl()">←</button>
+    <div class="gt" style="color:var(--na)" id="ng-title">ЧислоДня</div>
+    <div class="sm">🔥 <span id="ns2">0</span></div>
+  </div>
+  <div class="nc2">
+    <div class="ni">
+      <div class="nr" id="nt">--:--:--</div>
+      <div class="al" id="txt-attempts2">Попыток: <span id="al">10</span></div>
+    </div>
+    <div class="hc" id="nh"><span>💡</span><span id="nht"></span></div>
+    <div class="gl" id="gl">
+      <div style="text-align:center;color:var(--m);font-size:13px;padding:16px" id="ng-hint-start">Угадай число</div>
+    </div>
+    <div class="niz">
+      <input class="ni2" id="ni2" type="number" min="1" placeholder="?">
+      <button class="ns" onclick="sn()">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- Финальный экран -->
+<div class="sc" id="rs">
+  <div class="gh">
+    <button class="bb" onclick="gl()">←</button>
+    <div class="gt" id="rmt">Результат</div>
+    <div></div>
+  </div>
+  <div class="rc">
+    <div class="re" id="re">🎉</div>
+    <div class="rt" id="rt"></div>
+    <div class="ra" id="ra"></div>
+    <button class="shb" onclick="sh()">📤 <span id="txt-share">Поделиться</span></button>
+    <div class="lb">
+      <div class="lbt" id="txt-lb">🏆 Лидерборд</div>
+      <div id="lb"></div>
+    </div>
+    <button class="bk" onclick="gl()">← <span id="txt-menu">Меню</span></button>
+  </div>
+</div>
+
+<!-- Настройки -->
+<div class="sc" id="st">
+  <div class="gh">
+    <button class="bb" onclick="ss('lo')">←</button>
+    <div class="gt" id="txt-settings">Настройки</div>
+    <div></div>
+  </div>
+  <div class="set-wrap">
+    <div class="set-section" id="txt-profile">Профиль</div>
+    <input class="inp-name" id="inp-name" type="text" placeholder="Имя / Name">
+    <input class="inp-name" id="inp-email" type="email" placeholder="Email">
+
+    <div class="set-section" id="txt-lang-label">Язык / Language</div>
+    <div class="lang-row">
+      <div class="lang-btn" onclick="setLang('ru')" id="lb-ru">🇷🇺 РУС</div>
+      <div class="lang-btn" onclick="setLang('en')" id="lb-en">🇺🇸 ENG</div>
+      <div class="lang-btn" onclick="setLang('es')" id="lb-es">🇪🇸 ESP</div>
+    </div>
+
+    <div class="set-section" id="txt-region-label">Регион загадок</div>
+    <div style="display:flex;flex-direction:column;gap:8px" id="region-cards"></div>
+
+    <div class="set-section" id="txt-sound-label">Звук</div>
+    <div class="sound-row">
+      <span id="txt-bg-music">Фоновая музыка</span>
+      <div class="toggle" id="toggle-music" onclick="toggleMusic()"></div>
+    </div>
+    <div class="sound-row">
+      <span id="txt-sfx">Звуковые эффекты</span>
+      <div class="toggle on" id="toggle-sfx" onclick="toggleSfx()"></div>
+    </div>
+
+    <button class="save-btn" onclick="saveSettings()" id="txt-save">Сохранить</button>
+    <button onclick="resetPlayedFlags()" style="width:100%;padding:12px;background:transparent;border:1.5px solid var(--fa);border-radius:13px;color:var(--fa);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px">🔄 Сбросить блокировки игр</button>
+  </div>
+</div>
+
+<!-- Регистрация -->
+<div class="sc" id="rg">
+  <div class="dh">
+    <div class="dt">👋 Tresuno</div>
+    <div class="ds" id="txt-reg-sub">Зарегистрируйся · Register</div>
+  </div>
+  <div class="set-wrap" style="padding-top:0">
+    <div class="set-section">Имя / Name</div>
+    <input class="inp-name" id="reg-name" type="text" placeholder="Имя / Name" maxlength="20">
+    <div class="set-section">Email</div>
+    <input class="inp-name" id="reg-email" type="email" placeholder="example@mail.com">
+    <div class="set-section">Страна / Country</div>
+    <select class="inp-name" id="reg-country" style="cursor:pointer;background:var(--s);color:var(--t)">
+      <option value="">— Выбери / Select —</option>
+      <optgroup label="СНГ / CIS"><option value="ru">🇷🇺 Россия</option><option value="by">🇧🇾 Беларусь</option><option value="ua">🇺🇦 Украина</option><option value="kz">🇰🇿 Казахстан</option></optgroup>
+      <optgroup label="Европа / Europe"><option value="de">🇩🇪 Германия</option><option value="fr">🇫🇷 Франция</option><option value="it">🇮🇹 Италия</option><option value="pl">🇵🇱 Польша</option><option value="es">🇪🇸 Испания</option><option value="pt">🇵🇹 Португалия</option><option value="gb">🇬🇧 Великобритания</option><option value="nl">🇳🇱 Нидерланды</option></optgroup>
+      <optgroup label="Америка / Americas"><option value="us">🇺🇸 США</option><option value="ca">🇨🇦 Канада</option><option value="mx">🇲🇽 Мексика</option><option value="br">🇧🇷 Бразилия</option><option value="ar">🇦🇷 Аргентина</option><option value="co">🇨🇴 Колумбия</option><option value="cl">🇨🇱 Чили</option></optgroup>
+      <optgroup label="Азия / Asia"><option value="cn">🇨🇳 Китай</option><option value="jp">🇯🇵 Япония</option><option value="kr">🇰🇷 Корея</option><option value="in">🇮🇳 Индия</option><option value="pk">🇵🇰 Пакистан</option><option value="tr">🇹🇷 Турция</option><option value="sa">🇸🇦 Саудовская Аравия</option><option value="ae">🇦🇪 ОАЭ</option></optgroup>
+      <optgroup label="Африка / Africa"><option value="ng">🇳🇬 Нигерия</option><option value="za">🇿🇦 ЮАР</option><option value="eg">🇪🇬 Египет</option></optgroup>
+      <optgroup label="Океания / Oceania"><option value="au">🇦🇺 Австралия</option><option value="nz">🇳🇿 Новая Зеландия</option></optgroup>
+      <optgroup label="Другие / Other"><option value="other">🌍 Другая</option></optgroup>
+    </select>
+    <div class="set-section">Язык / Language</div>
+    <div class="lang-row">
+      <div class="lang-btn sel" onclick="regLang('ru')" id="rlb-ru">🇷🇺 РУС</div>
+      <div class="lang-btn" onclick="regLang('en')" id="rlb-en">🇺🇸 ENG</div>
+      <div class="lang-btn" onclick="regLang('es')" id="rlb-es">🇪🇸 ESP</div>
+    </div>
+    <div class="set-section">Регион загадок / Puzzle Region</div>
+    <div style="display:flex;flex-direction:column;gap:8px" id="reg-region-cards"></div>
+    <div id="reg-err" style="color:var(--fa);font-size:13px;text-align:center;display:none">Заполни все поля / Fill all fields</div>
+    <button class="save-btn" onclick="register()">Начать играть / Play →</button>
+    <div style="text-align:center;font-size:12px;color:var(--m)">Скоро: Google Sign-In</div>
+  </div>
+</div>
+
+
+<!-- УгадайЦену -->
+<div class="sc" id="pg">
+  <div class="gh">
+    <button class="bb" onclick="gl()">←</button>
+    <div class="gt" style="color:var(--ok)" id="pg-title">УгадайЦену</div>
+    <div class="sm">🔥 <span id="pg-streak">0</span></div>
+  </div>
+  <div class="ec2">
+    <div style="text-align:center;margin-bottom:-8px">
+      <div id="pg-shop-badge" style="display:inline-flex;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;background:var(--s);border:1.5px solid var(--b)">Магазин</div>
+    </div>
+    <div style="background:var(--s);border:1px solid var(--b);border-radius:16px;padding:20px;text-align:center">
+      <div style="font-size:48px;margin-bottom:12px" id="pg-emoji">🛒</div>
+      <div style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;margin-bottom:6px" id="pg-name">Товар</div>
+      <div style="font-size:12px;color:var(--m);margin-bottom:4px" id="pg-shop" style="display:none"></div>
+      <div style="font-size:12px;color:var(--m)" id="pg-desc">Описание</div>
+    </div>
+    <div style="background:rgba(78,203,113,0.08);border:1px solid rgba(78,203,113,0.2);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--ok)">
+      💡 Угадай цену в рублях. Чем ближе — тем больше очков
+    </div>
+    <div class="iz" style="margin-top:0">
+      <input class="ai" id="pg-input" type="number" min="1" placeholder="Введи цену в рублях..." style="border-color:var(--ok)" autocomplete="off">
+      <button class="sb" onclick="submitPrice()" style="background:var(--ok)">Ответить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Результат УгадайЦену -->
+<div class="sc" id="pgr">
+  <div class="gh">
+    <button class="bb" onclick="gl()">←</button>
+    <div class="gt" style="color:var(--ok)">УгадайЦену</div>
+    <div></div>
+  </div>
+  <div class="rc">
+    <div class="re" id="pgr-emoji">🏷️</div>
+    <div class="rt" id="pgr-title">Результат</div>
+    <div class="ra" id="pgr-sub"></div>
+    <div style="background:var(--s);border:1px solid var(--b);border-radius:16px;padding:20px;width:100%;text-align:left">
+      <div style="font-size:13px;color:var(--m);margin-bottom:8px">Товар</div>
+      <div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700" id="pgr-name"></div>
+      <div style="font-size:12px;color:var(--m);margin-top:4px" id="pgr-shop"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:16px">
+        <div><div style="font-size:12px;color:var(--m)">Твоя цена</div><div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--na)" id="pgr-guess"></div></div>
+        <div style="text-align:right"><div style="font-size:12px;color:var(--m)">Реальная цена</div><div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--ok)" id="pgr-real"></div></div>
+      </div>
+    </div>
+    <div class="xp-badge" id="pgr-pts">+0 очков</div>
+    <button class="shb" onclick="sharePriceResult()" style="border-color:var(--ok);color:var(--ok)">📤 Поделиться</button>
+    <button class="bk" onclick="gl()">← В главное меню</button>
+  </div>
+</div>
+<script>
+// ============================================================
+// ПЕРЕВОДЫ
+// ============================================================
+const T = {
+  ru: {
+    subtitle:'три игры · каждый день', streak:'дней подряд',
+    emoji_title:'ЭмоДжи', emoji_desc:'Угадай фильм, аниме, игру или песню по эмодзи',
+    emoji_badge:'📅 3 загадки в день',
+    num_title:'ЧислоДня', num_desc:'Угадай число — новое каждые 4 часа', num_badge:'⏱️ 6 раз в сутки',
+    big_title:'МегаЧисло', big_desc:'Число от 1 до 5000. 20 попыток. Почти рандом!', big_badge:'Хардкор',
+    morning:'🌅 Утро', evening:'🌙 Вечер',
+    morning_sess:'Утренняя сессия', evening_sess:'Вечерняя сессия',
+    easy:'Легко', med:'Средне', hard:'Сложно',
+    easy_d:'30 сек · 30 опыта за загадку', med_d:'15 сек · 60 опыта за загадку', hard_d:'10 сек · 100 опыта за загадку',
+    nd_easy:'10 попыток · 1–1000', nd_med:'9 попыток · 1–1000', nd_hard:'8 попыток · 1–1000',
+    num_pick:'Выбери сложность', back:'Назад',
+    time:'Время', attempts:'попыток осталось', answer_btn:'Ответить',
+    correct:'Угадал!', wrong:'Не угадал', answer_lbl:'Ответ',
+    next_puzzle:'Загадка {n} из 3 →', see_results:'Смотреть итоги →',
+    guessed_all:'Все угадал!', guessed_n:'Угадал {n} из 3',
+    xp:'опыта', next_in:'Следующее через',
+    share:'Поделиться', menu:'Меню', settings:'Настройки',
+    profile:'Профиль', lang_label:'Язык', region_label:'Регион загадок',
+    sound_label:'Звук', bg_music:'Фоновая музыка', sfx:'Звуковые эффекты',
+    save:'Сохранить', lb_title:'🏆 Лидерборд (накопительный)',
+    lb_soon:'Лидерборд заполнится когда придут другие игроки',
+    found_num:'Нашёл число!', not_found:'Не угадал',
+    num_lbl:'Число', tries_lbl:'Попыток', score_lbl:'очков', close:'близко!',
+    already_played:'Уже сыграно! Возвращайся позже.',
+  },
+  en: {
+    subtitle:'three games · every day', streak:'day streak',
+    emoji_title:'EmoJi', emoji_desc:'Guess the movie, anime, game or song by emoji',
+    emoji_badge:'📅 3 puzzles a day',
+    num_title:'NumberDay', num_desc:'Guess the number — new every 4 hours', num_badge:'⏱️ 6 times a day',
+    big_title:'MegaNumber', big_desc:'Number 1 to 5000. 20 tries. Almost random!', big_badge:'Hardcore',
+    morning:'🌅 Morning', evening:'🌙 Evening',
+    morning_sess:'Morning session', evening_sess:'Evening session',
+    easy:'Easy', med:'Medium', hard:'Hard',
+    easy_d:'30 sec · 30 XP per puzzle', med_d:'15 sec · 60 XP per puzzle', hard_d:'10 sec · 100 XP per puzzle',
+    nd_easy:'10 tries · 1–1000', nd_med:'9 tries · 1–1000', nd_hard:'8 tries · 1–1000',
+    num_pick:'Choose difficulty', back:'Back',
+    time:'Time', attempts:'tries left', answer_btn:'Answer',
+    correct:'Correct!', wrong:'Wrong', answer_lbl:'Answer',
+    next_puzzle:'Puzzle {n} of 3 →', see_results:'See results →',
+    guessed_all:'All correct!', guessed_n:'Got {n} of 3',
+    xp:'XP', next_in:'Next in',
+    share:'Share', menu:'Menu', settings:'Settings',
+    profile:'Profile', lang_label:'Language', region_label:'Puzzle Region',
+    sound_label:'Sound', bg_music:'Background music', sfx:'Sound effects',
+    save:'Save', lb_title:'🏆 Leaderboard (cumulative)',
+    lb_soon:'Leaderboard fills up when more players join',
+    found_num:'Found the number!', not_found:'Not guessed',
+    num_lbl:'Number', tries_lbl:'Tries', score_lbl:'pts', close:'close!',
+    already_played:'Already played! Come back later.',
+  },
+  es: {
+    subtitle:'tres juegos · cada día', streak:'días seguidos',
+    emoji_title:'EmoJi', emoji_desc:'Adivina la película, anime, juego o canción por emoji',
+    emoji_badge:'📅 3 acertijos al día',
+    num_title:'NúmeroDía', num_desc:'Adivina el número — nuevo cada 4 horas', num_badge:'⏱️ 6 veces al día',
+    big_title:'MegaNúmero', big_desc:'Número del 1 al 5000. 20 intentos. ¡Casi aleatorio!', big_badge:'Hardcore',
+    morning:'🌅 Mañana', evening:'🌙 Noche',
+    morning_sess:'Sesión matutina', evening_sess:'Sesión nocturna',
+    easy:'Fácil', med:'Medio', hard:'Difícil',
+    easy_d:'30 seg · 30 XP por acertijo', med_d:'15 seg · 60 XP por acertijo', hard_d:'10 seg · 100 XP por acertijo',
+    nd_easy:'10 intentos · 1–1000', nd_med:'9 intentos · 1–1000', nd_hard:'8 intentos · 1–1000',
+    num_pick:'Elige dificultad', back:'Atrás',
+    time:'Tiempo', attempts:'intentos restantes', answer_btn:'Responder',
+    correct:'¡Correcto!', wrong:'Incorrecto', answer_lbl:'Respuesta',
+    next_puzzle:'Acertijo {n} de 3 →', see_results:'Ver resultados →',
+    guessed_all:'¡Todo correcto!', guessed_n:'Acertó {n} de 3',
+    xp:'XP', next_in:'Siguiente en',
+    share:'Compartir', menu:'Menú', settings:'Ajustes',
+    profile:'Perfil', lang_label:'Idioma', region_label:'Región de acertijos',
+    sound_label:'Sonido', bg_music:'Música de fondo', sfx:'Efectos de sonido',
+    save:'Guardar', lb_title:'🏆 Clasificación (acumulativa)',
+    lb_soon:'La clasificación se llenará cuando lleguen más jugadores',
+    found_num:'¡Encontré el número!', not_found:'No adivinado',
+    num_lbl:'Número', tries_lbl:'Intentos', score_lbl:'pts', close:'¡cerca!',
+    already_played:'¡Ya jugado! Vuelve más tarde.',
+  }
+};
+
+// ============================================================
+// РЕГИОНЫ
+// ============================================================
+const REGIONS = {
+  ru:  {flag:'🇷🇺', name:{ru:'Россия / СНГ', en:'Russia / CIS', es:'Rusia / CEI'}, desc:{ru:'Россия, Беларусь, Украина, Казахстан', en:'Russia, Belarus, Ukraine, Kazakhstan', es:'Rusia, Bielorrusia, Ucrania, Kazajistán'}},
+  us:  {flag:'🇺🇸', name:{ru:'Америка / Англия', en:'America / UK', es:'América / Reino Unido'}, desc:{ru:'США, Канада, Великобритания', en:'USA, Canada, UK', es:'EE.UU., Canadá, Reino Unido'}},
+  es:  {flag:'🇪🇸', name:{ru:'Испания / Латам', en:'Spain / LatAm', es:'España / Latinoamérica'}, desc:{ru:'Испания, Мексика, Латинская Америка', en:'Spain, Mexico, Latin America', es:'España, México, América Latina'}},
+  eu:  {flag:'🇪🇺', name:{ru:'Европа', en:'Europe', es:'Europa'}, desc:{ru:'Германия, Франция, Италия и др.', en:'Germany, France, Italy, etc.', es:'Alemania, Francia, Italia, etc.'}},
+  ea:  {flag:'🌏', name:{ru:'Восточная Азия', en:'East Asia', es:'Asia Oriental'}, desc:{ru:'Япония, Южная Корея, Китай', en:'Japan, South Korea, China', es:'Japón, Corea del Sur, China'}},
+  sa:  {flag:'🕌', name:{ru:'Западная Азия', en:'West Asia', es:'Asia Occidental'}, desc:{ru:'Турция, ОАЭ, Саудовская Аравия', en:'Turkey, UAE, Saudi Arabia', es:'Turquía, EAU, Arabia Saudí'}},
+  ind: {flag:'🇮🇳', name:{ru:'Индия / Пакистан', en:'India / Pakistan', es:'India / Pakistán'}, desc:{ru:'Индия, Пакистан, Непал', en:'India, Pakistan, Nepal', es:'India, Pakistán, Nepal'}},
+  af:  {flag:'🌍', name:{ru:'Африка', en:'Africa', es:'África'}, desc:{ru:'Нигерия, ЮАР, Египет', en:'Nigeria, South Africa, Egypt', es:'Nigeria, Sudáfrica, Egipto'}},
+  au:  {flag:'🇦🇺', name:{ru:'Австралия / Океания', en:'Australia / Oceania', es:'Australia / Oceanía'}, desc:{ru:'Австралия, Новая Зеландия', en:'Australia, New Zealand', es:'Australia, Nueva Zelanda'}},
+};
+
+// ============================================================
+// ЗАГАДКИ
+// ============================================================
+const PUZZLES = {
+  ru:[
+    {c:"🎬",q:["🦁👑🌅🐘🎵","🐾👑🌍🎶😢","🦁🔴⭕🌿🏆"],a:"Король Лев"},
+    {c:"🎬",q:["🕷️🏙️🦸‍♂️❤️🎓","🕸️🏢💥🦹🔬","🕷️🌆👦💪🎭"],a:"Человек-паук"},
+    {c:"🎬",q:["🧙‍♂️💍🌋⚔️🧝","🗡️🌿🏔️👁️🔥","💍🗺️🧙🐉🏰"],a:"Властелин колец"},
+    {c:"🎬",q:["🚢❄️💔🌊🎻","⚓💑🌊🆘🧊","🛳️💔🌊🎬🏆"],a:"Титаник"},
+    {c:"🎬",q:["🚀⭐🌌⚔️🤖","🌟👨‍🚀🔫🏆🌠","⚡🌌👾🗡️🪐"],a:"Звёздные войны"},
+    {c:"🎬",q:["🦈🌊😱🏖️💀","🌊🦷🎣😨🏊","🦈💦🏄😱⚓"],a:"Челюсти"},
+    {c:"🎬",q:["🚂☃️❄️🎄🎁","🎅🌙✨🛤️🔔","❄️🚃🎶🌟🎠"],a:"Ирония судьбы"},
+    {c:"🎬",q:["🔫💥🚗🌆🕵️","💣🏙️🌃🤜💰","🚔🎬💥🔥🕶️"],a:"Брат 2"},
+    {c:"🎬",q:["🐻‍❄️❄️🌊🦭🐟","🌨️🏔️🐾🌿🎿","❄️🌲🐻🏕️🌙"],a:"Холодное сердце"},
+    {c:"🎬",q:["🦸‍♂️🌍💚👊🏆","☢️💪🔬😡🟢","💚🦖💥🌆🏅"],a:"Халк"},
+    {c:"🎬",q:["🏴‍☠️⚓🗺️💰🦜","🌊🗡️☠️👒🏝️","⚓🔱💀🏴‍☠️🌺"],a:"Пираты Карибского моря"},
+    {c:"🎬",q:["🤖🌍❤️🗑️♻️","🌌🤖💫🌱🏆","🤖🌿💚🌍🔧"],a:"ВАЛЛ-И"},
+    {c:"🎬",q:["🦁🐗🦓🐘🐆","🌍🐾🎵🌺🏆","🦁👑🌅🐒🎶"],a:"Король Лев 2019"},
+    {c:"🎬",q:["👸❄️⛄🌨️💙","🏔️🎵❄️👑🌸","❄️👸🦌🌲🏰"],a:"Холодное сердце 2"},
+    {c:"🎬",q:["🕵️🔍🚂🇧🇪☕","🎭💀🔪🚃🌨️","🚂⚜️🔍🌹💣"],a:"Убийство в Восточном экспрессе"},
+    {c:"🎬",q:["🦸🌟⚡🔱🌊","🔱🐚🌊💙🏆","🌊👑🐙⚡🏛️"],a:"Аквамен"},
+    {c:"🎬",q:["🧸🎀🏠👦🌟","🎠🎪✨💫🎭","🧸💛🌈🏠🎵"],a:"История игрушек"},
+    {c:"🎬",q:["🐟🌊🧠💙🔵","🌊🐠🐡🔵💧","🐬🌊💫🐟🎵"],a:"В поисках Немо"},
+    {c:"🎬",q:["👴🎈🏠🌋🦝","🎈🏠✈️🌿🏕️","🎈👴🐕🌺🗺️"],a:"Вверх"},
+    {c:"🎬",q:["🕷️🌌🦸💥🌟","⚡🌠🦸‍♂️🎭🏆","🕷️🌀💫🎨🏙️"],a:"Человек-паук: Через вселенные"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Наруто"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Атака титанов"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"Ван Пис"},
+    {c:"🎌",q:["🔮💥🦸🏫⚡","💪🎓🦸‍♂️🌟🏆","🦸‍♂️🏅💫🎯🌈"],a:"Моя геройская академия"},
+    {c:"🎌",q:["⚔️🌸💧🔥🌊","🗡️😭👿🌙🔥","🦋⚔️🌺💔🏯"],a:"Клинок рассекающий демонов"},
+    {c:"🎌",q:["🏫⚡🌙🌊🎭","👩‍🎓🔮💫🌸🏆","✨🌙💪🎀🌟"],a:"Сейлор Мун"},
+    {c:"🎌",q:["🐉🔥⚡🌊🌟","👊💨🌀🏆🥊","🥋🔥💪🌀🎯"],a:"Драконий жемчуг"},
+    {c:"🎌",q:["🗡️👁️🌙💀🏯","😈🌙⚔️👁️🔮","🌑💀🗡️👁️🎭"],a:"Наруто: Шиппуден"},
+    {c:"🎌",q:["🤖⚡🌊🔥💨","🤖🏙️💥⚔️🌌","🤖🌟🔧⚡🏆"],a:"Гандам"},
+    {c:"🎌",q:["🏃‍♂️💨⚡🌟🏅","👟💪🏆🌈💫","🏃🎯🌟⚡🏋️"],a:"Боруто"},
+    {c:"🎌",q:["🔪👁️🧠💀🎭","😱🔴🏫👁️💊","🩸👁️🔪🎭😈"],a:"Токийский гуль"},
+    {c:"🎌",q:["⚔️🌸👺💔🎵","🎻👺🌺💀⚔️","🎭👺🌸💫⚔️"],a:"Инуяша"},
+    {c:"🎌",q:["🏐💪🦅🌟🏆","🏐🐶🌊🏅💫","🏐🦉🌙⚡🎯"],a:"Хайкью!!"},
+    {c:"🎌",q:["⚔️🌊🔥💨⚡","🌀💥⚔️🏆🌟","🗡️🌊🔥💨⚡"],a:"Bleach"},
+    {c:"🎌",q:["👊💥🌟🏆🎯","🥊💪🌟👊🏅","💪🏆👊⚡🌟"],a:"Один удар"},
+    {c:"🎌",q:["🔫🌌⚡🏫🤖","🤖⚡🌌🔫💫","🌌🤖🔫⚡🏆"],a:"Ковбой Бибоп"},
+    {c:"🎌",q:["🌸🎓💕👧🏫","💕🌸👩‍🎓🎀🌟","🎓🌸💖✨🏆"],a:"Торадора"},
+    {c:"🎮",q:["🍄👸🏰🌟⭐","🔴🎮👨‍🔧🌍🏆","🍄🏁🎪🌈🚩"],a:"Марио"},
+    {c:"🎮",q:["🟦🟨🟥⬇️🧩","📦🔄🎮🇷🇺🏆","⬜🔵🔴🟩⬇️"],a:"Тетрис"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Майнкрафт"},
+    {c:"🎮",q:["🔫🏝️⭕🪂💊","🏆🎯🌴💣🏃","🪂🗺️🔫🏅🌊"],a:"PUBG"},
+    {c:"🎮",q:["⚔️🛡️🐉🏹🌲","🗡️🏰🧙‍♂️🌿🔮","🐉🏆⚔️🌍🎯"],a:"Ведьмак"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Бравл Старс"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Клэш Рояль"},
+    {c:"🎮",q:["🏘️⚔️👑🌾🛡️","🏗️💰🤺🌍🏆","⚒️🏰🧑‍🌾👷🗡️"],a:"Клэш оф Кланс"},
+    {c:"🎮",q:["🌍🔫🏃💥🎯","🏙️💣🔫🌆🏆","🔫🌍💥🏃🎖️"],a:"GTA 5"},
+    {c:"🎮",q:["⚽🌍🏆🎮👟","⚽🏟️🌟🎮🏅","⚽💪🌍🎯🏆"],a:"FIFA"},
+    {c:"🎮",q:["🧟💀🌿🔫🏃","🌿💀🔫😱🏃","🧟🌲💔🔫🏕️"],a:"The Last of Us"},
+    {c:"🎮",q:["🌌⚔️🐉🏰✨","🗡️🌿🏔️🌟🏆","⚔️🌍🐉💎🏰"],a:"The Elder Scrolls"},
+    {c:"🎮",q:["🔵⚡🏃💨🌟","🦔💨⚡🏆🌀","💨🔵⚡🌟🏁"],a:"Соник"},
+    {c:"🎮",q:["🗡️🛡️💎🏰🌍","⚔️🌿🏔️🎯🏆","🗡️🏰💎🌙⚔️"],a:"Зельда"},
+    {c:"🎮",q:["🏎️🏁💨⚡🏆","🚗💨🏁🌟🎮","🏎️⚡🏅🏁💥"],a:"Need for Speed"},
+    {c:"🎵",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"Queen"},
+    {c:"🎵",q:["🎤🎸🌹🇷🇺🔥","💔🥀🎵🌙🎭","🎤🌹💫🎶🏆"],a:"Виктор Цой"},
+    {c:"🎵",q:["🎤🌟🇷🇺💃🔥","🎵🌺🏆🎶🌙","🎤🔥🇷🇺💫🎵"],a:"Алла Пугачёва"},
+    {c:"🎵",q:["🎤⚡🔥🇷🇺🎸","💥🎵🌟🏆🎤","🎸🔥⚡🌙🎭"],a:"Linkin Park"},
+    {c:"👤",q:["🦇🃏🎭😂🔥","🎪🃏💜🏆😈","🎭😂🃏🌆🏅"],a:"Хоакин Феникс"},
+    {c:"👤",q:["💪🤖🇺🇸🏋️🌴","🦾⚡🏆💥🎬","🤖💪🔫🌟🏛️"],a:"Арнольд Шварценеггер"},
+    {c:"👤",q:["🎬💋👑🌟💄","💄👑🎭🌺🏆","👑💋🎬✨💫"],a:"Мэрилин Монро"},
+  ],
+  us:[
+    {c:"🎬",q:["🦁👑🌅🐘🎵","🐾👑🌍🎶😢","🦁🔴⭕🌿🏆"],a:"The Lion King"},
+    {c:"🎬",q:["🕷️🏙️🦸‍♂️❤️🎓","🕸️🏢💥🦹🔬","🕷️🌆👦💪🎭"],a:"Spider-Man"},
+    {c:"🎬",q:["🚀⭐🌌⚔️🤖","🌟👨‍🚀🔫🏆🌠","⚡🌌👾🗡️🪐"],a:"Star Wars"},
+    {c:"🎬",q:["🦈🌊😱🏖️💀","🌊🦷🎣😨🏊","🦈💦🏄😱⚓"],a:"Jaws"},
+    {c:"🎬",q:["🚢❄️💔🌊🎻","⚓💑🌊🆘🧊","🛳️💔🌊🎬🏆"],a:"Titanic"},
+    {c:"🎬",q:["🧙‍♂️💍🌋⚔️🧝","🗡️🌿🏔️👁️🔥","💍🗺️🧙🐉🏰"],a:"Lord of the Rings"},
+    {c:"🎬",q:["🦇🌃💊🃏😈","🌆🔥🕶️💜🏙️","🦹‍♂️🃏💥🎭🌑"],a:"The Dark Knight"},
+    {c:"🎬",q:["🌀🟦🔴💊🤖","🧠💻🌐🔫🕶️","⚫🔵💡🕹️🌍"],a:"The Matrix"},
+    {c:"🎬",q:["👻🏠😱🔪🌙","🔦🏡👶😨🌲","🏚️💀🔪😱🌑"],a:"Halloween"},
+    {c:"🎬",q:["🦸🌟⚡🔱🌊","🔱🐚🌊💙🏆","🌊👑🐙⚡🏛️"],a:"Aquaman"},
+    {c:"🎬",q:["🤖🌍🤝❤️💡","🤖💡🌐🔬🏆","🤖🌏💫🔧💚"],a:"Iron Man"},
+    {c:"🎬",q:["🐝🌺💛🏆🌿","🐝🌸🍯🌟💛","🐝💐🌺🎵🌿"],a:"Bee Movie"},
+    {c:"🎬",q:["🌋🦕🦖🌿😱","🦖💥🌿🏃😨","🦕🌿🌋🎬🏆"],a:"Jurassic Park"},
+    {c:"🎬",q:["🥊💪🇺🇸🏆🌟","🥊🏋️💥🎯🏅","💪🥊🌟🏆🎬"],a:"Rocky"},
+    {c:"🎬",q:["🧠💊🔵🔴🌀","💊🌐🔵🤖🏆","🧠🔵🌀💡🕶️"],a:"Inception"},
+    {c:"🎬",q:["🚀🌕👨‍🚀🌌🏆","🌕👨‍🚀🚀⭐🎯","🌕🚀💫🌌🎬"],a:"Interstellar"},
+    {c:"🎬",q:["🌊🏄🦈💙🏆","🌊🐋💙🏝️🎵","🌊🦋💙🌺🎬"],a:"Blue Planet"},
+    {c:"🎬",q:["🦸‍♀️⚡👑🌟💪","⚡🏆👑💫🌟","👑⚡🦸‍♀️🌺🏅"],a:"Wonder Woman"},
+    {c:"🎬",q:["🏎️💨⚡🏆🔥","🏎️💨🏁🌟💥","🚗⚡🏆🔥🌍"],a:"Fast & Furious"},
+    {c:"🎬",q:["🧊❄️⛸️💙🏆","⛸️❄️🌟💙🎵","❄️🎵⛸️💙🌟"],a:"Ice Age"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Attack on Titan"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"One Piece"},
+    {c:"🎌",q:["🔮💥🦸🏫⚡","💪🎓🦸‍♂️🌟🏆","🦸‍♂️🏅💫🎯🌈"],a:"My Hero Academia"},
+    {c:"🎌",q:["⚔️🌸💧🔥🌊","🗡️😭👿🌙🔥","🦋⚔️🌺💔🏯"],a:"Demon Slayer"},
+    {c:"🎌",q:["🔪👁️🧠💀🎭","😱🔴🏫👁️💊","🩸👁️🔪🎭😈"],a:"Tokyo Ghoul"},
+    {c:"🎌",q:["👊💥🌟🏆🎯","🥊💪🌟👊🏅","💪🏆👊⚡🌟"],a:"One Punch Man"},
+    {c:"🎌",q:["🏐💪🦅🌟🏆","🏐🐶🌊🏅💫","🏐🦉🌙⚡🎯"],a:"Haikyuu!!"},
+    {c:"🎌",q:["⚔️🌊🔥💨⚡","🌀💥⚔️🏆🌟","🗡️🌊🔥💨⚡"],a:"Bleach"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮",q:["🔫🏝️⭕🪂💊","🏆🎯🌴💣🏃","🪂🗺️🔫🏅🌊"],a:"PUBG"},
+    {c:"🎮",q:["🌍🔫🏃💥🎯","🏙️💣🔫🌆🏆","🔫🌍💥🏃🎖️"],a:"GTA 5"},
+    {c:"🎮",q:["🧟💀🌿🔫🏃","🌿💀🔫😱🏃","🧟🌲💔🔫🏕️"],a:"The Last of Us"},
+    {c:"🎮",q:["🔵⚡🏃💨🌟","🦔💨⚡🏆🌀","💨🔵⚡🌟🏁"],a:"Sonic"},
+    {c:"🎮",q:["🗡️🛡️💎🏰🌍","⚔️🌿🏔️🎯🏆","🗡️🏰💎🌙⚔️"],a:"The Legend of Zelda"},
+    {c:"🎮",q:["🏎️🏁💨⚡🏆","🚗💨🏁🌟🎮","🏎️⚡🏅🏁💥"],a:"Need for Speed"},
+    {c:"🎮",q:["⚽🌍🏆🎮👟","⚽🏟️🌟🎮🏅","⚽💪🌍🎯🏆"],a:"FIFA"},
+    {c:"🎵",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"Queen"},
+    {c:"🎵",q:["🃏🎤🌟🌃💜","🎸🔮💫🎵🏆","🌙🎤💿🌈🎭"],a:"Prince"},
+    {c:"🎵",q:["🎤⚡🔥🎸💥","💥🎵🌟🏆🎤","🎸🔥⚡🌙🎭"],a:"Linkin Park"},
+    {c:"🎵",q:["🎤🌟💃🔥👑","💃🎵🏆🌟🎤","👑🎤🌈🔥💫"],a:"Beyoncé"},
+    {c:"🎵",q:["🎤💙🌊🎵🌟","💙🎤🌊🏆🎵","🌊💙🎵🌟🎤"],a:"Michael Jackson"},
+    {c:"👤",q:["💪🤖🇺🇸🏋️🌴","🦾⚡🏆💥🎬","🤖💪🔫🌟🏛️"],a:"Arnold Schwarzenegger"},
+    {c:"👤",q:["🦇🃏🎭😂🔥","🎪🃏💜🏆😈","🎭😂🃏🌆🏅"],a:"Joaquin Phoenix"},
+    {c:"👤",q:["🕴️💼🌆🎬🌟","💰🔫🎭💡🏆","🎩🌃💫🎥🔥"],a:"Leonardo DiCaprio"},
+    {c:"👤",q:["🎬🌟💪🔫🏆","🕶️💥🎭🌍🎯","🌟🔫💪🏅🎬"],a:"Tom Hanks"},
+  ],
+  es:[
+    {c:"🎬",q:["🕵️‍♂️💼🔫🇪🇸🌮","🕶️💰🔫🌵🏜️","🤠💣🔥🌅⚔️"],a:"El Mariachi"},
+    {c:"🎬",q:["👦🌊🤝🎸🌅","🎵🏝️💛🎶🌴","🎸🤜🤛🌊🎤"],a:"Coco"},
+    {c:"🎬",q:["👧🚪🌀🪄🐉","🏰🌸🌿🦋✨","🌙🗝️🔮🌺🕯️"],a:"El laberinto del fauno"},
+    {c:"🎬",q:["💃🌹🎭❤️🇪🇸","🌹🎵🔥💋🎸","💃🔥🌹🎤🏆"],a:"Volver"},
+    {c:"🎬",q:["🦅🏔️🇲🇽🤠🌵","💀🎭🌺🎶🏜️","🎸🌵💃🔥🌅"],a:"Amores Perros"},
+    {c:"🎬",q:["🌊🏄🌅🇲🇽💙","🌊💙🌴🏄🎵","🌊🌺💙🏄🌅"],a:"Y tu mamá también"},
+    {c:"🎬",q:["🔫💃🌹🇪🇸🏆","💃🌹🔫🎭🌟","🌹💃🔫🇪🇸💋"],a:"Todo sobre mi madre"},
+    {c:"🎬",q:["🏆🎬🇧🇷🌊💛","🌊🌿🎵🇧🇷🏆","🌴🎵💛🇧🇷🌊"],a:"Ciudad de Dios"},
+    {c:"🎬",q:["🌮🇲🇽💀🎵🌺","💀🌺🎵🇲🇽🎭","🌺💀🎵🇲🇽🏆"],a:"Coco (Pixar)"},
+    {c:"🎬",q:["🤖❤️🌍🤝🌟","🦾💡🌐🤖🏆","🤖🌏💫🔬💚"],a:"Robot y Frank"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Shingeki no Kyojin"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"One Piece"},
+    {c:"🎌",q:["🔮💥🦸🏫⚡","💪🎓🦸‍♂️🌟🏆","🦸‍♂️🏅💫🎯🌈"],a:"Boku no Hero Academia"},
+    {c:"🎌",q:["⚔️🌸💧🔥🌊","🗡️😭👿🌙🔥","🦋⚔️🌺💔🏯"],a:"Kimetsu no Yaiba"},
+    {c:"🎌",q:["👊💥🌟🏆🎯","🥊💪🌟👊🏅","💪🏆👊⚡🌟"],a:"One Punch Man"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮",q:["🌍🔫🏃💥🎯","🏙️💣🔫🌆🏆","🔫🌍💥🏃🎖️"],a:"GTA 5"},
+    {c:"🎮",q:["⚽🌍🏆🎮👟","⚽🏟️🌟🎮🏅","⚽💪🌍🎯🏆"],a:"FIFA"},
+    {c:"🎵",q:["🎤💃🌹🇪🇸🔥","🕺🎵🌺💃🎸","🌹🎤🎶💋🎭"],a:"Rosalía"},
+    {c:"🎵",q:["🎤🎸🌟🇲🇽💃","🌮🎵🏆🎶🌵","🎸🎤🌈🔥🇲🇽"],a:"Maná"},
+    {c:"🎵",q:["🎤🔥🌍🎸🇨🇴","💛💙❤️🎵🌺","🎶💃🌈🏆🎤"],a:"Carlos Vives"},
+    {c:"🎵",q:["🎤🇧🇷🌟💃🔥","🌺🎵🏆💫🇧🇷","💃🎤🌍🔥🌈"],a:"Shakira"},
+    {c:"🎵",q:["🎤🇦🇷🎸🔥🌟","💙⚪💃🎵🏆","🎸🎤🇦🇷💫🌟"],a:"Soda Stereo"},
+    {c:"👤",q:["🔫💼🕵️‍♂️🌍🏆","🎬💪⚡🌟🎭","🕶️🔥💣🎯🌐"],a:"Antonio Banderas"},
+    {c:"👤",q:["🐜🕷️⚡🦸🌟","💚🌿🎭🏅💫","🦸‍♀️🔮🌺🎬✨"],a:"Penélope Cruz"},
+    {c:"👤",q:["🎬🌟🇲🇽💪🏆","🎭🌺🇲🇽🌟🎬","🌟🎬🇲🇽💫🏅"],a:"Gael García Bernal"},
+  ],
+  eu:[
+    {c:"🎬",q:["🚂🔍🕵️🇬🇧☕","🎩🔎💡🌧️🏠","🐶🕵️‍♂️🔬🌫️🏙️"],a:"Sherlock Holmes"},
+    {c:"🎬",q:["🧛‍♂️🦇🌙🏰💀","🔴❤️🌹🌑🗡️","🌙🦇💜🌹💔"],a:"Dracula"},
+    {c:"🎬",q:["🔫🕴️🇬🇧🎰💼","🍸🚗💣🌍🏆","🕶️🔫🤵🌐🎯"],a:"James Bond"},
+    {c:"🎬",q:["🧙‍♂️⚡🏫🦉📚","🔮🌟💫🏰🐍","⚡🧙📜🌠🏆"],a:"Harry Potter"},
+    {c:"🎬",q:["👑🐉🌍⚔️🏰","🐉👑⚔️🌍🔥","🏰🐉👑💥🌍"],a:"Game of Thrones"},
+    {c:"🎬",q:["🧙‍♂️🌿🧝🗡️💫","🌿🌲🧙💫🗡️","🌙🧙‍♂️🌿💫⚔️"],a:"The Hobbit"},
+    {c:"🎬",q:["🕵️🔍💀🌧️🏴󠁧󠁢󠁳󠁣󠁴󠁿","🏴󠁧󠁢󠁳󠁣󠁴󠁿🔍💀🌧️🎭","🏴󠁧󠁢󠁳󠁣󠁴󠁿🕵️💀🌙🔍"],a:"Outlander"},
+    {c:"🎬",q:["🧸💛🌈🏠🎵","🎠🎪✨💫🎭","🧸💛🌈🏠🎵"],a:"Paddington"},
+    {c:"🎬",q:["🚗💨🏁🌟🏆","🏎️💨⚡🏆🔥","🏎️🏁💨🌟💥"],a:"Formula 1"},
+    {c:"🎬",q:["🌹💀🎭🏰🌙","🌹💀🌙🏰🕯️","💀🌹🏰🕷️🌙"],a:"Interview with the Vampire"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Attack on Titan"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"One Piece"},
+    {c:"🎌",q:["👊💥🌟🏆🎯","🥊💪🌟👊🏅","💪🏆👊⚡🌟"],a:"One Punch Man"},
+    {c:"🎌",q:["🏐💪🦅🌟🏆","🏐🐶🌊🏅💫","🏐🦉🌙⚡🎯"],a:"Haikyuu!!"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮",q:["⚽🌍🏆🎮👟","⚽🏟️🌟🎮🏅","⚽💪🌍🎯🏆"],a:"FIFA"},
+    {c:"🎮",q:["🗡️🛡️💎🏰🌍","⚔️🌿🏔️🎯🏆","🗡️🏰💎🌙⚔️"],a:"The Legend of Zelda"},
+    {c:"🎮",q:["🔵⚡🏃💨🌟","🦔💨⚡🏆🌀","💨🔵⚡🌟🏁"],a:"Sonic"},
+    {c:"🎵",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"Queen"},
+    {c:"🎵",q:["🎤🎸🌍🇩🇪🔥","🎹🎵💫🌟🏆","🎤🔥🎸⚡🌈"],a:"Rammstein"},
+    {c:"🎵",q:["🎤💃🇫🇷🌹🎵","💋🎶🌙✨🎭","🌹🎤🇫🇷🎵💫"],a:"Édith Piaf"},
+    {c:"🎵",q:["🎤🇬🇧🎸💙🌟","💙🎤🌊🎵🏆","🎸🎤🇬🇧💙💫"],a:"The Beatles"},
+    {c:"🎵",q:["🎤🇩🇪🎹🌟🏆","🎹🎵💫🇩🇪🌟","🎤🎹🇩🇪💫🏆"],a:"Beethoven"},
+    {c:"👤",q:["🔫💼🕵️‍♂️🌍🏆","🎬💪⚡🌟🎭","🕶️🔥💣🎯🌐"],a:"Daniel Craig"},
+    {c:"👤",q:["🧙‍♂️⚡📚🦉🌟","⚡🏆🧙📜💫","🧙‍♂️⚡🌟📚🏰"],a:"Emma Watson"},
+  ],
+  ea:[
+    {c:"🎬",q:["🤖🌃🇯🇵⚔️🌸","🗾🌸🔮💫🤖","🏯🌺🤖⚡🌙"],a:"Akira"},
+    {c:"🎬",q:["👧🐉🏯🌊🌸","🧹🌿🏮🐾✨","🌸🏯🌊🐉💫"],a:"Унесённые призраками"},
+    {c:"🎬",q:["👊💥🇰🇷🏆🎬","💪🤜🌃🏅🔥","🥋🔥💢🌆🏆"],a:"Олдбой"},
+    {c:"🎬",q:["💀🎭🎪🇯🇵🌙","👺🏮🌸💀🔮","🌙🎭👹🌸🏯"],a:"Звонок"},
+    {c:"🎬",q:["🐙🌊🇯🇵🍱🎋","🌊🐙🍱🎋🌸","🐙🌊🎋🌸🏆"],a:"Осьминог"},
+    {c:"🎬",q:["🐲🌊⚔️🇰🇷🏆","🐲⚔️🌊🏆💫","🐲🌊🇰🇷⚔️🌟"],a:"Битва дракона"},
+    {c:"🎬",q:["🌸🎌👘🏯🍵","🌸👘🏯🎌🌙","🌸🍵🏯🎌💫"],a:"Мемуары гейши"},
+    {c:"🎬",q:["🎭🐉🇨🇳🌊⚔️","🐉🌊⚔️🇨🇳🏆","🐉⚔️🌊🇨🇳💫"],a:"Крадущийся тигр"},
+    {c:"🎬",q:["🤖🇯🇵⚡🌃🌸","🤖⚡🌃🌸🏆","🤖🌃🌸⚡💫"],a:"Призрак в доспехах"},
+    {c:"🎬",q:["🧟🌃🇰🇷😱🏃","🧟🌃🏃😱🏆","🧟😱🏃🌃🇰🇷"],a:"Поезд в Пусан"},
+    {c:"🎬",q:["💰🏠🇰🇷😱🏆","🏠💰🇰🇷😱💫","💰🏠😱🇰🇷🌟"],a:"Паразиты"},
+    {c:"🎬",q:["🐼🥋🌿🏔️🎋","🥋🐼🏔️🎋🏆","🐼🎋🥋🌿💫"],a:"Кунг-фу панда"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"進撃の巨人"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"ワンピース"},
+    {c:"🎌",q:["🔮💥🦸🏫⚡","💪🎓🦸‍♂️🌟🏆","🦸‍♂️🏅💫🎯🌈"],a:"僕のヒーローアカデミア"},
+    {c:"🎌",q:["⚔️🌸💧🔥🌊","🗡️😭👿🌙🔥","🦋⚔️🌺💔🏯"],a:"鬼滅の刃"},
+    {c:"🎌",q:["👊💥🌟🏆🎯","🥊💪🌟👊🏅","💪🏆👊⚡🌟"],a:"ワンパンマン"},
+    {c:"🎌",q:["🔪👁️🧠💀🎭","😱🔴🏫👁️💊","🩸👁️🔪🎭😈"],a:"東京喰種"},
+    {c:"🎌",q:["🏐💪🦅🌟🏆","🏐🐶🌊🏅💫","🏐🦉🌙⚡🎯"],a:"ハイキュー!!"},
+    {c:"🎌",q:["⚔️🌊🔥💨⚡","🌀💥⚔️🏆🌟","🗡️🌊🔥💨⚡"],a:"BLEACH"},
+    {c:"🎌",q:["🌸🎓💕👧🏫","💕🌸👩‍🎓🎀🌟","🎓🌸💖✨🏆"],a:"とらドラ!"},
+    {c:"🎌",q:["🚀🌌⭐🤖💫","🌌🤖⭐🚀🏆","🤖🌌⭐💫🚀"],a:"宇宙戦艦ヤマト"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮",q:["🔴⚪🎮🌍🏆","⚡🏟️⚽🎯💫","🏅🔵🎮⚽🌟"],a:"Nintendo Switch Sports"},
+    {c:"🎮",q:["🐉⚔️🌸🏯🌟","🌸🐉⚔️🏯💫","🏯🌸🐉⚔️🏆"],a:"Ghost of Tsushima"},
+    {c:"🎮",q:["🤖⚡🌊🔥💨","🤖🏙️💥⚔️🌌","🤖🌟🔧⚡🏆"],a:"Gundam"},
+    {c:"🎵",q:["👑🎤🇰🇷💃🌟","🎵🌸🏆💫🎤","💜🎤🌈🇰🇷🔥"],a:"BTS"},
+    {c:"🎵",q:["👑🎤🇰🇷🎵🌟","🌸💃🏆🎤🔥","🎵🇰🇷💫🌈🏅"],a:"BLACKPINK"},
+    {c:"🎵",q:["🎤🇯🇵🌸🎵💫","🌸🎤🎵🇯🇵🏆","💫🎤🌸🇯🇵🎵"],a:"Hikaru Utada"},
+    {c:"🎵",q:["🎤🇰🇷🌊💙🌟","💙🌊🎤🇰🇷🏆","🌊💙🎤🇰🇷💫"],a:"IU"},
+  ],
+  sa:[
+    {c:"🎬",q:["🕌🌙⭐🎭🇹🇷","🌹🔥🎵💃🇹🇷","🕌🌹💫🎭🌙"],a:"Diriliş: Ertuğrul"},
+    {c:"🎬",q:["💔❤️🌹🇹🇷🎵","🌃🎭💫🌹🔥","❤️🌙🇹🇷💃🎤"],a:"Kara Sevda"},
+    {c:"🎬",q:["🌊⛵🌅🇹🇷💙","⛵🌊💙🌅🏆","🌊💙⛵🌅🇹🇷"],a:"Deniz Küstü"},
+    {c:"🎬",q:["🏜️🌙⭐🇸🇦🕌","🕌🏜️🌙⭐🏆","⭐🕌🏜️🌙🇸🇦"],a:"Theeb"},
+    {c:"🎬",q:["🌹💔🎭🇹🇷🌙","💔🌹🌙🎭🏆","🌙💔🌹🎭🇹🇷"],a:"Aşk-ı Memnu"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Attack on Titan"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"One Piece"},
+    {c:"🎌",q:["👊💥🌟🏆🎯","🥊💪🌟👊🏅","💪🏆👊⚡🌟"],a:"One Punch Man"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮",q:["⚽🌍🏆🎮👟","⚽🏟️🌟🎮🏅","⚽💪🌍🎯🏆"],a:"FIFA"},
+    {c:"🎵",q:["🎤🇹🇷🔥🌹💃","🎵🌙🇹🇷🌹🎭","🎤💫🇹🇷🌈🏆"],a:"Tarkan"},
+    {c:"🎵",q:["🎤🇦🇪🌟💫🎵","🌙🎤🌹🔥🌍","💃🎵🇦🇪🌟🎤"],a:"Nancy Ajram"},
+    {c:"🎵",q:["🎤🇹🇷💙🌊🌟","💙🌊🎤🇹🇷🏆","🌊💙🎤🇹🇷💫"],a:"Sezen Aksu"},
+    {c:"🎵",q:["🎤🇸🇦🌙⭐🎵","🌙⭐🎤🇸🇦🏆","⭐🌙🎤🇸🇦💫"],a:"Mohammed Abdo"},
+  ],
+  ind:[
+    {c:"🎬",q:["💃🎵🇮🇳🌺🏆","🎤🌸🕺🎭💫","🌺🎵🔥💃🇮🇳"],a:"Dilwale Dulhania Le Jayenge"},
+    {c:"🎬",q:["🤖🇮🇳🦸⚡🔥","🤖💪🌟🇮🇳🏆","⚡🦾🤖🌍💥"],a:"Robot (Enthiran)"},
+    {c:"🎬",q:["💃🎵🌺🇮🇳🔥","🎤💃🌸🕺🏆","🌺🎵💫🇮🇳🎭"],a:"Devdas"},
+    {c:"🎬",q:["🌊💙🎵🇮🇳🌺","💙🌊🎵🌺🏆","🌊💙🌺🎵🇮🇳"],a:"Lagaan"},
+    {c:"🎬",q:["🎓💙🌟🇮🇳🏆","🎓💙🌟🏆💫","💙🎓🌟🇮🇳💫"],a:"3 Idiots"},
+    {c:"🎬",q:["💃🌺🎵🏆🌟","🌺💃🎵🌟🏆","💃🎵🌺🌟💫"],a:"Dangal"},
+    {c:"🎬",q:["🌊🐠💙🌺🎵","💙🌊🌺🎵🏆","🌊💙🐠🌺💫"],a:"Barfi!"},
+    {c:"🎬",q:["⚔️🏰🇮🇳🌺🔥","🏰⚔️🌺🔥🏆","⚔️🏰🌺🔥💫"],a:"Bajirao Mastani"},
+    {c:"🎬",q:["🎭💙🌹🇮🇳🎵","💙🌹🎭🎵🏆","🌹💙🎭🇮🇳💫"],a:"Kabhi Khushi Kabhie Gham"},
+    {c:"🎬",q:["🚂🌍🎵🇮🇳🌺","🌍🚂🎵🌺🏆","🚂🌍🌺🎵💫"],a:"Slumdog Millionaire"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Attack on Titan"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"One Piece"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮",q:["⚽🌍🏆🎮👟","⚽🏟️🌟🎮🏅","⚽💪🌍🎯🏆"],a:"FIFA"},
+    {c:"🎵",q:["🎤🇮🇳🌺💃🔥","🎵🌸🏆💫🌺","💃🎤🇮🇳🔥🌈"],a:"A.R. Rahman"},
+    {c:"🎵",q:["🎤🇮🇳💫🌟🎵","🌺🎤🔥🌍💃","🎵🇮🇳🌸🏆🎤"],a:"Lata Mangeshkar"},
+    {c:"🎵",q:["🎤🇮🇳🌟🎸🔥","🎸🎤🇮🇳🌟💫","🌟🎸🎤🇮🇳🏆"],a:"Arijit Singh"},
+    {c:"🎵",q:["🎤🇵🇰🌹💙🌟","💙🌹🎤🇵🇰🏆","🌹💙🎤🇵🇰💫"],a:"Nusrat Fateh Ali Khan"},
+  ],
+  af:[
+    {c:"🎬",q:["🦁🌍🔥🇿🇦🏆","🌅🦁💫🌺🎭","🌍🔥🦁⚔️🌄"],a:"District 9"},
+    {c:"🎬",q:["🌍🎭🔥🇳🇬💫","🎬🌺🏆🔥🌍","💫🎭🇳🇬🌅🏆"],a:"Lion Heart"},
+    {c:"🎬",q:["🦁🌍⚔️🏆💫","🌍🦁⚔️💫🏆","⚔️🦁🌍💫🌟"],a:"The Lion"},
+    {c:"🎬",q:["🌍🌺🎵🇳🇬🏆","🌺🎵🇳🇬🌍💫","🎵🌍🌺🇳🇬🌟"],a:"King of Boys"},
+    {c:"🎬",q:["🌅🌍🏠🇿🇦🎭","🏠🌅🌍🎭🏆","🌅🏠🌍🇿🇦💫"],a:"Tsotsi"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Attack on Titan"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎵",q:["🎤🌍🔥🇳🇬🏆","🎵🌺💫🌍🎤","💃🔥🇳🇬🌟🎵"],a:"Burna Boy"},
+    {c:"🎵",q:["🎤🌍🌟🇿🇦🔥","🎵💫🌺🏆🎤","🌍🔥🎵🌟💃"],a:"Miriam Makeba"},
+    {c:"🎵",q:["🎤🇳🇬🌟🔥💃","💃🎵🇳🇬🌟🏆","🌟🎤🇳🇬🔥💃"],a:"Wizkid"},
+    {c:"🎵",q:["🎤🌍🎸🔥🌟","🎸🎤🌍🔥🏆","🌍🎸🔥🎤💫"],a:"Fela Kuti"},
+  ],
+  au:[
+    {c:"🎬",q:["🦘🇦🇺🌅🔥💫","🌏🦅🌺🏆🎭","🇦🇺🌄🦘💫🎬"],a:"Crocodile Dundee"},
+    {c:"🎬",q:["🌊🇦🇺🏄🌅🏆","🦈🌊💦🏖️🎬","🇦🇺🌊🏄💫🌅"],a:"Mad Max"},
+    {c:"🎬",q:["🐨🌳🇦🇺🌺💚","🐨🌳💚🌺🏆","🌳🐨🇦🇺💚💫"],a:"Babe"},
+    {c:"🎬",q:["🌊🏄🇦🇺🌅💙","🏄🌊💙🌅🏆","🌊💙🏄🇦🇺💫"],a:"Point Break"},
+    {c:"🎬",q:["🎭🇦🇺💃🌟🎵","💃🎭🌟🎵🏆","🎭💃🇦🇺🌟💫"],a:"Strictly Ballroom"},
+    {c:"🎬",q:["🌍🦁🇦🇺🌺🔍","🦁🌍🌺🔍🏆","🌍🔍🦁🌺💫"],a:"Lion (2016)"},
+    {c:"🎌",q:["🍥🦊⚡🍃🎭","👦🌀🔥🌿🏅","🦊🌀⚔️🏔️🎯"],a:"Naruto"},
+    {c:"🎌",q:["⚔️💀👹🏰🔮","🧱🏹💥😱🌑","👁️⚔️🏯🌪️😤"],a:"Attack on Titan"},
+    {c:"🎌",q:["☠️🗺️🏴‍☠️⚓🍖","🌊🚢👒🔥🏝️","🏴‍☠️💪🌊🗡️😄"],a:"One Piece"},
+    {c:"🎮",q:["🥊🌟💥🎮🏆","⚡🔥👊🎯🌈","🕹️💢🏅🔴💫"],a:"Brawl Stars"},
+    {c:"🎮",q:["🃏🏰⚔️👑💎","🧙‍♂️🐉🏹🎴🌟","🏰🎮⚔️💰🃏"],a:"Clash Royale"},
+    {c:"🎮",q:["💎⛏️🏡🌲🦁","🧱🌍⚒️🐮🌙","🏗️🌿💡🐷🔦"],a:"Minecraft"},
+    {c:"🎮",q:["⚽🌍🏆🎮👟","⚽🏟️🌟🎮🏅","⚽💪🌍🎯🏆"],a:"FIFA"},
+    {c:"🎵",q:["👑🎤🎸🌈🏆","🎭🎵💃🌟👑","🎸💪🎤🔥🏟️"],a:"AC/DC"},
+    {c:"🎵",q:["🎤🇦🇺🌟💫🎵","🌊🎤🔥💃🏆","🎵🇦🇺🌈🌟🎤"],a:"Kylie Minogue"},
+    {c:"🎵",q:["🎤🇦🇺🎸🌟🔥","🎸🎤🇦🇺🌟💫","🌟🎸🎤🇦🇺🏆"],a:"Tame Impala"},
+    {c:"🎵",q:["🎤🇳🇿🌊💙🌟","💙🌊🎤🇳🇿🏆","🌊💙🎤🇳🇿💫"],a:"Lorde"},
+  ],
+};
+
+// Звук удалён
+function sfxCorrect(){}
+function sfxWrong(){}
+function sfxComplete(){}
+function startBgMusic(){}
+function stopBgMusic(){}
+function toggleMusic(){}
+function toggleSfx(){}
+let sfxEnabled=false, musicEnabled=false;
+
+// ============================================================
+// СОСТОЯНИЕ
+// ============================================================
+let curLang='ru', curRegion='ru', curSession='am';
+let cp=null,ea=3,ci=0,ti=null,ts=30,df='e',lr=null;
+let ns=0,na=0,nd=false,nMaxTries=10,nMaxVal=1000,nMode='normal',nDiff='e';
+let eqList=[],eqIdx=0,eqResults=[];
+let regPendingRegion='ru', regPendingLang='ru';
+
+const XP_PER={e:30,m:60,h:100};
+
+// ============================================================
+// ПЕРЕВОДЫ: применить
+// ============================================================
+function applyLang(l){
+  curLang=l;
+  const t=T[l];
+  function set(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+  set('txt-subtitle',t.subtitle);
+  set('txt-streak',t.streak);
+  set('txt-emoji-title',t.emoji_title); set('txt-emoji-title2',t.emoji_title);
+  set('txt-emoji-desc',t.emoji_desc); set('txt-emoji-badge',t.emoji_badge);
+  set('txt-num-title',t.num_title); set('txt-num-title2',t.num_title);
+  set('txt-num-desc',t.num_desc); set('txt-num-badge',t.num_badge);
+  set('txt-big-title',t.big_title); set('txt-big-desc',t.big_desc); set('txt-big-badge',t.big_badge);
+  set('txt-easy',t.easy); set('txt-easy2',t.easy);
+  set('txt-med',t.med); set('txt-med2',t.med);
+  set('txt-hard',t.hard); set('txt-hard2',t.hard);
+  set('txt-easy-d',t.easy_d); set('txt-med-d',t.med_d); set('txt-hard-d',t.hard_d);
+  set('txt-nd-easy',t.nd_easy); set('txt-nd-med',t.nd_med); set('txt-nd-hard',t.nd_hard);
+  set('txt-num-pick',t.num_pick);
+  set('txt-back',t.back); set('txt-back2',t.back);
+  set('txt-time',t.time); set('txt-attempts',t.attempts);
+  const sb=document.getElementById('sb'); if(sb) sb.textContent=t.answer_btn;
+  set('txt-share',t.share); set('txt-menu',t.menu);
+  set('txt-settings',t.settings); set('txt-profile',t.profile);
+  set('txt-lang-label',t.lang_label); set('txt-region-label',t.region_label);
+  set('txt-sound-label',t.sound_label); set('txt-bg-music',t.bg_music); set('txt-sfx',t.sfx);
+  set('txt-save',t.save); set('txt-lb',t.lb_title);
+  // Session badge
+  updateSessionBadge();
+  // Lang buttons highlight
+  ['ru','en','es'].forEach(x=>{
+    const b=document.getElementById('lb-'+x); if(b) b.className='lang-btn'+(x===l?' sel':'');
+  });
+  // Placeholder
+  const ai=document.getElementById('ai'); if(ai) ai.placeholder=t.answer_btn+'...';
+}
+
+function setLang(l){
+  localStorage.setItem('lang',l);
+  applyLang(l);
+  buildRegionCards('region-cards', curRegion, setRegion);
+}
+
+// ============================================================
+// РЕГИОН-КАРТОЧКИ
+// ============================================================
+function buildRegionCards(containerId, selectedRegion, callback){
+  const c=document.getElementById(containerId);
+  if(!c) return;
+  c.innerHTML='';
+  Object.keys(REGIONS).forEach(r=>{
+    const reg=REGIONS[r];
+    const d=document.createElement('div');
+    d.className='dcard m';
+    d.style.opacity=r===selectedRegion?'1':'0.5';
+    d.style.borderColor=r===selectedRegion?'var(--ea)':'';
+    d.innerHTML='<div class="di">'+reg.flag+'</div><div class="dn">'+reg.name[curLang]+'</div><div class="dd">'+reg.desc[curLang]+'</div>';
+    d.onclick=()=>callback(r, containerId, selectedRegion);
+    c.appendChild(d);
+  });
+}
+
+function setRegion(r, containerId){
+  curRegion=r;
+  buildRegionCards(containerId||'region-cards', r, setRegion);
+}
+
+function regSelectRegion(r){
+  regPendingRegion=r;
+  buildRegionCards('reg-region-cards', r, (x)=>{regPendingRegion=x; buildRegionCards('reg-region-cards',x,(y)=>{regPendingRegion=y; buildRegionCards('reg-region-cards',y,arguments.callee);});});
+  // simpler rebuild
+  const c=document.getElementById('reg-region-cards');
+  if(!c) return;
+  c.innerHTML='';
+  Object.keys(REGIONS).forEach(rid=>{
+    const reg=REGIONS[rid];
+    const d=document.createElement('div');
+    d.className='dcard m';
+    d.style.opacity=rid===r?'1':'0.5';
+    d.style.borderColor=rid===r?'var(--ea)':'';
+    d.innerHTML='<div class="di">'+reg.flag+'</div><div class="dn">'+reg.name[curLang]+'</div><div class="dd">'+reg.desc[curLang]+'</div>';
+    d.onclick=()=>regSelectRegion(rid);
+    c.appendChild(d);
+  });
+}
+
+function regLang(l){
+  regPendingLang=l;
+  ['ru','en','es'].forEach(x=>{const b=document.getElementById('rlb-'+x);if(b)b.className='lang-btn'+(x===l?' sel':'');});
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init(){
+  sfxEnabled=localStorage.getItem('sfxEnabled')!=='false';
+  musicEnabled=localStorage.getItem('musicEnabled')=='true';
+  document.getElementById('toggle-sfx').className='toggle'+(sfxEnabled?' on':'');
+  document.getElementById('toggle-music').className='toggle'+(musicEnabled?' on':'');
+
+  const reg=localStorage.getItem('region');
+  if(!reg){
+    // First run: show registration
+    regSelectRegion('ru');
+    buildRegionCards('reg-region-cards','ru',(r)=>regSelectRegion(r));
+    ss('rg'); return;
+  }
+  curRegion=reg;
+  curLang=localStorage.getItem('lang')||'ru';
+  applyLang(curLang);
+
+  const nm=localStorage.getItem('playerName')||'Player';
+  document.getElementById('hd-name').textContent=nm;
+  document.getElementById('hd-region').textContent=REGIONS[curRegion]?REGIONS[curRegion].flag:'🌍';
+
+  const st=+localStorage.getItem('streak')||0;
+  ['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});
+
+  curSession=getSession();
+  updateSessionBadge();
+  uNT(); setInterval(uNT,1000);
+  if(musicEnabled) startBgMusic();
+  ss('lo');
+}
+
+function getSession(){return new Date().getHours()<21?'am':'pm';}
+function updateSessionBadge(){
+  const t=T[curLang]||T.ru;
+  const b=document.getElementById('sess-badge'); if(b) b.textContent=curSession==='am'?t.morning:t.evening;
+  const dl=document.getElementById('di-sess-label'); if(dl) dl.textContent=curSession==='am'?t.morning_sess:t.evening_sess;
+}
+
+// ============================================================
+// РЕГИСТРАЦИЯ
+// ============================================================
+function register(){
+  const name=document.getElementById('reg-name').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const country=document.getElementById('reg-country').value;
+  const err=document.getElementById('reg-err');
+  if(!name||!email||!country){err.style.display='block';return;}
+  err.style.display='none';
+  localStorage.setItem('playerName',name);
+  localStorage.setItem('playerEmail',email);
+  localStorage.setItem('playerCountry',country);
+  localStorage.setItem('region',regPendingRegion);
+  localStorage.setItem('lang',regPendingLang);
+  
+// ============================================================
+// УГАДАЙ ЦЕНУ
+// ============================================================
+const PRODUCTS = [
+  // Светофор (дешёвый)
+  {name:"Шампунь Head&Shoulders 400мл", shop:"🟢 Светофор", emoji:"🧴", price:189, desc:"Против перхоти"},
+  {name:"Гречка 900г", shop:"🟢 Светофор", emoji:"🌾", price:49, desc:"Крупа ядрица"},
+  {name:"Носки мужские 5 пар", shop:"🟢 Светофор", emoji:"🧦", price:149, desc:"Хлопок, размер 40-45"},
+  {name:"Кофе Nescafé Classic 60г", shop:"🟢 Светофор", emoji:"☕", price:99, desc:"Растворимый"},
+  {name:"Стиральный порошок 1.5кг", shop:"🟢 Светофор", emoji:"🧺", price:129, desc:"Автомат"},
+  {name:"Зубная паста Colgate 100мл", shop:"🟢 Светофор", emoji:"🦷", price:79, desc:"Тройное действие"},
+  {name:"Масло подсолнечное 1л", shop:"🟢 Светофор", emoji:"🫙", price:89, desc:"Рафинированное"},
+  {name:"Шоколад Алёнка 100г", shop:"🟢 Светофор", emoji:"🍫", price:69, desc:"Молочный"},
+
+  // Семья (средний дешёвый)
+  {name:"Пельмени Сибирские 900г", shop:"🟡 Семья", emoji:"🥟", price:229, desc:"Свинина+говядина"},
+  {name:"Йогурт Активиа 4шт", shop:"🟡 Семья", emoji:"🥛", price:189, desc:"Натуральный, 150г"},
+  {name:"Хлеб Дарницкий 700г", shop:"🟡 Семья", emoji:"🍞", price:59, desc:"Ржано-пшеничный"},
+  {name:"Сосиски Молочные 500г", shop:"🟡 Семья", emoji:"🌭", price:169, desc:"Высший сорт"},
+  {name:"Сыр Российский 200г", shop:"🟡 Семья", emoji:"🧀", price:149, desc:"45% жирности"},
+
+  // Перекрёсток (дорогой)
+  {name:"Стейк рибай 300г", shop:"🔴 Перекрёсток", emoji:"🥩", price:890, desc:"Охлаждённая говядина"},
+  {name:"Лосось слабосолёный 200г", shop:"🔴 Перекрёсток", emoji:"🐟", price:469, desc:"Норвежский"},
+  {name:"Сыр Пармезан 100г", shop:"🔴 Перекрёсток", emoji:"🧀", price:349, desc:"Выдержанный 24 мес"},
+  {name:"Вино Chateau Tamagne 750мл", shop:"🔴 Перекрёсток", emoji:"🍷", price:649, desc:"Красное сухое"},
+  {name:"Мороженое Häagen-Dazs 460мл", shop:"🔴 Перекрёсток", emoji:"🍨", price:589, desc:"Ванильное"},
+  {name:"Оливковое масло Extra Virgin 500мл", shop:"🔴 Перекрёсток", emoji:"🫒", price:699, desc:"Испанское"},
+  {name:"Трюфельная паста 80г", shop:"🔴 Перекрёсток", emoji:"🍄", price:549, desc:"Чёрный трюфель"},
+
+  // Специфика — необычные цены
+  {name:"Авокадо 1 шт", shop:"🔴 Перекрёсток", emoji:"🥑", price:129, desc:"Спелое, Израиль"},
+  {name:"Манго 1 шт", shop:"🟡 Семья", emoji:"🥭", price:89, desc:"Пакистанское"},
+  {name:"Кокос 1 шт", shop:"🟡 Семья", emoji:"🥥", price:149, desc:"Свежий"},
+  {name:"Батарейки AA 4шт Duracell", shop:"🔴 Перекрёсток", emoji:"🔋", price:389, desc:"Alkaline"},
+  {name:"Батарейки AA 4шт", shop:"🟢 Светофор", emoji:"🔋", price:89, desc:"Солевые"},
+  {name:"Жвачка Orbit 10 пластин", shop:"🟡 Семья", emoji:"🍬", price:79, desc:"Свежая мята"},
+  {name:"Red Bull 250мл", shop:"🔴 Перекрёсток", emoji:"🥤", price:139, desc:"Энергетический напиток"},
+  {name:"Колбаса Докторская 400г", shop:"🟡 Семья", emoji:"🥓", price:199, desc:"ГОСТ"},
+];
+
+let currentProduct = null;
+let priceGuess = 0;
+
+function getPriceProductIndex(){
+  const d = new Date();
+  const seed = d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+  let x = seed;
+  x=((x>>16)^x)*0x45d9f3b;
+  x=((x>>16)^x)*0x45d9f3b;
+  x=(x>>16)^x;
+  return Math.abs(x) % PRODUCTS.length;
+}
+
+function openPriceGame(){
+  if(isPricePlayed()){
+    const t=T[curLang]||T.ru;
+    alert(t.already_played||'Ты уже угадывал цену сегодня! Возвращайся завтра.');
+    return;
+  }
+  const idx = getPriceProductIndex();
+  currentProduct = PRODUCTS[idx];
+  document.getElementById('pg-emoji').textContent = currentProduct.emoji;
+  document.getElementById('pg-name').textContent = currentProduct.name;
+  document.getElementById('pg-shop').textContent = currentProduct.shop;
+  const badge = document.getElementById('pg-shop-badge');
+  if(badge){
+    badge.textContent = currentProduct.shop;
+    const isGreen = currentProduct.shop.includes('Светофор') || currentProduct.shop.includes('Семья');
+    const isRed = currentProduct.shop.includes('Перекрёсток');
+    badge.style.borderColor = isRed ? 'var(--fa)' : isGreen ? 'var(--ok)' : 'var(--ea)';
+    badge.style.color = isRed ? 'var(--fa)' : isGreen ? 'var(--ok)' : 'var(--ea)';
+  }
+  document.getElementById('pg-desc').textContent = currentProduct.desc;
+  document.getElementById('pg-input').value = '';
+  const st=+localStorage.getItem('streak')||0;
+  document.getElementById('pg-streak').textContent = st;
+  ss('pg');
+}
+
+function priceScore(guess, actual){
+  const diff = Math.abs(guess - actual);
+  const pct = diff / actual;
+  if(diff === 0) return 500;
+  if(diff <= 10) return 400;
+  if(diff <= 20) return 300;
+  if(diff <= 50) return 200;
+  if(pct <= 0.1) return 150;
+  if(pct <= 0.2) return 100;
+  if(pct <= 0.3) return 50;
+  return 0;
+}
+
+function submitPrice(){
+  const inp = document.getElementById('pg-input');
+  const v = parseInt(inp.value);
+  if(!v || v < 1) return;
+  priceGuess = v;
+  const pts = priceScore(v, currentProduct.price);
+  addScore(pts);
+  setPricePlayed();
+  uSt();
+
+  const diff = Math.abs(v - currentProduct.price);
+  let emoji, title;
+  if(diff === 0){ emoji='🎯'; title='Точно!'; }
+  else if(pts >= 400){ emoji='🔥'; title='Очень близко!'; }
+  else if(pts >= 200){ emoji='👍'; title='Неплохо!'; }
+  else if(pts >= 50){ emoji='😅'; title='Промазал...'; }
+  else { emoji='😔'; title='Далеко!'; }
+
+  document.getElementById('pgr-emoji').textContent = emoji;
+  document.getElementById('pgr-title').textContent = title;
+  document.getElementById('pgr-sub').innerHTML = 'Очки: <span>+'+pts+'</span>';
+  document.getElementById('pgr-name').textContent = currentProduct.name;
+  document.getElementById('pgr-shop').textContent = currentProduct.shop;
+  document.getElementById('pgr-guess').textContent = v + ' ₽';
+  document.getElementById('pgr-real').textContent = currentProduct.price + ' ₽';
+  document.getElementById('pgr-pts').textContent = '+' + pts + ' очков';
+
+  ss('pgr');
+}
+
+function sharePriceResult(){
+  const st = localStorage.getItem('streak')||'0';
+  const diff = Math.abs(priceGuess - currentProduct.price);
+  const pts = priceScore(priceGuess, currentProduct.price);
+  const tx = 'tresuno 🏷️\n'+currentProduct.emoji+' '+currentProduct.name+'\nМоя цена: '+priceGuess+' ₽ · Реальная: '+currentProduct.price+' ₽\n+'+pts+' очков · разница '+diff+' ₽\n🔥'+st+'д\nmelnwsc2-cmyk.github.io/tresuno';
+  if(navigator.share) navigator.share({text:tx});
+  else navigator.clipboard.writeText(tx).then(()=>alert('Скопировано!'));
+}
+
+
+// ============================================================
+// БЛОКИРОВКА ПОВТОРНОГО ПРОХОЖДЕНИЯ
+// ============================================================
+function getTodayKey(){
+  const d = new Date();
+  return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+}
+
+function getSessionKey(){
+  const h = new Date().getHours();
+  const sess = h < 21 ? 'am' : 'pm';
+  return getTodayKey()+'-'+sess;
+}
+
+function isEmojiPlayed(){
+  return localStorage.getItem('emoji-played-'+getSessionKey()) === '1';
+}
+function setEmojiPlayed(){
+  localStorage.setItem('emoji-played-'+getSessionKey(), '1');
+}
+
+function isNumberPlayed(){
+  // Блокируем на весь 4-часовой блок
+  const d = new Date();
+  const h4 = Math.floor(d.getHours()/4);
+  const key = getTodayKey()+'-h'+h4;
+  return localStorage.getItem('number-played-'+key) === '1';
+}
+function setNumberPlayed(){
+  const d = new Date();
+  const h4 = Math.floor(d.getHours()/4);
+  const key = getTodayKey()+'-h'+h4;
+  localStorage.setItem('number-played-'+key, '1');
+}
+
+function isPricePlayed(){
+  return localStorage.getItem('price-played-'+getTodayKey()) === '1';
+}
+function setPricePlayed(){
+  localStorage.setItem('price-played-'+getTodayKey(), '1');
+}
+
+function showAlreadyPlayed(msg){
+  alert(msg);
+}
+
+function resetPlayedFlags(){
+  const keys = Object.keys(localStorage);
+  keys.forEach(k => {
+    if(k.startsWith('emoji-played-') || k.startsWith('number-played-') || k.startsWith('price-played-')){
+      localStorage.removeItem(k);
+    }
+  });
+  alert('Блокировки сброшены! Теперь можно играть заново.');
+}
+
+function installApp(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; });
+  }
+}
+init();
+}
+
+// ============================================================
+// НАСТРОЙКИ
+// ============================================================
+function openSettings(){
+  document.getElementById('inp-name').value=localStorage.getItem('playerName')||''  ;
+  document.getElementById('inp-email').value=localStorage.getItem('playerEmail')||''  ;
+  buildRegionCards('region-cards',curRegion,setRegion);
+  ss('st');
+}
+
+function saveSettings(){
+  const nm=document.getElementById('inp-name').value.trim()||'Player';
+  localStorage.setItem('playerName',nm);
+  const em=document.getElementById('inp-email').value.trim();
+  if(em) localStorage.setItem('playerEmail',em);
+  localStorage.setItem('region',curRegion);
+  localStorage.setItem('lang',curLang);
+  document.getElementById('hd-name').textContent=nm;
+  document.getElementById('hd-region').textContent=REGIONS[curRegion]?REGIONS[curRegion].flag:'🌍';
+  ss('lo');
+}
+
+// ============================================================
+// НАВИГАЦИЯ
+// ============================================================
+function ss(id){document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
+function gl(){clearInterval(ti);ss('lo');}
+function openNumberMode(){ss('nd');}
+
+
+// ============================================================
+// ЛИДЕРБОРД
+// ============================================================
+function getMyTotalScore(){return +localStorage.getItem('totalScore')||0;}
+function addScore(pts){localStorage.setItem('totalScore',getMyTotalScore()+pts);}
+
+function renderLeaderboard(){
+  const t=T[curLang]||T.ru;
+  const myScore=getMyTotalScore();
+  const myName=localStorage.getItem('playerName')||'Player';
+  const myCountry=localStorage.getItem('playerCountry')||''  ;
+  const mySt=+localStorage.getItem('streak')||0;
+  const flagMap={ru:'🇷🇺',by:'🇧🇾',ua:'🇺🇦',kz:'🇰🇿',us:'🇺🇸',ca:'🇨🇦',gb:'🇬🇧',es:'🇪🇸',mx:'🇲🇽',br:'🇧🇷',ar:'🇦🇷',co:'🇨🇴',cl:'🇨🇱',de:'🇩🇪',fr:'🇫🇷',it:'🇮🇹',pl:'🇵🇱',pt:'🇵🇹',nl:'🇳🇱',jp:'🇯🇵',kr:'🇰🇷',cn:'🇨🇳',in:'🇮🇳',pk:'🇵🇰',tr:'🇹🇷',sa:'🇸🇦',ae:'🇦🇪',ng:'🇳🇬',za:'🇿🇦',eg:'🇪🇬',au:'🇦🇺',nz:'🇳🇿'};
+  const flag=flagMap[myCountry]||'🌍';
+  document.getElementById('lb').innerHTML='<div class="li me"><div class="lp p1">👤</div><div class="ln">'+flag+' '+myName+'</div><div><div class="lsc">'+myScore+' pts</div><div class="lf">🔥'+mySt+'д</div></div></div><div style="text-align:center;color:var(--m);font-size:12px;padding:12px">'+t.lb_soon+'</div>';
+}
+
+// ============================================================
+// ЭМОДЖИ
+// ============================================================
+function getPuzzleIndices(session){
+  const d=new Date();
+  const sessSeed=session==='am'?0:100000;
+  const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate()+sessSeed;
+  const pool=PUZZLES[curRegion]||PUZZLES.ru;
+  const indices=[];
+  let s=seed;
+  while(indices.length<3){
+    s=((s>>16)^s)*0x45d9f3b;
+    s=((s>>16)^s)*0x45d9f3b;
+    s=(s>>16)^s;
+    const idx=Math.abs(s)%pool.length;
+    if(!indices.includes(idx))indices.push(idx);
+  }
+  return indices;
+}
+
+function sE(d){
+  if(isEmojiPlayed()){
+    const t=T[curLang]||T.ru;
+    alert(t.already_played||'Ты уже играл в эту сессию! Возвращайся позже.');
+    return;
+  }
+  df=d; curSession=getSession();
+  eqList=getPuzzleIndices(curSession);
+  eqIdx=0; eqResults=[];
+  startPuzzle();
+}
+
+function startPuzzle(){
+  const pool=PUZZLES[curRegion]||PUZZLES.ru;
+  cp=pool[eqList[eqIdx]];
+  ea=3; ci=0;
+  document.getElementById('cat').textContent=cp.c;
+  document.getElementById('ed').textContent=cp.q[0];
+  document.getElementById('ai').value='';
+  document.getElementById('ai').className='ai';
+  document.getElementById('sb').disabled=false;
+  document.getElementById('eq-num').textContent=(eqIdx+1)+' / 3';
+  rAD(); updateProgress(); ss('eg'); sT();
+}
+
+function updateProgress(){
+  const el=document.getElementById('eq-progress'); el.innerHTML='';
+  for(let i=0;i<3;i++){
+    const d=document.createElement('div'); d.className='eq-pip';
+    if(i<eqResults.length) d.classList.add(eqResults[i].win?'ok':'fa');
+    else if(i===eqIdx) d.classList.add('cur');
+    el.appendChild(d);
+  }
+}
+
+function sT(){
+  clearInterval(ti);
+  ts=df==='e'?30:df==='m'?15:10;
+  const tot=ts; uTU(ts,tot);
+  ti=setInterval(()=>{ts--;uTU(ts,tot);if(ts<=0){clearInterval(ti);tO();}},1000);
+}
+function uTU(s,t){
+  const p=(s/t)*100;
+  const f=document.getElementById('tf');
+  f.style.width=p+'%'; f.className='tf'+(p<30?' w':'');
+  document.getElementById('tt').textContent=s;
+}
+function tO(){clearInterval(ti);finishPuzzle(false);}
+function rAD(){const r=document.getElementById('ar');r.innerHTML='';for(let i=0;i<3;i++){const d=document.createElement('div');d.className='ad';r.appendChild(d);}}
+function mA(){const ds=document.querySelectorAll('.ad');const u=3-ea;for(let i=0;i<u;i++)if(ds[i])ds[i].classList.add('u');}
+
+function se(){
+  const inp=document.getElementById('ai');
+  const v=inp.value.trim().toLowerCase();
+  const co=cp.a.toLowerCase();
+  if(!v)return;
+  if(v===co||(co.includes(v)&&v.length>3)){
+    clearInterval(ti); inp.classList.add('ok');
+    sfxCorrect();
+    setTimeout(()=>finishPuzzle(true),600);
+  } else {
+    inp.classList.add('no');
+    setTimeout(()=>{inp.classList.remove('no');inp.value='';},400);
+    clearInterval(ti);
+    setTimeout(()=>finishPuzzle(false),600);
+  }
+}
+
+function finishPuzzle(win){
+  const t=T[curLang]||T.ru;
+  eqResults.push({win,answer:cp.a,emoji:cp.q[0]});
+  if(win){uSt();addScore(XP_PER[df]);}
+  const xp=win?XP_PER[df]:0;
+  const isLast=eqIdx===2;
+  document.getElementById('pr-emoji').textContent=win?'🎉':'😔';
+  document.getElementById('pr-title').textContent=win?t.correct:t.wrong;
+  document.getElementById('pr-sub').innerHTML=t.answer_lbl+': <span>'+cp.a+'</span>';
+  document.getElementById('pr-xp').textContent=win?'+'+xp+' '+t.xp:'0 '+t.xp;
+  const dots=document.getElementById('pr-dots'); dots.innerHTML='';
+  for(let i=0;i<3;i++){
+    const d=document.createElement('div'); d.className='pr-dot';
+    if(i<eqResults.length) d.classList.add(eqResults[i].win?'ok':'fa');
+    else d.classList.add('pend');
+    dots.appendChild(d);
+  }
+  const btn=document.getElementById('pr-btn');
+  if(isLast){
+    btn.textContent=t.see_results; btn.onclick=showFinalResult;
+    if(win) sfxComplete();
+  } else {
+    btn.textContent=t.next_puzzle.replace('{n}',eqIdx+2); btn.onclick=nextPuzzle;
+  }
+  ss('pr');
+}
+
+function nextPuzzle(){eqIdx++;startPuzzle();}
+
+function showFinalResult(){
+  setEmojiPlayed();
+  const t=T[curLang]||T.ru;
+  const totalXp=eqResults.reduce((s,r)=>s+(r.win?XP_PER[df]:0),0);
+  const won=eqResults.filter(r=>r.win).length;
+  lr={m:'e',results:eqResults,totalXp,won,diff:df};
+  document.getElementById('rmt').textContent=t.emoji_title;
+  document.getElementById('rmt').style.color='var(--ea)';
+  document.querySelector('.shb').style.borderColor='var(--ea)';
+  document.querySelector('.shb').style.color='var(--ea)';
+  document.getElementById('re').textContent=won===3?'🏆':won>0?'🎉':'😔';
+  document.getElementById('rt').textContent=won===3?t.guessed_all:t.guessed_n.replace('{n}',won);
+  document.getElementById('ra').innerHTML=t.xp+': <span>'+totalXp+'</span> · <span>'+(curSession==='am'?t.morning:t.evening)+'</span>';
+  renderLeaderboard(); ss('rs');
+}
+
+// ============================================================
+// ЧИСЛО
+// ============================================================
+const NH_FN=[
+  (n,t)=>n%2===0?(t==='ru'?'Чётное':t==='es'?'Par':'Even'):(t==='ru'?'Нечётное':t==='es'?'Impar':'Odd'),
+  (n,t)=>n%5===0?(t==='ru'?'Делится на 5':t==='es'?'Divisible por 5':'Divisible by 5'):(t==='ru'?'Не делится на 5':t==='es'?'No divisible por 5':'Not divisible by 5'),
+  (n,t)=>(t==='ru'?'Последняя цифра: ':t==='es'?'Último dígito: ':'Last digit: ')+n%10,
+  (n,t)=>n>(nMaxVal/2)?(t==='ru'?'Больше середины':t==='es'?'Mayor que la mitad':'Above midpoint'):(t==='ru'?'Меньше или равно середине':t==='es'?'Menor o igual a la mitad':'At or below midpoint'),
+];
+
+function sN(diff){
+  if(isNumberPlayed()){
+    const t=T[curLang]||T.ru;
+    alert(t.already_played||'Ты уже играл в этот блок! Возвращайся через 4 часа.');
+    return;
+  }
+  nDiff=diff;
+  const maxTries=diff==='e'?10:diff==='m'?9:8;
+  startNumber('normal', maxTries, 1000);
+}
+
+function startNumber(mode, maxTries, maxVal){
+  nMode=mode||'normal';
+  nMaxTries=maxTries||(mode==='big'?20:10);
+  nMaxVal=maxVal||(mode==='big'?5000:1000);
+  ns=genNumber(nMaxVal); na=0; nd=false;
+  const t=T[curLang]||T.ru;
+  document.getElementById('gl').innerHTML='<div style="text-align:center;color:var(--m);font-size:13px;padding:16px" id="ng-hint-start">1 – '+nMaxVal+'</div>';
+  document.getElementById('ni2').value='';
+  document.getElementById('ni2').max=nMaxVal;
+  document.getElementById('al').textContent=nMaxTries;
+  document.getElementById('txt-attempts2').innerHTML=t.tries_lbl+': <span id="al">'+nMaxTries+'</span>/'+nMaxTries;
+  document.getElementById('nh').classList.remove('on');
+  document.querySelector('.ns').disabled=false;
+  document.getElementById('ng-title').textContent=nMode==='big'?t.big_title:t.num_title;
+  ss('ng');
+}
+
+function genNumber(max){
+  const d=new Date();
+  const h=Math.floor(d.getHours()/4);
+  const seed=d.getFullYear()*1000000+(d.getMonth()+1)*10000+d.getDate()*100+h+(max===5000?777:0);
+  let x=seed;
+  x=((x>>16)^x)*0x45d9f3b;
+  x=((x>>16)^x)*0x45d9f3b;
+  x=(x>>16)^x;
+  return(Math.abs(x)%max)+1;
+}
+
+function uNT(){
+  const d=new Date();
+  const nh=(Math.floor(d.getHours()/4)+1)*4;
+  const nx=new Date(d); nx.setHours(nh,0,0,0);
+  const diff=nx-d; if(diff<0)return;
+  const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+  const t=T[curLang]||T.ru;
+  const el=document.getElementById('nt');
+  if(el)el.textContent=t.next_in+': '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+function numScore(guessed,actual,diff){
+  const d=Math.abs(guessed-actual);
+  if(diff==='h'){
+    return d===0?1000:0;
+  } else if(diff==='m'){
+    if(d===0)return 700; if(d===1)return 600; if(d===2)return 500; if(d===3)return 400; if(d===4)return 300;
+    return 0;
+  } else {
+    if(d===0)return 500; if(d===1)return 400; if(d===2)return 300; if(d===3)return 200; if(d===4)return 100;
+    return 0;
+  }
+}
+
+function sn(){
+  const inp=document.getElementById('ni2');
+  const v=parseInt(inp.value);
+  if(!v||v<1||v>nMaxVal||nd)return;
+  na++; inp.value='';
+  const remEl=document.getElementById('al'); if(remEl) remEl.textContent=nMaxTries-na;
+  const log=document.getElementById('gl');
+  if(na===1)log.innerHTML='';
+  const row=document.createElement('div'); row.className='gr';
+  let ht,hc;
+  if(v===ns){ht='✓';hc='co';}
+  else if(v<ns){ht='↑';hc='hi';}
+  else{ht='↓';hc='lo';}
+  row.innerHTML='<span class="gn">'+v+'</span><span class="gi '+hc+'">'+ht+'</span>';
+  log.appendChild(row); log.scrollTop=log.scrollHeight;
+  // Hint every 3 tries
+  if(na%3===0&&v!==ns){
+    const hi=Math.floor(na/3)-1;
+    if(hi<NH_FN.length){
+      document.getElementById('nht').textContent=NH_FN[hi](ns,curLang);
+      document.getElementById('nh').classList.add('on');
+    }
+  }
+  if(v===ns){
+    nd=true; document.querySelector('.ns').disabled=true;
+    sfxComplete(); uSt();
+    const pts=numScore(v,ns,nDiff); addScore(pts);
+    setNumberPlayed();
+    lr={m:'n',w:true,a:ns,n:na,pts};
+    setTimeout(()=>sRN(true),800);
+  } else if(na>=nMaxTries){
+    nd=true; document.querySelector('.ns').disabled=true;
+    sfxWrong();
+    const pts=numScore(v,ns,nDiff); if(pts>0)addScore(pts);
+    setNumberPlayed();
+    lr={m:'n',w:false,a:ns,n:nMaxTries,lastGuess:v,pts};
+    setTimeout(()=>sRN(false),800);
+  }
+}
+
+function sRN(w){
+  const t=T[curLang]||T.ru;
+  document.getElementById('rmt').textContent=nMode==='big'?t.big_title:t.num_title;
+  document.getElementById('rmt').style.color='var(--na)';
+  document.querySelector('.shb').style.borderColor='var(--na)';
+  document.querySelector('.shb').style.color='var(--na)';
+  if(w){
+    document.getElementById('re').textContent='🎯';
+    document.getElementById('rt').textContent=t.found_num;
+    document.getElementById('ra').innerHTML=t.num_lbl+': <span>'+lr.a+'</span> · '+t.tries_lbl+': <span>'+lr.n+'</span> · +<span>'+lr.pts+'</span> '+t.score_lbl;
+  } else {
+    document.getElementById('re').textContent='😔';
+    document.getElementById('rt').textContent=t.not_found;
+    const extra=lr.pts>0?' · +<span>'+lr.pts+'</span> '+t.score_lbl+' ('+t.close+')':''  ;
+    document.getElementById('ra').innerHTML=t.num_lbl+': <span>'+lr.a+'</span>'+extra;
+  }
+  renderLeaderboard(); ss('rs');
+}
+
+// ============================================================
+// ПОДЕЛИТЬСЯ
+// ============================================================
+function sh(){
+  if(!lr)return;
+  const t=T[curLang]||T.ru;
+  const st=localStorage.getItem('streak')||'0';
+  let tx;
+  if(lr.m==='e'){
+    const dots=lr.results.map(r=>r.win?'🟩':'🟥').join('');
+    const dl=lr.diff==='e'?'🟢':lr.diff==='m'?'🟡':'🔴';
+    const sess=curSession==='am'?'🌅':'🌙';
+    tx='tresuno 🎭 '+dl+' '+sess+'\n'+dots+'\n'+t.xp+': '+lr.totalXp+'\n🔥'+st+'\nmelnwsc2-cmyk.github.io/tresuno';
+  } else {
+    const dots=Array(Math.min(lr.n,10)).fill('🟦').join('')+(lr.w?'':' ❌');
+    tx='tresuno '+(nMode==='big'?'🎲':'🔢')+'\n'+dots+'\n'+(lr.w?t.found_num+' ('+lr.n+')':t.not_found)+'\n🔥'+st+'\nmelnwsc2-cmyk.github.io/tresuno';
+  }
+  if(navigator.share)navigator.share({text:tx});
+  else navigator.clipboard.writeText(tx).then(()=>alert('OK'));
+}
+
+// ============================================================
+// СЕРИЯ
+// ============================================================
+function uSt(){
+  const today=new Date().toDateString();
+  const lp=localStorage.getItem('lastPlay');
+  let st=+localStorage.getItem('streak')||0;
+  const yd=new Date(Date.now()-86400000).toDateString();
+  if(lp===yd)st++; else if(lp!==today)st=1;
+  localStorage.setItem('streak',st); localStorage.setItem('lastPlay',today);
+  ['ls','es','ns2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=st;});
+}
+
+document.getElementById('ai').addEventListener('keydown',e=>{if(e.key==='Enter')se();});
+document.getElementById('ni2').addEventListener('keydown',e=>{if(e.key==='Enter')sn();});
+init();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/tresuno/sw.js')
+      .then(r => console.log('SW registered'))
+      .catch(e => console.log('SW error', e));
+  });
+}
+// PWA install prompt
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('install-btn');
+  if(btn) btn.style.display = 'flex';
+});
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('install-btn');
+  if(btn) btn.style.display = 'none';
+});
+</script>
+</body>
+</html>
