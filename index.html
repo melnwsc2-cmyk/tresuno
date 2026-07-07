@@ -1550,13 +1550,6 @@ document.getElementById('ni2').addEventListener('keydown',e=>{if(e.key==='Enter'
 init();
 
 
-if('serviceWorker' in navigator){
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/tresuno/sw.js')
-      .then(r => console.log('SW registered'))
-      .catch(e => console.log('SW error', e));
-  });
-}
 // PWA install prompt
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', e => {
